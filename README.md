@@ -1,3 +1,4 @@
+#IoT Bay Web App
 1. start Netbeans, click File -> Open Project, navigate to the 06-31 folder, open it as a project\
 
 2. After open it, it will wait for couple seconds to download the dependency, after finish it, the 
