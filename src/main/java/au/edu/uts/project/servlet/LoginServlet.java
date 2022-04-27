@@ -25,6 +25,7 @@ public class LoginServlet extends HttpServlet {
         // setup the coding
         request.setCharacterEncoding("utf-8");
         response.setContentType("text/html;charset=UTF-8");
+        // lol
         // The validation below is for assignment 2
 
 //        // extract the data from request
