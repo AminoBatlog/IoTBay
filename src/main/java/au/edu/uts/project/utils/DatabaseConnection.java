@@ -6,8 +6,8 @@ import java.sql.SQLException;
 
 public class DatabaseConnection {
 
-    private static final String DBDRIVER = "com.mysql.cj.jdbc.Driver";
-    private static final String DBURL = "jdbc:mysql://localhost:3306/zmqp_test?serverTimezone=GMT%2b8&autoReconnect=true&useSSL=false";
+    private static final String DBDRIVER = "org.apache.derby.jdbc.ClientDriver";
+    private static final String DBURL = "jdbc:derby://localhost:1527/iotdb";
     private static final String DBUSER = "usertest";
     private static final String DBPASSWORD = "usertest";
     private Connection connection = null;
