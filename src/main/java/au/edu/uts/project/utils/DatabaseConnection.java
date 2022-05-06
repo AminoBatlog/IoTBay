@@ -1,24 +1,28 @@
 package au.edu.uts.project.utils;
 
+import au.edu.uts.project.dao.StaffDao;
+import au.edu.uts.project.dao.daoImpl.StaffDaoImpl;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DatabaseConnection {
 
-    private static final String DBDRIVER = "com.mysql.cj.jdbc.Driver";
-    private static final String DBURL = "jdbc:mysql://localhost:3306/zmqp_test?serverTimezone=GMT%2b8&autoReconnect=true&useSSL=false";
+    private static final String DBDRIVER = "org.apache.derby.jdbc.ClientDriver";
+    private static final String DBURL = "jdbc:derby;//localhost:1527/iotdb";
     private static final String DBUSER = "usertest";
     private static final String DBPASSWORD = "usertest";
     private Connection connection = null;
 
+// Initialize the staffDao
+    private static StaffDao staffDao;
 
     // connect to database by using constructor
-    public DatabaseConnection(){
-        try{
+    public DatabaseConnection() {
+        try {
             // Loading driver
             Class.forName(DBDRIVER);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -33,12 +37,20 @@ public class DatabaseConnection {
         return this.connection;
     }
 
+    // DB Manager for StaffDao
+    public StaffDao getStaffDao() throws SQLException {
+        if (staffDao == null) {
+            staffDao = new StaffDaoImpl(getConnection());
+        }
+        return staffDao;
+    }
+
     // close the connection
-    public void close(){
-        if(this.connection != null) {
-            try{
+    public void close() {
+        if (this.connection != null) {
+            try {
                 this.connection.close();
-            }catch(Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }

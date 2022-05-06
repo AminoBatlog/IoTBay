@@ -47,8 +47,9 @@ public class LoginServlet extends HttpServlet {
         if(account != null && username.equals(account.getUsername()) && password.equals(account.getPassword())){
             response.sendRedirect(request.getContextPath() + "/welcome.jsp");
         } else {
-//            request.setAttribute("info", "no account");
-//            request.getRequestDispatcher("/register.jsp").forward(request, response);
+            //request.setAttribute("info", "no account");
+            //request.getRequestDispatcher(request.getContextPath() + "/register.jsp").forward(request, response);
             response.sendRedirect(request.getContextPath() + "/register.jsp");
         }
-    }}
+    }
+}

@@ -15,6 +15,40 @@
     <link rel="stylesheet" href="./dist/bootstrap-5.1.3-dist/js/bootstrap.min.js">
     <link rel="stylesheet" href="./assets/css/style.css">
 </head>
+
+<style>
+    
+  .dropbtn {
+  background-color: #121212;
+  color: grey;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+}
+
+  .dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {background-color: #ddd;}
+
+.dropdown:hover .dropdown-content {display: block;}
+
+.dropdown:hover .dropbtn {background-color: #3e8e41;}
+</style>
+
 <body>
     <%
         Account account = (Account)session.getAttribute("account");
@@ -39,16 +73,16 @@
                     <li class="nav-item">
                         <a class="nav-link" href="index.jsp">Index</a>
                     </li>
+                    
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Devices
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <a class="dropdown-item" href="#">Something else here</a>
+                        <a class="dropbtn">Devices</a>
+                        <div class="dropdown-content">
+                            <a href="#">Action</a>
+                            <a href="#">Another action</a>
+                            <a href="#">Something else here</a>
                         </div>
                     </li>
+                    
                     <li class="nav-item">
                         <a class="nav-link" href="logout.jsp">
                             <button type="button" class="btn btn-primary">Logout</button>

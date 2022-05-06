@@ -9,7 +9,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
 <html>
 <head>
-    <title>Welcome</title>
+    <title>Register</title>
     <link rel="stylesheet" href="./dist/bootstrap-5.1.3-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/select.css">
     <link rel="stylesheet" href="./dist/bootstrap-5.1.3-dist/js/bootstrap.min.js">
