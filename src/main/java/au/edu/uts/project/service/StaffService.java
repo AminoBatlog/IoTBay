@@ -11,4 +11,6 @@ public interface StaffService {
     int addStaff(Staff staff);
 
     int updateStaff(Staff staff);
+
+    int removeStaff(int id);
 }

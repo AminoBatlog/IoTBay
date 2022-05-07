@@ -87,7 +87,40 @@ public class StaffDaoImpl implements StaffDao {
      * @return
      */
     @Override
-    public int updateStaff(Staff staff) {
-        return 0;
+    public int updateStaff(Staff staff) throws SQLException {
+        String sql = "UPDATE Staff SET Staff_FName=?, Staff_LName=?, Email=?, Password=?, DOB=?, Gender=?, Staff_streetNo=?, Staff_streetName=?, Staff_city=?, Staff_zipcode=?, Staff_country=?, Roles=? WHERE staff_id=?";
+        this.pst = this.connection.prepareStatement(sql);
+        this.pst.setString(1, staff.getStaffFname());
+        this.pst.setString(2, staff.getStaffLname());
+        this.pst.setString(3, staff.getEmail());
+        this.pst.setString(4, staff.getPassword());
+        this.pst.setString(5, staff.getDob());
+        this.pst.setString(6, staff.getGender());
+        this.pst.setInt(7, staff.getStaffStreetno());
+        this.pst.setString(8, staff.getStaffStreetname());
+        this.pst.setString(9, staff.getStaffCity());
+        this.pst.setInt(10, staff.getStaffZipcode());
+        this.pst.setString(11, staff.getStaffCountry());
+        this.pst.setString(12, staff.getRoles());
+        this.pst.setInt(13, staff.getStaffId());
+        int result = this.pst.executeUpdate();
+        this.pst.close();
+        return result;
+    }
+
+    /**
+     * remove staff information
+     * @param id
+     * @return
+     * @throws SQLException
+     */
+    @Override
+    public int removeStaff(int id) throws SQLException {
+        String sql = "DELETE FROM Staff WHERE Staff_id=?";
+        this.pst = this.connection.prepareStatement(sql);
+        this.pst.setInt(1, id);
+        int result = this.pst.executeUpdate();
+        this.pst.close();
+        return result;
     }
 }

@@ -52,7 +52,30 @@ public class StaffServiceImpl implements StaffService {
      */
     @Override
     public int updateStaff(Staff staff) {
-//        StaffDao dao = new StaffDaoImpl(new DatabaseConnection().getConnection());
-        return 0;
+        StaffDao dao = StaffDaoSingleton.getInstance();
+        int result = 0;
+        try {
+            result = dao.updateStaff(staff);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+    /**
+     * remove staff information
+     * @param id
+     * @return
+     */
+    @Override
+    public int removeStaff(int id) {
+        StaffDao dao = StaffDaoSingleton.getInstance();
+        int result = 0;
+        try {
+            result = dao.removeStaff(id);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return result;
     }
 }
