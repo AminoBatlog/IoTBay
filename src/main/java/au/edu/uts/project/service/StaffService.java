@@ -9,4 +9,6 @@ public interface StaffService {
     List<Staff> getList();
 
     int addStaff(Staff staff);
+
+    int updateStaff(Staff staff);
 }

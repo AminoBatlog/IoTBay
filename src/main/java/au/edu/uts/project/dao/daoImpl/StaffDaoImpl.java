@@ -76,7 +76,18 @@ public class StaffDaoImpl implements StaffDao {
         this.pst.setString(11, staff.getStaffCountry());
         this.pst.setString(12, staff.getRoles());
         int result = this.pst.executeUpdate();
-        System.out.println("the insertion return result is" + result);
+//        System.out.println("the insertion return result is" + result);
+        this.pst.close();
         return result;
+    }
+
+    /**
+     * update staff info
+     * @param staff
+     * @return
+     */
+    @Override
+    public int updateStaff(Staff staff) {
+        return 0;
     }
 }

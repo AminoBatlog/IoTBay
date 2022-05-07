@@ -11,4 +11,6 @@ public interface StaffDao {
 
     int addStaff(Staff staff) throws SQLException;
 
+    int updateStaff(Staff staff);
+
 }
