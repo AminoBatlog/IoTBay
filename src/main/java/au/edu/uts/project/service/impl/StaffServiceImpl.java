@@ -62,6 +62,19 @@ public class StaffServiceImpl implements StaffService {
         return result;
     }
 
+    @Override
+    public int modifyStaff(Staff staff) throws SQLException {
+        StaffDao dao = StaffDaoSingleton.getInstance();
+        boolean isExist = dao.isExistStaff(staff.getEmail());
+        int result = 0;
+        if(isExist){
+            result = dao.updateStaff(staff);
+        } else {
+            result = dao.addStaff(staff);
+        }
+        return result;
+    }
+
     /**
      * remove staff information
      * @param id
@@ -77,5 +90,17 @@ public class StaffServiceImpl implements StaffService {
             e.printStackTrace();
         }
         return result;
+    }
+
+    @Override
+    public Staff getStaff(String email) {
+        StaffDao dao = StaffDaoSingleton.getInstance();
+        Staff staff = null;
+        try {
+            staff = dao.selectStaffByEmail(email);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return staff;
     }
 }

@@ -15,4 +15,8 @@ public interface StaffDao {
 
     int removeStaff(int id) throws SQLException;
 
+    boolean isExistStaff(String email) throws SQLException;
+
+    Staff selectStaffByEmail(String email) throws SQLException;
+
 }

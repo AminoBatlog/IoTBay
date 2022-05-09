@@ -1,0 +1,8 @@
+#back-button {
+    font-size: 30px;
+    line-height: 60px;
+}
+
+#back-button:hover {
+    color: yellow;
+}

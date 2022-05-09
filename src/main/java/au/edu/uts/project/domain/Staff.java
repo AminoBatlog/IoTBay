@@ -8,7 +8,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Staff {
-    private int staffId;
     private String staffFname;
     private String staffLname;
     private String email;
@@ -25,7 +24,6 @@ public class Staff {
     @Override
     public String toString() {
         return "Staff{" +
-                "staffId=" + staffId +
                 ", staffFname='" + staffFname + '\'' +
                 ", staffLname='" + staffLname + '\'' +
                 ", email='" + email + '\'' +

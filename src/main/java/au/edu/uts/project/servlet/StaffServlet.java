@@ -11,6 +11,7 @@ import javax.servlet.annotation.*;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 
@@ -30,6 +31,13 @@ public class StaffServlet extends HttpServlet {
             HttpSession session = request.getSession();
             session.setAttribute("staff_list", list);
             response.sendRedirect(request.getContextPath() + "/staff_list.jsp");
+        } else if(request.getParameter("email") != null) {
+            Staff staff = service.getStaff((String)request.getParameter("email"));
+            HttpSession session = request.getSession();
+            session.setAttribute("selected", staff);
+            response.sendRedirect(request.getContextPath() + "/staff_detail.jsp");
+        } else if("true".equals(request.getParameter("create"))){
+            response.sendRedirect(request.getContextPath() + "/staff_add.jsp");
         }
     }
 
@@ -39,53 +47,29 @@ public class StaffServlet extends HttpServlet {
         request.setCharacterEncoding("utf-8");
         response.setContentType("text/html;charset=UTF-8");
 
-        // because doPut cannot retrieve data simply by using get parameter, so I do both add and update in doPost request
-        // the difference is simple: if I add new staff, there is no parameter called id
-        // If I need to update, I definately need to specific id
-        // so id could be the difference to figure out the post request is add or update
-        if(request.getParameter("id") == null){
-            Staff staff = new Staff();
-            // I just randomly add a id here, otherwise it will cause inconsistance exception idk why
-            staff.setStaffId(0);
-            staff.setStaffFname((String)request.getParameter("staff_fname"));
-            staff.setStaffLname((String)request.getParameter("staff_lname"));
-            staff.setEmail((String)request.getParameter("email"));
-            staff.setPassword((String)request.getParameter("password"));
-            staff.setDob((String)request.getParameter("dob"));
-            staff.setGender((String)request.getParameter("gender"));
-            staff.setStaffStreetno(Integer.parseInt(request.getParameter("staff_streetno")));
-            staff.setStaffStreetname((String)request.getParameter("staff_streetname"));
-            staff.setStaffCity((String)request.getParameter("staff_city"));
-            staff.setStaffZipcode(Integer.parseInt(request.getParameter("staff_zipcode")));
-            staff.setStaffCountry((String)request.getParameter("staff_country"));
-            staff.setRoles((String)request.getParameter("roles"));
-            int result = service.addStaff(staff);
-            if(result > 0){
-                response.sendRedirect(request.getContextPath() + "/successful.jsp");
-            } else {
-                response.sendRedirect(request.getContextPath() + "/fail.jsp");
-            }
+        Staff staff = new Staff();
+        staff.setStaffFname((String)request.getParameter("staff_fname"));
+        staff.setStaffLname((String)request.getParameter("staff_lname"));
+        staff.setEmail((String)request.getParameter("email"));
+        staff.setPassword((String)request.getParameter("password"));
+        staff.setDob((String)request.getParameter("dob"));
+        staff.setGender((String)request.getParameter("gender"));
+        staff.setStaffStreetno(Integer.parseInt(request.getParameter("staff_streetno")));
+        staff.setStaffStreetname((String)request.getParameter("staff_streetname"));
+        staff.setStaffCity((String)request.getParameter("staff_city"));
+        staff.setStaffZipcode(Integer.parseInt(request.getParameter("staff_zipcode")));
+        staff.setStaffCountry((String)request.getParameter("staff_country"));
+        staff.setRoles((String)request.getParameter("roles"));
+        int result = 0;
+        try {
+            result = service.modifyStaff(staff);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        if(result > 0){
+            response.sendRedirect(request.getContextPath() + "/successful.jsp");
         } else {
-            Staff staff = new Staff();
-            staff.setStaffId(Integer.parseInt(request.getParameter("id")));
-            staff.setStaffFname((String)request.getParameter("staff_fname"));
-            staff.setStaffLname((String)request.getParameter("staff_lname"));
-            staff.setEmail((String)request.getParameter("email"));
-            staff.setPassword((String)request.getParameter("password"));
-            staff.setDob((String)request.getParameter("dob"));
-            staff.setGender((String)request.getParameter("gender"));
-            staff.setStaffStreetno(Integer.parseInt(request.getParameter("staff_streetno")));
-            staff.setStaffStreetname((String)request.getParameter("staff_streetname"));
-            staff.setStaffCity((String)request.getParameter("staff_city"));
-            staff.setStaffZipcode(Integer.parseInt(request.getParameter("staff_zipcode")));
-            staff.setStaffCountry((String)request.getParameter("staff_country"));
-            staff.setRoles((String)request.getParameter("roles"));
-            int result = service.updateStaff(staff);
-            if(result > 0){
-                response.sendRedirect(request.getContextPath() + "/successful.jsp");
-            } else {
-                response.sendRedirect(request.getContextPath() + "/fail.jsp");
-            }
+            response.sendRedirect(request.getContextPath() + "/fail.jsp");
         }
     }
 
