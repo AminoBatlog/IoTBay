@@ -20,22 +20,24 @@ public class Staff {
     private int staffZipcode;
     private String staffCountry;
     private String roles;
+    private boolean status;
 
     @Override
     public String toString() {
         return "Staff{" +
-                ", staffFname='" + staffFname + '\'' +
+                "staffFname='" + staffFname + '\'' +
                 ", staffLname='" + staffLname + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", dob='" + dob + '\'' +
                 ", gender='" + gender + '\'' +
-                ", staffStreetno='" + staffStreetno + '\'' +
+                ", staffStreetno=" + staffStreetno +
                 ", staffStreetname='" + staffStreetname + '\'' +
                 ", staffCity='" + staffCity + '\'' +
-                ", staffZipcode='" + staffZipcode + '\'' +
+                ", staffZipcode=" + staffZipcode +
                 ", staffCountry='" + staffCountry + '\'' +
                 ", roles='" + roles + '\'' +
+                ", status=" + status +
                 '}';
     }
 }

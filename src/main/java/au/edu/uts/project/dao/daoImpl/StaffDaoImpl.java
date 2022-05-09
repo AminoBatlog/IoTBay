@@ -46,6 +46,7 @@ public class StaffDaoImpl implements StaffDao {
             staff.setStaffZipcode(result.getInt("staff_zipcode"));
             staff.setStaffCountry(result.getString("staff_country"));
             staff.setRoles(result.getString("roles"));
+            staff.setStatus(result.getBoolean("status"));
             list.add(staff);
         }
         this.pst.close();
@@ -59,7 +60,7 @@ public class StaffDaoImpl implements StaffDao {
      */
     @Override
     public int addStaff(Staff staff) throws SQLException {
-        String sql = "INSERT INTO Staff (Staff_FName, Staff_LName, Email, Password, DOB, Gender, Staff_streetNo, Staff_streetName, Staff_city, Staff_zipcode, Staff_country, Roles) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO Staff (Staff_FName, Staff_LName, Email, Password, DOB, Gender, Staff_streetNo, Staff_streetName, Staff_city, Staff_zipcode, Staff_country, Roles, Status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         this.pst = this.connection.prepareStatement(sql);
         this.pst.setString(1, staff.getStaffFname());
         this.pst.setString(2, staff.getStaffLname());
@@ -73,8 +74,8 @@ public class StaffDaoImpl implements StaffDao {
         this.pst.setInt(10, staff.getStaffZipcode());
         this.pst.setString(11, staff.getStaffCountry());
         this.pst.setString(12, staff.getRoles());
+        this.pst.setBoolean(13, staff.isStatus());
         int result = this.pst.executeUpdate();
-//        System.out.println("the insertion return result is" + result);
         this.pst.close();
         return result;
     }
@@ -86,7 +87,7 @@ public class StaffDaoImpl implements StaffDao {
      */
     @Override
     public int updateStaff(Staff staff) throws SQLException {
-        String sql = "UPDATE Staff SET Staff_FName=?, Staff_LName=?, Password=?, DOB=?, Gender=?, Staff_streetNo=?, Staff_streetName=?, Staff_city=?, Staff_zipcode=?, Staff_country=?, Roles=? WHERE Email=?";
+        String sql = "UPDATE Staff SET Staff_FName=?, Staff_LName=?, Password=?, DOB=?, Gender=?, Staff_streetNo=?, Staff_streetName=?, Staff_city=?, Staff_zipcode=?, Staff_country=?, Roles=?, Status=? WHERE Email=?";
         this.pst = this.connection.prepareStatement(sql);
         this.pst.setString(1, staff.getStaffFname());
         this.pst.setString(2, staff.getStaffLname());
@@ -99,7 +100,8 @@ public class StaffDaoImpl implements StaffDao {
         this.pst.setInt(9, staff.getStaffZipcode());
         this.pst.setString(10, staff.getStaffCountry());
         this.pst.setString(11, staff.getRoles());
-        this.pst.setString(12, staff.getEmail());
+        this.pst.setBoolean(12, staff.isStatus());
+        this.pst.setString(13, staff.getEmail());
         int result = this.pst.executeUpdate();
         this.pst.close();
         return result;
@@ -161,6 +163,7 @@ public class StaffDaoImpl implements StaffDao {
             staff.setStaffZipcode(result.getInt("staff_zipcode"));
             staff.setStaffCountry(result.getString("staff_country"));
             staff.setRoles(result.getString("roles"));
+            staff.setStatus(result.getBoolean("status"));
         }
         return staff;
     }

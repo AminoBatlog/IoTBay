@@ -60,6 +60,7 @@ public class StaffServlet extends HttpServlet {
         staff.setStaffZipcode(Integer.parseInt(request.getParameter("staff_zipcode")));
         staff.setStaffCountry((String)request.getParameter("staff_country"));
         staff.setRoles((String)request.getParameter("roles"));
+        staff.setStatus(Boolean.valueOf((String)request.getParameter("status")));
         int result = 0;
         try {
             result = service.modifyStaff(staff);

@@ -45,7 +45,7 @@
                             <div class="form-row">
                                 <div class="form-group">
                                     <label for="email">Email Address</label>
-                                    <input name="email" type="text" id="email" value="<% out.print(selected.getEmail()); %>" disabled>
+                                    <input name="email" type="text" id="email" value="<% out.print(selected.getEmail()); %>" readonly>
                                 </div>
                             </div>
                             <div class="form-row">
@@ -104,6 +104,12 @@
                                 <div class="form-group">
                                     <label for="roles">Staff Role</label>
                                     <input name="roles" type="text" id="roles" value="<% out.print(selected.getRoles()); %>">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="status">Staff Status</label>
+                                    <input name="status" type="checkbox" id="status" <% if(selected.isStatus()) out.print("checked"); %>>
                                 </div>
                             </div>
                             <button type="submit" class="confirm-button">Save</button>
