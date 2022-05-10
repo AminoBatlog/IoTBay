@@ -18,4 +18,6 @@ public interface StaffService {
     int removeStaff(int id);
 
     Staff getStaff(String email);
+
+    List<Staff> filterList(String name, String email);
 }

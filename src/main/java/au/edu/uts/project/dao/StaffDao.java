@@ -19,4 +19,6 @@ public interface StaffDao {
 
     Staff selectStaffByEmail(String email) throws SQLException;
 
+    List<Staff> filterList(String name, String email) throws SQLException;
+
 }

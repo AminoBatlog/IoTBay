@@ -103,4 +103,16 @@ public class StaffServiceImpl implements StaffService {
         }
         return staff;
     }
+
+    @Override
+    public List<Staff> filterList(String name, String email) {
+        StaffDao dao = StaffDaoSingleton.getInstance();
+        List<Staff> list = null;
+        try {
+            list = dao.filterList(name, email);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
 }

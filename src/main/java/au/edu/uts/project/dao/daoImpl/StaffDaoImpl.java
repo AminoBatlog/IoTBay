@@ -167,4 +167,39 @@ public class StaffDaoImpl implements StaffDao {
         }
         return staff;
     }
+
+    /**
+     * filter name or email
+     * @param name
+     * @param email
+     * @return
+     */
+    @Override
+    public List<Staff> filterList(String name, String email) throws SQLException {
+        String sql = "SELECT * FROM Staff WHERE email LIKE ? AND (Staff_fname LIKE ? OR Staff_lname LIKE ?)";
+        this.pst = this.connection.prepareStatement(sql);
+        this.pst.setString(1, "%" + email + "%");
+        this.pst.setString(2, "%" + name + "%");
+        this.pst.setString(3, "%" + name + "%");
+        ResultSet result = this.pst.executeQuery();
+        List<Staff> list = new ArrayList<>();
+        while(result.next()){
+            Staff staff = new Staff();
+            staff.setStaffFname(result.getString("staff_fname"));
+            staff.setStaffLname(result.getString("staff_lname"));
+            staff.setEmail(result.getString("email"));
+            staff.setPassword(result.getString("password"));
+            staff.setDob(result.getString("dob"));
+            staff.setGender(result.getString("gender"));
+            staff.setStaffStreetno(result.getInt("staff_streetno"));
+            staff.setStaffStreetname(result.getString("staff_streetname"));
+            staff.setStaffCity(result.getString("staff_city"));
+            staff.setStaffZipcode(result.getInt("staff_zipcode"));
+            staff.setStaffCountry(result.getString("staff_country"));
+            staff.setRoles(result.getString("roles"));
+            staff.setStatus(result.getBoolean("status"));
+            list.add(staff);
+        }
+        return list;
+    }
 }

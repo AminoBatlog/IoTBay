@@ -16,7 +16,7 @@
 </head>
 <body>
     <%
-        Staff selected = (Staff)session.getAttribute("selected");
+        Staff selected = (Staff)request.getAttribute("selected");
     %>
     <div>
         <div class="container">

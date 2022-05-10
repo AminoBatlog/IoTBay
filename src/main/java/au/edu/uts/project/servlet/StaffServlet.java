@@ -28,16 +28,26 @@ public class StaffServlet extends HttpServlet {
         if("true".equals(request.getParameter("list"))){
             // get staff list page and size
             List<Staff> list = service.getList();
-            HttpSession session = request.getSession();
-            session.setAttribute("staff_list", list);
-            response.sendRedirect(request.getContextPath() + "/staff_list.jsp");
+//            HttpSession session = request.getSession();
+//            session.setAttribute("staff_list", list);
+//            response.sendRedirect(request.getContextPath() + "/staff_list.jsp");
+            request.setAttribute("list", list);
+            request.getRequestDispatcher("/staff_list.jsp").forward(request, response);
         } else if(request.getParameter("email") != null) {
             Staff staff = service.getStaff((String)request.getParameter("email"));
-            HttpSession session = request.getSession();
-            session.setAttribute("selected", staff);
-            response.sendRedirect(request.getContextPath() + "/staff_detail.jsp");
+//            HttpSession session = request.getSession();
+//            session.setAttribute("selected", staff);
+//            response.sendRedirect(request.getContextPath() + "/staff_detail.jsp");
+            request.setAttribute("selected", staff);
+            request.getRequestDispatcher("/staff_detail.jsp").forward(request, response);
         } else if("true".equals(request.getParameter("create"))){
             response.sendRedirect(request.getContextPath() + "/staff_add.jsp");
+        } else if(request.getParameter("emailf") != null || request.getParameter("namef") != null) {
+            String name = (String) request.getParameter("namef");
+            String email = (String) request.getParameter("emailf");
+            List<Staff> list = service.filterList(name, email);
+            request.setAttribute("list", list);
+            request.getRequestDispatcher("/staff_list.jsp").forward(request, response);
         }
     }
 
