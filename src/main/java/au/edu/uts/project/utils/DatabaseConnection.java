@@ -1,7 +1,6 @@
 package au.edu.uts.project.utils;
 
-import au.edu.uts.project.dao.StaffDao;
-import au.edu.uts.project.dao.daoImpl.StaffDaoImpl;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -9,13 +8,11 @@ import java.sql.SQLException;
 public class DatabaseConnection {
 
     private static final String DBDRIVER = "org.apache.derby.jdbc.ClientDriver";
-    private static final String DBURL = "jdbc:derby;//localhost:1527/iotdb";
+    private static final String DBURL = "jdbc:derby://localhost:1527/iotdb";
     private static final String DBUSER = "usertest";
     private static final String DBPASSWORD = "usertest";
     private Connection connection = null;
 
-// Initialize the staffDao
-    private static StaffDao staffDao;
 
     // connect to database by using constructor
     public DatabaseConnection() {
@@ -37,13 +34,6 @@ public class DatabaseConnection {
         return this.connection;
     }
 
-    // DB Manager for StaffDao
-    public StaffDao getStaffDao() throws SQLException {
-        if (staffDao == null) {
-            staffDao = new StaffDaoImpl(getConnection());
-        }
-        return staffDao;
-    }
 
     // close the connection
     public void close() {
