@@ -13,7 +13,7 @@ public interface StaffDao {
 
     int updateStaff(Staff staff) throws SQLException;
 
-    int removeStaff(int id) throws SQLException;
+    int removeStaff(String email) throws SQLException;
 
     boolean isExistStaff(String email) throws SQLException;
 

@@ -112,7 +112,8 @@
                                     <input name="status" type="checkbox" id="status" <% if(selected.isStatus()) out.print("checked"); %>>
                                 </div>
                             </div>
-                            <button type="submit" class="confirm-button">Save</button>
+                            <button type="submit" class="staff-button">Save</button>
+                            <button type="button" class="staff-button" id="delete">Delete</button>
                         </form>
                     </div>
                 </div>
@@ -130,6 +131,9 @@
     <script type="text/javascript">
         $('#back-button').click(function (){
             window.location.href = '${pageContext.request.contextPath}/StaffServlet?list=true'
+        })
+        $('#delete').click(function() {
+            window.location.href = '${pageContext.request.contextPath}/StaffServlet?delete=' + '<%out.print(selected.getEmail());%>'
         })
     </script>
 </body>

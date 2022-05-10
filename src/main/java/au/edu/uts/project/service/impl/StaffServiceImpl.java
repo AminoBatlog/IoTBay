@@ -81,11 +81,11 @@ public class StaffServiceImpl implements StaffService {
      * @return
      */
     @Override
-    public int removeStaff(int id) {
+    public int removeStaff(String email) {
         StaffDao dao = StaffDaoSingleton.getInstance();
         int result = 0;
         try {
-            result = dao.removeStaff(id);
+            result = dao.removeStaff(email);
         } catch (SQLException e) {
             e.printStackTrace();
         }

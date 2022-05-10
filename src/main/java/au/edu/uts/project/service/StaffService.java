@@ -15,7 +15,7 @@ public interface StaffService {
 
     int modifyStaff(Staff staff) throws SQLException;
 
-    int removeStaff(int id);
+    int removeStaff(String email);
 
     Staff getStaff(String email);
 

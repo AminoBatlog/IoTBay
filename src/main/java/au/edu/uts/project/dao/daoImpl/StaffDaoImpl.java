@@ -109,15 +109,15 @@ public class StaffDaoImpl implements StaffDao {
 
     /**
      * remove staff information
-     * @param id
+     * @param email
      * @return
      * @throws SQLException
      */
     @Override
-    public int removeStaff(int id) throws SQLException {
-        String sql = "DELETE FROM Staff WHERE Staff_id=?";
+    public int removeStaff(String email) throws SQLException {
+        String sql = "DELETE FROM Staff WHERE email=?";
         this.pst = this.connection.prepareStatement(sql);
-        this.pst.setInt(1, id);
+        this.pst.setString(1, email);
         int result = this.pst.executeUpdate();
         this.pst.close();
         return result;

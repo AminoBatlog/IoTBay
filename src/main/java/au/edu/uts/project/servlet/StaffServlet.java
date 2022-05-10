@@ -24,9 +24,8 @@ public class StaffServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // if the page and size exist
         if("true".equals(request.getParameter("list"))){
-            // get staff list page and size
+            // get staff list
             List<Staff> list = service.getList();
 //            HttpSession session = request.getSession();
 //            session.setAttribute("staff_list", list);
@@ -34,6 +33,7 @@ public class StaffServlet extends HttpServlet {
             request.setAttribute("list", list);
             request.getRequestDispatcher("/staff_list.jsp").forward(request, response);
         } else if(request.getParameter("email") != null) {
+            // get staff detail based on the email
             Staff staff = service.getStaff((String)request.getParameter("email"));
 //            HttpSession session = request.getSession();
 //            session.setAttribute("selected", staff);
@@ -41,13 +41,25 @@ public class StaffServlet extends HttpServlet {
             request.setAttribute("selected", staff);
             request.getRequestDispatcher("/staff_detail.jsp").forward(request, response);
         } else if("true".equals(request.getParameter("create"))){
+            // create staff
             response.sendRedirect(request.getContextPath() + "/staff_add.jsp");
         } else if(request.getParameter("emailf") != null || request.getParameter("namef") != null) {
+            // filter staff list
             String name = (String) request.getParameter("namef");
             String email = (String) request.getParameter("emailf");
             List<Staff> list = service.filterList(name, email);
             request.setAttribute("list", list);
             request.getRequestDispatcher("/staff_list.jsp").forward(request, response);
+        } else if(request.getParameter("delete") != null) {
+            // remove staff
+            String email = (String) request.getParameter("delete");
+            int result = service.removeStaff(email);
+            if (result > 0) {
+                response.sendRedirect(request.getContextPath() + "/StaffServlet?list=true");
+            } else {
+                response.sendRedirect(request.getContextPath() + "/fail.jsp");
+            }
+
         }
     }
 
@@ -70,7 +82,7 @@ public class StaffServlet extends HttpServlet {
         staff.setStaffZipcode(Integer.parseInt(request.getParameter("staff_zipcode")));
         staff.setStaffCountry((String)request.getParameter("staff_country"));
         staff.setRoles((String)request.getParameter("roles"));
-        staff.setStatus(Boolean.valueOf((String)request.getParameter("status")));
+        staff.setStatus(true);
         int result = 0;
         try {
             result = service.modifyStaff(staff);
@@ -78,22 +90,7 @@ public class StaffServlet extends HttpServlet {
             e.printStackTrace();
         }
         if(result > 0){
-            response.sendRedirect("/StaffServlet?list=true");
-        } else {
-            response.sendRedirect(request.getContextPath() + "/fail.jsp");
-        }
-    }
-
-    @Override
-    protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // setup the coding
-        request.setCharacterEncoding("utf-8");
-        response.setContentType("text/html;charset=UTF-8");
-
-        int id = Integer.parseInt(request.getParameter("id"));
-        int result = service.removeStaff(id);
-        if(result > 0){
-            response.sendRedirect("/StaffServlet?list=true");
+            response.sendRedirect(request.getContextPath() + "/StaffServlet?list=true");
         } else {
             response.sendRedirect(request.getContextPath() + "/fail.jsp");
         }

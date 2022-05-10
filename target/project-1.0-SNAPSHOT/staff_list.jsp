@@ -35,8 +35,8 @@
                     <label for="email-filter">Filter email:</label>
                     <input type="text" id="email-filter" name="emailf">
                     <button type="submit" class="staff-button" id="filter">Confirm Filter</button>
-                    <button id="add" class="staff-button">Add Staff</button>
                 </form>
+                <button id="add" class="staff-button">Add Staff</button>
             </div>
         </div>
         <div class="row justify-content-center">
@@ -91,9 +91,6 @@
         })
         $('#add').click(function () {
             window.location.href = '${pageContext.request.contextPath}/StaffServlet?create=true'
-        })
-        $('#filter').click(function () {
-
         })
     </script>
 </body>
