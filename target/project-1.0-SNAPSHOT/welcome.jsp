@@ -30,15 +30,14 @@
                         Account account = (Account) session.getAttribute("account");
 ;                        %>
                         <h1>Welcome, <%= account.getFname() %> <%= account.getLname() %>!</h1>
-                        <p>Your Username is <%= account.getUsername() %>.</p>
                         <p>Your Email is <%= account.getEmail() %>.</p>
                         <p>Your Password is <%= account.getPassword() %>.</p>
                         <p>Your Gender is <%= account.getGender() %>.</p>
-                        <p>Your Country is <%= account.getAddressCountry() %>.</p>
-                        <p>Your State is <%= account.getAddressState() %>.</p>
-                        <p>Your Street is <%= account.getAddressCity() %>.</p>
                         <p>Your Date of Birth is <%= account.getDob() %>.</p>
-                    <a href="main.jsp" class="btn btn-primary">Go to Main Page</a>
+                        <p>Your Address is <%= account.getAddressStreetNo() %> <%= account.getAddressStreetName() %>, 
+                            <%= account.getAddressCity() %>, <%= account.getAddressZipcode() %>, 
+                            <%= account.getAddressCountry() %>.</p>
+                    <a href="MainServlet?email='<%= account.getEmail()%>'&password='<%= account.getPassword()%>'" class="btn btn-primary">Go to Main Page</a>
                 </div>
             </div>
         </div>     

@@ -6,19 +6,19 @@ import java.sql.SQLException;
 
 public class DatabaseConnection {
 
-    private static final String DBDRIVER = "com.mysql.cj.jdbc.Driver";
-    private static final String DBURL = "jdbc:mysql://localhost:3306/zmqp_test?serverTimezone=GMT%2b8&autoReconnect=true&useSSL=false";
+    private static final String DBDRIVER = "org.apache.derby.jdbc.ClientDriver";
+    private static final String DBURL = "jdbc:derby://localhost:1527/iotdb";
     private static final String DBUSER = "usertest";
     private static final String DBPASSWORD = "usertest";
     private Connection connection = null;
 
 
     // connect to database by using constructor
-    public DatabaseConnection(){
-        try{
+    public DatabaseConnection() throws ClassNotFoundException, SQLException {
+        try {
             // Loading driver
             Class.forName(DBDRIVER);
-        }catch (Exception e){
+        } catch (Exception e){
             e.printStackTrace();
         }
     }
@@ -34,11 +34,11 @@ public class DatabaseConnection {
     }
 
     // close the connection
-    public void close(){
+    public void close() throws SQLException {
         if(this.connection != null) {
-            try{
+            try {
                 this.connection.close();
-            }catch(Exception e){
+            } catch(Exception e){
                 e.printStackTrace();
             }
         }

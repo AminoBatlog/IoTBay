@@ -12,10 +12,11 @@
     <title>IoTBay</title>
     <link rel="stylesheet" href="./dist/bootstrap-5.1.3-dist/css/bootstrap.min.css">
     <script type="text/javascript" src="./dist/jquery-3.6.0-dist/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="./assets/js/script.js"></script>
     <link rel="stylesheet" href="./dist/bootstrap-5.1.3-dist/js/bootstrap.min.js">
     <link rel="stylesheet" href="./assets/css/style.css">
 </head>
-<body>
+<body onload="startTimer()">
     <%
         Account account = (Account)session.getAttribute("account");
         
@@ -34,10 +35,13 @@
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav">
                     <li class="nav-item active">
-                        <a class="nav-link" href="main.jsp">Home</a>
+                        <a class="nav-link" href="MainServlet?email='<%= account.getEmail()%>'">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="index.jsp">Index</a>
+                        <a class="nav-link" href="accountInfo.jsp">My Account</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="AccessServlet?email='<%= account.getEmail()%>'&password='<%=account.getPassword()%>'">Access Log</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -50,7 +54,7 @@
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="logout.jsp">
+                        <a class="nav-link" href="UpdateLogoutServlet?email='<%= account.getEmail()%>'&password='<%=account.getPassword()%>'">
                             <button type="button" class="btn btn-primary">Logout</button>
                         </a>
                     </li>
@@ -63,6 +67,7 @@
                     <h4>You are logged in as ${account.fname} ${account.lname}(${account.email})</h4>
                 </div>
             </div>
+        </div>       
     </div>
 </body>
 </html>

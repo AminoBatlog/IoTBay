@@ -21,7 +21,7 @@
             </div>
         </div>
         <div class="col-6">
-            <a href="register.jsp">
+            <a href="registerType.jsp">
                 <button type="button" class="btn btn-primary">Register</button>
             </a>
             <a href="login.jsp">
@@ -36,6 +36,7 @@
             </div>
         </div>
     </div>
+    <jsp:include page="/ConnServlet" flush="true" />
 
 
     <script type="text/javascript" src="./dist/jquery-3.6.0-dist/jquery-3.6.0.min.js"></script>

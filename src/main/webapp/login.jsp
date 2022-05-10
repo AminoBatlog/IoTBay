@@ -14,6 +14,11 @@
     <link rel="stylesheet" href="./assets/css/style.css">
 </head>
 <body>
+    <% 
+      String existErr = (String) session.getAttribute("existErr");
+      String emailErr = (String) session.getAttribute("emailErr");
+      String passErr = (String) session.getAttribute("passErr");
+    %>
     <div class="container">
         <div class="row justify-content-center text-center">
             <div class="col-5">
@@ -23,19 +28,21 @@
         <div class="row d-flex justify-content-center pd-120">
             <div class="col-6">
                 <div class="form" class="text-center login-register-main">
-                    <h4>Login</h4>
-<%--                    <form method="post" action="welcome.jsp">--%>
+                    <h4>Login: <span class="message"><%=(existErr != null ? existErr : "")%></span></h4>
                     <form method="post" action="${pageContext.request.contextPath}/LoginServlet" id="form">
                         <div class="form-group">
-                            <label for="username"> username</label>
-                            <input type="text" name="username" id="username">
+                            <label for="email"> Email</label>
+                            <input type="email" placeholder="<%=(emailErr != null ? emailErr : "Enter email")%>" name="email" id="email">
                         </div>
                         <div class="form-group">
-                            <label for="password">password</label>
-                            <input type="password" name="password" id="password">
+                            <label for="password">Password</label>
+                            <input type="password" placeholder="<%=(passErr != null ? passErr : "Enter password")%>" name="password" id="password">
                         </div>
                         <div class="form-group">
-                            <button type="button" class="confirm-button" onclick="submitForm()">login</button>
+                            <button type="button" class="btn btn-primary btn-lg" onclick="submitForm()">Login</button>
+                            <a href="index.jsp">
+                                <button type="button" class="btn btn-secondary btn-lg">Cancel</button>
+                            </a>
                         </div>
                     </form>
                 </div>

@@ -24,41 +24,35 @@
             <div class="col-6">
                 <div class="form" class="text-center login-register-main">
                     <%
-                        String data = (String) request.getAttribute("info");
-                        if(data != null){
-                            out.println("<h4>no account, go to register</h4>");
-                        }
+                        String existErr = (String) session.getAttribute("existErr");
+                        String emailErr = (String) session.getAttribute("emailErr");
+                        String passErr = (String) session.getAttribute("passErr");
+                        String nameErr = (String) session.getAttribute("nameErr");
                     %>
-                    <h4>Register</h4>
-                    <form method="post" action="${pageContext.request.contextPath}/RegisterServlet" id="form">
+                    <h4>Register: <span class="message"><%=(existErr != null ? existErr : "")%></span></h4>
+                    <form method="post" action="RegisterServlet" id="form">
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="fname">First Name</label>
-                                <input type="text" name="fname" id="fname">
+                                <input type="text" placeholder="<%=(nameErr != null ? nameErr : "Enter first name")%>" name="fname" id="fname">
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="lname">Last Name</label>
-                                <input type="text" name="lname" id="lname">
+                                <input type="text" placeholder="<%=(nameErr != null ? nameErr : "Enter last name")%>" name="lname" id="lname">
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="email">Email</label>
-                                <input type="text" name="email" id="email">
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="username">Username</label>
-                                <input type="text" name="username" id="username">
+                                <input type="email" placeholder="<%=(emailErr != null ? emailErr : "Enter email")%>" name="email" id="email">
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="password">Password</label>
-                                <input type="password" name="password" id="password">
+                                <input type="password" placeholder="<%=(passErr != null ? passErr : "Enter password")%>" name="password" id="password">
                             </div>
                         </div>
                         <div class="form-row">
@@ -74,14 +68,20 @@
                         </div><br><br>
                         <div class="form-row">
                             <div class="form-group">
-                                <label for="address_country">Country</label>
-                                <input type="text" name="address_country" id="address_country">
+                                <label for="address_streetNo">Street Number</label>
+                                <input type="number" name="address_streetNo" id="address_streetNo">
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group">
-                                <label for="address_state">State</label>
-                                <input type="text" name="address_state" id="address_state">
+                                <label for="address_streetName">Street Name</label>
+                                <input type="text" name="address_streetName" id="address_streetName">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="address_zipcode">Zip code</label>
+                                <input type="number" name="address_zipcode" id="address_zipcode">
                             </div>
                         </div>
                         <div class="form-row">
@@ -92,12 +92,21 @@
                         </div>
                         <div class="form-row">
                             <div class="form-group">
+                                <label for="address_country">Country</label>
+                                <input type="text" name="address_country" id="address_country">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
                                 <label for="dob">Date of Birth</label>
                                 <input type="date" name="dob" id="dob">
                             </div>
                         </div>
                         <div class="form-group">
-                            <button type="button" class="confirm-button" onclick="submitForm()">Submit</button>
+                            <button type="button" class="btn btn-primary btn-lg" onclick="submitForm()">Submit</button>
+                            <a href="registerType.jsp">
+                                <button type="button" class="btn btn-secondary btn-lg">Cancel</button>
+                            </a>
                         </div>
                     </form>
                 </div>
