@@ -139,6 +139,7 @@ public class StaffDaoImpl implements StaffDao {
         while(result.next()){
             isExist = true;
         }
+        this.pst.close();
         return isExist;
     }
 
@@ -165,6 +166,7 @@ public class StaffDaoImpl implements StaffDao {
             staff.setRoles(result.getString("roles"));
             staff.setStatus(result.getBoolean("status"));
         }
+        this.pst.close();
         return staff;
     }
 
@@ -200,6 +202,7 @@ public class StaffDaoImpl implements StaffDao {
             staff.setStatus(result.getBoolean("status"));
             list.add(staff);
         }
+        this.pst.close();
         return list;
     }
 }

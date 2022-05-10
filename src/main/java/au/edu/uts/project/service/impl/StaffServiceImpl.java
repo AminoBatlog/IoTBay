@@ -77,7 +77,7 @@ public class StaffServiceImpl implements StaffService {
 
     /**
      * remove staff information
-     * @param id
+     * @param email
      * @return
      */
     @Override
