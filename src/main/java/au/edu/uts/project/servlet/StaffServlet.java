@@ -78,7 +78,7 @@ public class StaffServlet extends HttpServlet {
             e.printStackTrace();
         }
         if(result > 0){
-            response.sendRedirect(request.getContextPath() + "/successful.jsp");
+            response.sendRedirect("/StaffServlet?list=true");
         } else {
             response.sendRedirect(request.getContextPath() + "/fail.jsp");
         }
@@ -93,7 +93,7 @@ public class StaffServlet extends HttpServlet {
         int id = Integer.parseInt(request.getParameter("id"));
         int result = service.removeStaff(id);
         if(result > 0){
-            response.sendRedirect(request.getContextPath() + "/successful.jsp");
+            response.sendRedirect("/StaffServlet?list=true");
         } else {
             response.sendRedirect(request.getContextPath() + "/fail.jsp");
         }
