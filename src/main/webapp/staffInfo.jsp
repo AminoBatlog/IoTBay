@@ -36,7 +36,7 @@
                         <a class="nav-link" href="main.jsp">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="accountInfo.jsp">My Account</a>
+                        <a class="nav-link" href="staffInfo.jsp">My Account</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="AccessServlet?email='<%= staff.getEmail()%>'&password='<%=staff.getPassword()%>'">Access Log</a>
