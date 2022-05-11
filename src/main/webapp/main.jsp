@@ -43,14 +43,16 @@
                     <li class="nav-item">
                         <a class="nav-link" href="AccessServlet?email='<%= account.getEmail()%>'&password='<%=account.getPassword()%>'">Access Log</a>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Devices
+                    <li class="nav-item">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Profile
                         </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <a class="dropdown-item" href="#">Something else here</a>
+                        <div class="dropdown-menu2" aria-labelledby="navbarDropdownMenu2">
+                            <a class="dropdown-item" href="addPayment.jsp">Create Payment Details</a>
+                            <a class="dropdown-item" href="paymentDetails.jsp">View Payment Details</a>
+                            <a class="dropdown-item" href="updatePayment.jsp">Update Payment Details</a>
+                            <a class="dropdown-item" href="paymentHistory.jsp">View Payment History</a>
+                            <a class="dropdown-item" href="searchPaymentHistory">Search For Payment</a>
                         </div>
                     </li>
                     <li class="nav-item">

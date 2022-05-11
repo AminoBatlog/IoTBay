@@ -31,12 +31,13 @@ public class Staff {
                 ", password='" + password + '\'' +
                 ", dob='" + dob + '\'' +
                 ", gender='" + gender + '\'' +
-                ", staffStreetno='" + staffStreetno + '\'' +
+                ", staffStreetno=" + staffStreetno +
                 ", staffStreetname='" + staffStreetname + '\'' +
                 ", staffCity='" + staffCity + '\'' +
-                ", staffZipcode='" + staffZipcode + '\'' +
+                ", staffZipcode=" + staffZipcode +
                 ", staffCountry='" + staffCountry + '\'' +
                 ", roles='" + roles + '\'' +
+                ", status=" + status +
                 '}';
     }
 }

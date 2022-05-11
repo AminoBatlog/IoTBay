@@ -142,10 +142,26 @@
         <url-pattern>/SearchServlet</url-pattern>
     </servlet-mapping>
     
+    <servlet>
+        <servlet-name>StaffServlet</servlet-name>
+        <servlet-class>au.edu.uts.project.servlet.StaffServlet</servlet-class>
+        <load-on-startup>0</load-on-startup>
+    </servlet>
+  
+    <servlet-mapping>
+        <servlet-name>StaffServlet</servlet-name>
+        <url-pattern>/StaffServlet</url-pattern>
+    </servlet-mapping>
+  
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
-
+    
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
 </web-app>

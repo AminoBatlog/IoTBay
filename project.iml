@@ -47,5 +47,8 @@
     <orderEntry type="library" name="Maven: org.glassfish.web:javax.servlet.jsp:2.3.4" level="project" />
     <orderEntry type="library" name="Maven: org.glassfish:javax.el:3.0.1-b12" level="project" />
     <orderEntry type="library" name="Maven: javax.servlet.jsp:javax.servlet.jsp-api:2.3.3" level="project" />
+    <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.13.0" level="project" />
+    <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.13.0" level="project" />
+    <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-core:2.13.0" level="project" />
   </component>
 </module>
