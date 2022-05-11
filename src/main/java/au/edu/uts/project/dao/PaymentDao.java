@@ -104,8 +104,8 @@ public class PaymentDao{
             temp2.add(Integer.toString(res.getInt(1)));
             temp2.add(Integer.toString(res.getInt(2)));
             temp2.add(res.getString(3));
-            temp2.add(Integer.toString(res.getInt(4)));
-            temp2.add(Integer.toString(res.getInt(5)));
+            temp2.add(res.getString(4));
+            temp2.add(res.getString(5));
             temp2.add(res.getString(6));
             temp2.add(res.getString(7));
             temp2.add(res.getString(8));
