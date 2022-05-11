@@ -83,7 +83,7 @@
             
             <input type="text" id="input-field" name="cardNumber" placeholder="Card Number" required/> 
             <input type="text" id="input-field" name="expiryDate" placeholder="MM/YY" required/> 
-            <input type="text" id="input-field" name="securityCode" placeholder="CVV" required/> 
+            <input type="text" id="input-field" name="securityCode" placeholder="securityCode" required/> 
             <input type="text" id="input-field" name="nameOnCard" placeholder="Name on Card" required/> 
              
             <input type="submit" value="Pay">
