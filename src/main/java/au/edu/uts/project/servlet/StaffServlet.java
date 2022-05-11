@@ -15,7 +15,6 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 
-import static com.mysql.cj.MysqlType.JSON;
 
 @WebServlet(name = "StaffServlet", value = "/StaffServlet")
 public class StaffServlet extends HttpServlet {
