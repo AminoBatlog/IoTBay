@@ -12,10 +12,11 @@
     <title>IoTBay</title>
     <link rel="stylesheet" href="./dist/bootstrap-5.1.3-dist/css/bootstrap.min.css">
     <script type="text/javascript" src="./dist/jquery-3.6.0-dist/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="./assets/js/script.js"></script>
     <link rel="stylesheet" href="./dist/bootstrap-5.1.3-dist/js/bootstrap.min.js">
     <link rel="stylesheet" href="./assets/css/style.css">
 </head>
-<body>
+<body onload="startTimer()">
     <%
         Account account = (Account)session.getAttribute("account");
         
@@ -68,6 +69,7 @@
                     <h4>You are logged in as ${account.fname} ${account.lname}(${account.email})</h4>
                 </div>
             </div>
+        </div>       
     </div>
 </body>
 </html>

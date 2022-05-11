@@ -1,3 +1,4 @@
+
 <%-- 
     Document   : logout
     Created on : Apr 1, 2022, 2:04:11 PM
@@ -24,10 +25,9 @@
         <div class="row d-flex justify-content-center pd-120">
             <div class="col-6">
                 <h4>You have been logged out</h4>
-                <a href="index.jsp">
+                <a href="LogoutServlet">
                     <button type="button" class="btn btn-primary">Return to Home Page</button>
                 </a>
-                <% session.invalidate();%>
             </div>
         </div>
     </div>

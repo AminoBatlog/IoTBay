@@ -14,11 +14,11 @@ public class DatabaseConnection {
 
 
     // connect to database by using constructor
-    public DatabaseConnection(){
-        try{
+    public DatabaseConnection() throws ClassNotFoundException, SQLException {
+        try {
             // Loading driver
             Class.forName(DBDRIVER);
-        }catch (Exception e){
+        } catch (Exception e){
             e.printStackTrace();
         }
     }
@@ -34,11 +34,11 @@ public class DatabaseConnection {
     }
 
     // close the connection
-    public void close(){
+    public void close() throws SQLException {
         if(this.connection != null) {
-            try{
+            try {
                 this.connection.close();
-            }catch(Exception e){
+            } catch(Exception e){
                 e.printStackTrace();
             }
         }

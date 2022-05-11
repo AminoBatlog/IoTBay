@@ -1,10 +1,9 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: FurryDesktop
-  Date: 3/30/2022
-  Time: 5:22 PM
-  To change this template use File | Settings | File Templates.
+<%-- 
+    Document   : staffRegister
+    Created on : May 8, 2022, 9:55:51 PM
+    Author     : weichen
 --%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -94,6 +93,12 @@
                             <div class="form-group">
                                 <label for="address_country">Country</label>
                                 <input type="text" name="address_country" id="address_country">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="roles">Roles</label>
+                                <input type="text" name="roles" id="roles">
                             </div>
                         </div>
                         <div class="form-row">
