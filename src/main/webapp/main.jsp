@@ -34,20 +34,13 @@
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav">
                     <li class="nav-item active">
-                        <a class="nav-link" href="main.jsp">Home</a>
+                        <a class="nav-link" href="MainServlet?email='<%= account.getEmail()%>'">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="index.jsp">Index</a>
+                        <a class="nav-link" href="accountInfo.jsp">My Account</a>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Devices
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <a class="dropdown-item" href="#">Something else here</a>
-                        </div>
+                    <li class="nav-item">
+                        <a class="nav-link" href="AccessServlet?email='<%= account.getEmail()%>'&password='<%=account.getPassword()%>'">Access Log</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -62,7 +55,7 @@
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="logout.jsp">
+                        <a class="nav-link" href="UpdateLogoutServlet?email='<%= account.getEmail()%>'&password='<%=account.getPassword()%>'">
                             <button type="button" class="btn btn-primary">Logout</button>
                         </a>
                     </li>
