@@ -11,6 +11,16 @@
         <url-pattern>/ConnServlet</url-pattern>
     </servlet-mapping>
     
+    <servlet-mapping>
+        <servlet-name>LoginServlet</servlet-name>
+        <url-pattern>/LoginServlet</url-pattern>
+    </servlet-mapping>
+    
+    <servlet-mapping>
+        <servlet-name>RegisterServlet</servlet-name>
+        <url-pattern>/RegisterServlet</url-pattern>
+    </servlet-mapping>
+    
     <servlet>
         <servlet-name>EditServlet</servlet-name>
         <servlet-class>au.edu.uts.project.servlet.EditServlet</servlet-class>
@@ -103,64 +113,75 @@
         <servlet-name>AddPaymentServlet</servlet-name>
         <servlet-class>au.edu.uts.project.servlet.AddPaymentServlet</servlet-class>
     </servlet>
+    
     <servlet>
         <servlet-name>DeletePaymentServlet</servlet-name>
         <servlet-class>au.edu.uts.project.servlet.DeletePaymentServlet</servlet-class>
     </servlet>
+    
     <servlet>
         <servlet-name>EditPaymentServlet</servlet-name>
         <servlet-class>au.edu.uts.project.servlet.EditPaymentServlet</servlet-class>
     </servlet>
+    
     <servlet>
         <servlet-name>PaymentHistoryServlet</servlet-name>
         <servlet-class>au.edu.uts.project.servlet.PaymentHistoryServlet</servlet-class>
     </servlet>
+    
     <servlet>
         <servlet-name>SearchPaymentHistoryServlet</servlet-name>
         <servlet-class>au.edu.uts.project.servlet.SearchPaymentHistoryServlet</servlet-class>
     </servlet>
+    
     <servlet>
         <servlet-name>UpdatePaymentServlet</servlet-name>
         <servlet-class>au.edu.uts.project.servlet.UpdatePaymentServlet</servlet-class>
     </servlet>
+    
     <servlet>
         <servlet-name>LoginServlet</servlet-name>
         <servlet-class>au.edu.uts.project.servlet.LoginServlet</servlet-class>
     </servlet>
+    
     <servlet>
         <servlet-name>RegisterServlet</servlet-name>
         <servlet-class>au.edu.uts.project.servlet.RegisterServlet</servlet-class>
     </servlet>
+    
     <servlet-mapping>
         <servlet-name>AddPaymentServlet</servlet-name>
         <url-pattern>/AddPaymentServlet</url-pattern>
     </servlet-mapping>
+    
     <servlet-mapping>
         <servlet-name>DeletePaymentServlet</servlet-name>
         <url-pattern>/DeletePaymentServlet</url-pattern>
     </servlet-mapping>
+    
     <servlet-mapping>
         <servlet-name>EditPaymentServlet</servlet-name>
         <url-pattern>/EditPaymentServlet</url-pattern>
     </servlet-mapping>
+    
     <servlet-mapping>
         <servlet-name>PaymentHistoryServlet</servlet-name>
         <url-pattern>/PaymentHistoryServlet</url-pattern>
     </servlet-mapping>
+    
     <servlet-mapping>
         <servlet-name>SearchPaymentHistoryServlet</servlet-name>
         <url-pattern>/SearchPaymentHistoryServlet</url-pattern>
     </servlet-mapping>
+    
     <servlet-mapping>
         <servlet-name>UpdatePaymentServlet</servlet-name>
         <url-pattern>/UpdatePaymentServlet</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>LoginServlet</servlet-name>
-        <url-pattern>/LoginServlet</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>RegisterServlet</servlet-name>
-        <url-pattern>/RegisterServlet</url-pattern>
-    </servlet-mapping>
+    </servlet-mapping>    
+        
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
 </web-app>
