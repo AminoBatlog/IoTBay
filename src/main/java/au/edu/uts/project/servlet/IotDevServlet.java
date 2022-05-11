@@ -33,17 +33,54 @@ public class IotDevServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        /*
-        if (request.getParameter("list") != null)
+        if (request.getParameter("list") != null) 
         {
             List<IotDev> list = iotService.selectAllItem();
-            if (list != null)
+            if (list != null) 
             {
                 response.sendRedirect(request.getContextPath() + "/order.jsp");
                 System.out.println("Servlet is successful");
             }
+        } 
+        
+        else if (request.getParameter("create") != null) 
+        {
+            // if Staff.getEmail != null then create
+            response.sendRedirect(request.getContextPath() + "/createDevice.jsp");
+            System.out.println("Servlet is successful");
+
         }
-         */
+        
+        else if (request.getParameter("delete") != null) 
+        {
+            // if staff.getEmail != null
+            int devID = Integer.parseInt(request.getParameter("delete"));
+            iotService.deleteDevices(devID);
+            // IotDevService.deleteDevices(devID);
+        } 
+        
+        else if (request.getParameter("update") != null) 
+        {
+
+        }
+        
+        else if (request.getParameter("devID") != null) 
+        {
+            IotDev iotDev = iotService.getDevicesID(Integer.parseInt(request.getParameter("devID")));
+            System.out.println("your ID is being retrieved");
+            // staff and user can get the ID list without any permission
+            // show ID list by calling the .getDevicesID
+        }
+        
+        else if (request.getParameter("devName") != null) 
+        {
+            IotDev iotDevName = iotService.getDevicesName(request.getParameter("DevName"));
+            System.out.println("your ID is being retrieved");
+            // staff and user can get the name list without any additional permission
+            // show Name list by calling the .getDevicesName
+        }
+
+        /*
         String action = null;
         switch (request.getParameter(action)) {
 
@@ -66,29 +103,35 @@ public class IotDevServlet extends HttpServlet {
             case "delete":
                 
                 // if staff.getEmail != null
-                String devID = request.getParameter("delete");
-                // int deleteResult = IotDevService.deleteDevices(devID);
+                int devID = Integer.parseInt(request.getParameter("delete"));
+                iotService.deleteDevices(devID);
                 // IotDevService.deleteDevices(devID);
                 break;
 
 
-            case "update":
+            // case "update":
                 
                 // if staff.getEmail != null
                 // link the listed item and then put a button to call the update
 
             case "DevID":
 
+                
+                IotDev iotDev = iotService.getDevicesID(Integer.parseInt(request.getParameter("devID")));
+                System.out.println("your ID is being retrieved");
                 // staff and user can get the ID list without any permission
                 // show ID list by calling the .getDevicesID
+                break;
                 
             case "DevName":
                 
+                IotDev iotDevName = iotService.getDevicesName(request.getParameter("DevName"));
+                System.out.println("your ID is being retrieved");
                 // staff and user can get the name list without any additional permission
                 // show Name list by calling the .getDevicesName
 
         }
-
+         */
     }
 
 }
