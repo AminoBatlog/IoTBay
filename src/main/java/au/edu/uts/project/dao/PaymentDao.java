@@ -13,14 +13,6 @@ import java.sql.Statement;
 
 public class PaymentDao{
 
-    /**
-     * query payment by Payment_ID and Payment_date
-     * @param payment_ID
-     * @param payment_date
-     * @return
-     */
-
-
     private Statement stmt;
 
     public PaymentDao(Connection conn) throws SQLException {       
@@ -42,10 +34,9 @@ public class PaymentDao{
         ResultSet res = stmt.executeQuery(temp);
 
         while(res.next()) {
-            Integer Payment_ID = res.getInt(1);
-            String Payment_date = res.getString(8);
+            Payment_ID = res.getInt(1);
+            Payment_date = res.getString(8);
             if (Payment_ID.equals(Payment_ID) && Payment_date.equals(Payment_date)) {
-                Integer Order_ID = res.getInt(1);
                 String Payment_method = res.getString(3);
                 String Card_number = res.getString(4);
                 String ExpiryDate = res.getString(6);
@@ -62,7 +53,7 @@ public class PaymentDao{
         ResultSet res = stmt.executeQuery("SELECT * FROM PAYMENT WHERE PAYMENT_ID = "+ Payment_ID);
        
         while(res.next()){
-            Integer Payment_ID = res.getInt(1);
+            Payment_ID = res.getInt(1);
             if(Payment_ID.equals(Payment_ID)){
                 String Payment_method = res.getString(3);
                 String Card_number = res.getString(4);
@@ -81,11 +72,11 @@ public class PaymentDao{
     }
 
     public void addPayment(Integer Order_ID, String Payment_method, String Card_number, String ExpiryDate, String SecurityCode, String NameOnCard, String Payment_date) throws SQLException {
-        stmt.executeUpdate("INSERT INTO PAYMENT VALUES (DEFAULT , " + Order_ID + "," + Payment_method + ", " + Card_number + ", " + expiryDate + ", " + securityCode + ", " + nameOnCard + ", " + payment_date + ") ");
+        stmt.executeUpdate("INSERT INTO PAYMENT VALUES (DEFAULT , '" + Order_ID + "', '" + Payment_method + "', '" + Card_number + "', '" + ExpiryDate + "', '" + SecurityCode + "', '" + NameOnCard + "', '" + Payment_date + "') ");
     }
 
     public void updatePayment(Integer Order_ID, String Payment_method, String Card_number, String ExpiryDate, String SecurityCode, String NameOnCard, String Payment_date) throws SQLException {
-        stmt.executeUpdate("UPDATE PAYMENT SET Payment_method='" + Payment_method + "', Card_number=" + Card_number + ", ExpiryDate =" + ExpiryDate + ",  SecurityCode='" + SecurityCode + "', NameOnCard='" + NameOnCard + "',  Payment_date='" + Payment_date + "' WHERE Payment_ID = " + Payment_ID +" ");
+        stmt.executeUpdate("UPDATE PAYMENT SET Payment_method='" + Payment_method + "', Card_number=" + Card_number + ", ExpiryDate =" + ExpiryDate + ",  SecurityCode='" + SecurityCode + "', NameOnCard='" + NameOnCard + "',  Payment_date='" + Payment_date + "' WHERE Payment_ID = " + Order_ID +" ");
     }
 
     public int getOrderID() throws SQLException {
@@ -113,5 +104,5 @@ public class PaymentDao{
         return temp2;
     }
 
-
 }
+
