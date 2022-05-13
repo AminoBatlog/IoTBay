@@ -71,7 +71,6 @@ CREATE TABLE Payment (
   ExpiryDate date,
   NameOnCard varchar(100),
   Payment_date date,
-  Delivery_time time,
   CONSTRAINT Pay_PK PRIMARY KEY (Payment_ID),
   CONSTRAINT Pay_FK FOREIGN KEY (Cust_Email) REFERENCES Customer(Email)
 );
