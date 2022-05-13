@@ -81,7 +81,7 @@
                     <input type="text" id="input-field" name="paymentMethod" placeholder="Payment Method"  value="${payment.getPayment_method()}" required>
                     <input type="text" id="input-field" name="cardNumber" placeholder="Card Number" value="${payment.getCard_number()}" required/> 
                     <input type="text" id="input-field" name="expiryDate" placeholder="MM/YY" value="${payment.getExpiryDate()}" required/> 
-                    <input type="text" id="input-field" name="securityCode" placeholder="Security Code" value="${payment.getSecurityCode()}" required/> 
+                    <input type="password" id="input-field" name="securityCode" placeholder="Security Code" value="${payment.getSecurityCode()}" required/> 
                     <input type="text" id="input-field" name="nameOnCard" placeholder="Name on Card" value="${payment.getNameOnCard()}" required/> 
 
                     <input type="submit" value="Update">
