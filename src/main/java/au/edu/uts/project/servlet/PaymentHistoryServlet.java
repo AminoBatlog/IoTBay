@@ -30,9 +30,12 @@ public class PaymentHistoryServlet extends HttpServlet {
            
        if(email != null){
            ArrayList<String> tempList = new ArrayList();
-      
-               System.out.println(cust_Email);
-               tempList = paymentdao.getPayments(cust_Email);
+                try {
+                    System.out.println(cust_Email);
+                    tempList = paymentdao.getPayments(cust_Email);
+                } catch (SQLException ex) {
+                    Logger.getLogger(PaymentHistoryServlet.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 if(tempList != null){
                     session.setAttribute("paymentsList", tempList);
                 }  else {
