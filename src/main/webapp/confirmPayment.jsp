@@ -26,10 +26,10 @@
             <a class="navbar-brand" href="#">IoTBay</a>
         </nav>
         <%
-            Integer paymentID = (Integer) session.getAttribute("paymentID");
+            Integer payment_ID = (Integer) session.getAttribute("payment_ID");
         %>
         
-        <p> Customer ID #${customerID}</p>
+        <p> Customer ID #${cust_ID}</p>
         <div class='center'>
     
         <h2>Would you like to confirm your purchase?</h2>
@@ -51,7 +51,7 @@
             <input class= button type="submit" value="Confirm" >
              
         </form>
-            <p> <a class ="buttonpaycon" id="column-left" href="deletePaymentServlet?paymentID=<%=paymentID%>">Cancel</a></p>           
+            <p> <a class ="buttonpaycon" id="column-left" href="DeletePaymentServlet?payment_ID=<%=payment_ID%>">Cancel</a></p>           
         </div>        
     </body>
 </html>
