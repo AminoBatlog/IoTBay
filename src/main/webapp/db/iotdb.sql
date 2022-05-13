@@ -65,26 +65,15 @@ CREATE TABLE Device_Management (
 CREATE TABLE Payment (
   Payment_ID int NOT NULL GENERATED ALWAYS AS IDENTITY,
   Cust_Email varchar(320) NOT NULL,
-  Payment_method varchar(10),
+  Payment_method varchar(100),
+  Card_number numeric(16) NOT NULL,
+  SecurityCode varchar(11),
+  ExpiryDate date,
+  NameOnCard varchar(100),
   Payment_date date,
   Delivery_time time,
   CONSTRAINT Pay_PK PRIMARY KEY (Payment_ID),
   CONSTRAINT Pay_FK FOREIGN KEY (Cust_Email) REFERENCES Customer(Email)
-);
-CREATE TABLE Checks (
-  Payment_ID int NOT NULL,
-  Bank_ID varchar(11),
-  Payee_name varchar(100),
-  CONSTRAINT Check_PK PRIMARY KEY (Payment_ID),
-  CONSTRAINT Check_FK FOREIGN KEY (Payment_ID) REFERENCES Payment(Payment_ID)
-);
-CREATE TABLE Credit_card (
-  Payment_ID int NOT NULL,
-  Credit_cardNo numeric(16) NOT NULL,
-  Card_type numeric(3),
-  Expired_date date,
-  CONSTRAINT Card_PK PRIMARY KEY (Payment_ID),
-  CONSTRAINT Card_FK FOREIGN KEY (Payment_ID) REFERENCES Payment(Payment_ID)
 );
 CREATE TABLE Orders (
   Order_ID int NOT NULL GENERATED ALWAYS AS IDENTITY,
