@@ -85,7 +85,7 @@
                     for(int i = 0; i < list.size(); i=i+8){
                 %>
                     <td><p> <%=list.get(0+i)%> </p></td>
-                    <td><p> <%=list.get(0+i)%> </p></td>
+                    <td><p> <%=list.get(1+i)%> </p></td>
                     <td><p> <%=list.get(2+i)%> </p></td>
                     <td><p> <%=list.get(3+i)%> </p></td>
                     <td><p> <%=list.get(4+i)%>  </p></td>
