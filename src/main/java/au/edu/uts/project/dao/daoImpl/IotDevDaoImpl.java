@@ -64,6 +64,8 @@ public class IotDevDaoImpl implements IotDevDao {
         this.pst.setString(1, iotDev.getDevName());
         this.pst.setDouble(2, iotDev.getDevPrice());
         this.pst.setInt(3, iotDev.getQuantity());
+        
+        this.pst.executeUpdate();
 
         this.pst.close();
     }
