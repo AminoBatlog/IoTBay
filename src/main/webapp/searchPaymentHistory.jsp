@@ -75,13 +75,13 @@
         <p>#${payment_ID} </p>
         <table>
             <tr> 
-                <td><label for name="searchPaymentID" class="subtitle">Payment ID </label></td>
-                <td><input type ="text" id="searchPaymentID" name="searchPaymentID" placeholder= "Search by PaymentID" required ></td>
+                <td><label for name="search_PaymentID" class="subtitle">Payment ID </label></td>
+                <td><input type ="text" id="searchPayment_ID" name="searchPayment_ID" placeholder= "Search by Payment ID" required ></td>
             </tr>
                 
             <tr> 
-                <td><label for name="searchDatePaid" class="subtitle">Date Paid </label></td>
-                <td><input type ="date" id="searchDatePaid" name="searchDatePaid" placeholder= "Search by Date Paid" required ></td>
+                <td><label for name="searchPayment_date" class="subtitle">Date Paid </label></td>
+                <td><input type ="date" id="searchPayment_date" name="searchPayment_date" placeholder= "Search by Date Paid" required ></td>
             </tr>
             <tr> 
                 <td><input id="search" class="button" type="submit" value="Search"></td>
@@ -95,25 +95,26 @@
         <table>
 	<thead>
                 <tr>
-                    <th scope="col">Payment ID</th>
-                    <th scope="col">Order ID</th>
-                    <th scope="col">Payment Method</th>
-                    <th scope="col">Card Number</th>
-                    <th scope="col">Expiry Date</th>
-                    <th scope="col">Security Code</th>
-                    <th scope="col">Name On Card</th>
-                    <th scope="col">Date Paid</th>
+                    	<th scope="col">Payment ID</th>
+                    	<th scope="col">Order ID</th>
+                    	<th scope="col">Payment Method</th>
+                    	<th scope="col">Card Number</th>
+                    	<th scope="col">Expiry Date</th>
+                    	<th scope="col">Security Code</th>
+                    	<th scope="col">Name On Card</th>
+                    	<th scope="col">Date Paid</th>
                 </tr>
         </thead>
         <tbody> 
                 <tr>
-                    <td><p>${payment_ID}</p></td>
-                    <td><p>${payment_ID}</p></td>
-                    <td><%= searchPayment.getPayment_method() %></td>
-                    <td><%= searchPayment.getCard_number() %></td>
-                    <td><%= searchPayment.getExpiryDate() %></td>
-                    <td><%= searchPayment.getSecurityCode() %></td>
-                    <td><%= searchPayment.getNameOnCard() %></td>
+                    	<td><p>${payment_ID}</p></td>
+                    	<td><p>${payment_ID}</p></td>
+                    	<td><%= searchPayment.getPayment_method() %></td>
+                    	<td><%= searchPayment.getCard_number() %></td>
+                    	<td><%= searchPayment.getExpiryDate() %></td>
+                    	<td><%= searchPayment.getSecurityCode() %></td>
+                    	<td><%= searchPayment.getNameOnCard() %></td>
+			<td><%= searchPayment.getPayment_date() %></td>
                 </tr> 
         </tbody>
         </table> 
