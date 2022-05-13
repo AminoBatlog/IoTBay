@@ -23,22 +23,22 @@ public class AddPaymentServlet extends HttpServlet{
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
-        String payment_method = request.getParameter("payment_method");
-        String cardNumber = request.getParameter("cardNumber");
-        String expiryDate = request.getParameter("expiryDate");
-        String securityCode = request.getParameter("securityCode");
-        String nameOnCard = request.getParameter("nameOnCard");
-        String payment_date = request.getParameter("payment_date");     
+        String payment_method = request.getParameter("Payment_method");
+        String cardNumber = request.getParameter("Card_number");
+        String expiryDate = request.getParameter("ExpiryDate");
+        String securityCode = request.getParameter("SecurityCode");
+        String nameOnCard = request.getParameter("NameOnCard");
+        String payment_date = request.getParameter("Payment_date");     
          
-        Payment payment = new Payment( payment_method, cardNumber, expiryDate, securityCode, nameOnCard, payment_date);
+        Payment payment = new Payment( Payment_method, Card_number, ExpiryDate, SecurityCode, NameOnCard, Payment_date);
         PaymentDao paymentdao = (PaymentDao) session.getAttribute("paymentdao"); 
 
         try {
             if(payment != null){
                 session.setAttribute("payment", payment);
                 Integer order_ID = paymentdao.getOrderID();
-                session.setAttribute("order_ID", order_ID);
-                paymentdao.addPayment(order_ID, payment_method, cardNumber, expiryDate, securityCode, nameOnCard, payment_date);
+                session.setAttribute("Order_ID", order_ID);
+                paymentdao.addPayment(Order_ID, Payment_method, Card_number, ExpiryDate, SecurityCode, NameOnCard, Payment_date);
                 Integer payment_ID = paymentdao.getLastPaymentID();
                 session.setAttribute("payment_ID", payment_ID);
                 request.getRequestDispatcher("addPayment.jsp").include(request, response);
