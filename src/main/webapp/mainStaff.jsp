@@ -43,16 +43,14 @@
                     <li class="nav-item">
                         <a class="nav-link" href="AccessServlet?email='<%= staff.getEmail()%>'&password='<%=staff.getPassword()%>'">Access Log</a>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Devices
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <a class="dropdown-item" href="#">Something else here</a>
-                        </div>
+                    <% 
+                       if (staff.getRoles().equals("Admin")) {
+                    %>
+                    <li class="nav-item">
+                        <a class="nav-link" href="StaffServlet?list=true">Staff List</a>
                     </li>
+                    <% } 
+                    %>
                     <li class="nav-item">
                         <a class="nav-link" href="UpdateLogoutServlet?email='<%= staff.getEmail()%>'&password='<%=staff.getPassword()%>'">
                             <button type="button" class="btn btn-primary">Logout</button>
