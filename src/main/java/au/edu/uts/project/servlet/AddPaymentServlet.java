@@ -30,7 +30,7 @@ public class AddPaymentServlet extends HttpServlet{
         String nameOnCard = request.getParameter("NameOnCard");
         String payment_date = request.getParameter("Payment_date");     
          
-        Payment payment = new Payment( Payment_method, Card_number, ExpiryDate, SecurityCode, NameOnCard, Payment_date);
+        Payment payment = new Payment( payment_method, cardNumber, expiryDate, securityCode, nameOnCard, payment_date);
         PaymentDao paymentdao = (PaymentDao) session.getAttribute("paymentdao"); 
 
         try {
@@ -38,7 +38,7 @@ public class AddPaymentServlet extends HttpServlet{
                 session.setAttribute("payment", payment);
                 Integer order_ID = paymentdao.getOrderID();
                 session.setAttribute("Order_ID", order_ID);
-                paymentdao.addPayment(Order_ID, Payment_method, Card_number, ExpiryDate, SecurityCode, NameOnCard, Payment_date);
+                paymentdao.addPayment(order_ID, payment_method, cardNumber, expiryDate, securityCode, nameOnCard, payment_date);
                 Integer payment_ID = paymentdao.getLastPaymentID();
                 session.setAttribute("payment_ID", payment_ID);
                 request.getRequestDispatcher("addPayment.jsp").include(request, response);
