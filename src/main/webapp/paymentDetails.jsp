@@ -80,8 +80,8 @@
                     <th scope="col">Security Code</th>
                     <th scope="col">Name On Card</th>
                 </tr>
-                <td><%= payment.getPaymentMethod() %></td>
-                <td><%= payment.getCardNumber() %></td>
+                <td><%= payment.getPayment_method() %></td>
+                <td><%= payment.getCard_number() %></td>
                 <td><%= payment.getExpiryDate() %></td>
                 <td><%= payment.getSecurityCode() %></td>
                 <td><%= payment.getNameOnCard() %></td>
