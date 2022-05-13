@@ -14,9 +14,9 @@ import java.sql.Statement;
 public class PaymentDao{
 
     /**
-     * query payment by paymentID and date paid
-     * @param paymentID
-     * @param datePaid
+     * query payment by Payment_ID and Payment_date
+     * @param payment_ID
+     * @param payment_date
      * @return
      */
 
@@ -28,7 +28,7 @@ public class PaymentDao{
     }
 
     public int getLastPaymentID() throws SQLException {
-       String temp = "SELECT MAX(PAYMENTID) FROM PAYMENT" ;
+       String temp = "SELECT MAX(PAYMENT_ID) FROM PAYMENT" ;
        ResultSet res = stmt.executeQuery(temp);
        if (res.next()) {
             return res.getInt(1);
@@ -37,59 +37,59 @@ public class PaymentDao{
        }
     }
 
-    public Payment findByIDandDATE(Integer paymentID, String datePaid) throws SQLException {
-        String temp = "SELECT * FROM PAYMENT WHERE PAYMENTID= " + paymentID + " AND DATEPAID= " + datePaid;
+    public Payment findByIDandDATE(Integer payment_ID, String Payment_date) throws SQLException {
+        String temp = "SELECT * FROM PAYMENT WHERE PAYMENT_ID= " + Payment_ID + " AND PAYMENT_DATE= " + Payment_date;
         ResultSet res = stmt.executeQuery(temp);
 
         while(res.next()) {
             Integer payment_id = res.getInt(1);
-            String date_paid = res.getString(8);
-            if (payment_id.equals(paymentID) && date_paid.equals(datePaid)) {
-                Integer orderID = res.getInt(2);
+            String payment_date = res.getString(8);
+            if (payment_id.equals(Payment_ID) && payment_date.equals(Payment_date)) {
+                Integer order_ID = res.getInt(2);
                 String paymentMethod = res.getString(3);
                 String cardNumber = res.getString(4);
                 String expiryDate = res.getString(5);
                 String securityCode = res.getString(6);
                 String nameOnCard = res.getString(7);
-                return new Payment(paymentMethod, cardNumber, expiryDate, securityCode, nameOnCard, datePaid);
+                return new Payment(payment_method, cardNumber, expiryDate, securityCode, nameOnCard, payment_date);
 
             }
         }
         return null;
     }
 
-    public Payment findByID(Integer paymentID) throws SQLException {       
-        ResultSet res = stmt.executeQuery("SELECT * FROM PAYMENT WHERE PAYMENTID = "+ paymentID);
+    public Payment findByID(Integer payment_ID) throws SQLException {       
+        ResultSet res = stmt.executeQuery("SELECT * FROM PAYMENT WHERE PAYMENT_ID = "+ payment_ID);
        
         while(res.next()){
             Integer payment_id = res.getInt(1);
-            if(payment_id.equals(paymentID)){
-                String paymentMethod = res.getString(3);
+            if(payment_id.equals(payment_ID)){
+                String payment_Method = res.getString(3);
                 String cardNumber = res.getString(4);
                 String expiryDate = res.getString(5);
                 String securityCode = res.getString(6);
                 String nameOnCard = res.getString(7);
-                String datePaid = res.getString(8);
-                return new Payment(paymentMethod, cardNumber, expiryDate, securityCode, nameOnCard, datePaid);
+                String payment_date = res.getString(8);
+                return new Payment(payment_Method, cardNumber, expiryDate, securityCode, nameOnCard, payment_date);
             }
         }
         return null;   
     }
 
-    public void deletePayment (Integer paymentID) throws SQLException {
-        stmt.executeUpdate("DELETE FROM PAYMENT WHERE PAYMENTID = " + paymentID);
+    public void deletePayment (Integer payment_ID) throws SQLException {
+        stmt.executeUpdate("DELETE FROM PAYMENT WHERE PAYMENT_ID = " + payment_ID);
     }
 
-    public void addPayment(Integer orderID, String paymentMethod, String cardNumber, String expiryDate, String securityCode, String nameOnCard, String datePaid) throws SQLException {
-        stmt.executeUpdate("INSERT INTO PAYMENT VALUES (DEFAULT , " + orderID + ",'" + paymentMethod + "', " + cardNumber + ", " + expiryDate + ",'" + securityCode + "', '" + nameOnCard + "', '" + datePaid + "') ");
+    public void addPayment(Integer order_ID, String payment_Method, String cardNumber, String expiryDate, String securityCode, String nameOnCard, String payment_date) throws SQLException {
+        stmt.executeUpdate("INSERT INTO PAYMENT VALUES (DEFAULT , " + order_ID + "," + payment_Method + ", " + cardNumber + ", " + expiryDate + ", " + securityCode + ", " + nameOnCard + ", " + payment_date + ") ");
     }
 
-    public void updatePayment(Integer paymentID, String paymentMethod, String cardNumber, String expiryDate, String securityCode, String nameOnCard, String datePaid) throws SQLException {
-        stmt.executeUpdate("UPDATE PAYMENT SET paymentMethod='" + paymentMethod + "', cardNumber=" + cardNumber + ", expiryDate =" + expiryDate + ",  securityCode='" + securityCode + "', nameOnCard='" + nameOnCard + "',  datePaid='" + datePaid + "' WHERE paymentID = " + paymentID +" ");
+    public void updatePayment(Integer payment_ID, String payment_Method, String cardNumber, String expiryDate, String securityCode, String nameOnCard, String payment_date) throws SQLException {
+        stmt.executeUpdate("UPDATE PAYMENT SET payment_Method='" + payment_Method + "', cardNumber=" + cardNumber + ", expiryDate =" + expiryDate + ",  securityCode='" + securityCode + "', nameOnCard='" + nameOnCard + "',  payment_Date='" + payment_date + "' WHERE payment_ID = " + payment_ID +" ");
     }
 
     public int getOrderID() throws SQLException {
-       ResultSet res = stmt.executeQuery("SELECT ORDERID FROM ORDERS");
+       ResultSet res = stmt.executeQuery("SELECT ORDER_ID FROM ORDERS");
        if (res.next()) {
             return res.getInt(1);
        } else {
@@ -97,8 +97,8 @@ public class PaymentDao{
        }
     }
 
-    public ArrayList<String> getPayments(Integer customerID) throws SQLException {
-        ResultSet res = stmt.executeQuery("SELECT * FROM PAYMENT P JOIN ORDERS O on O.ORDERS = P.PAYMENT WHERE O.ORDERS = "+ customerID);
+    public ArrayList<String> getPayments(Integer cust_ID) throws SQLException {
+        ResultSet res = stmt.executeQuery("SELECT * FROM PAYMENT P JOIN ORDERS O on O.ORDERS = P.PAYMENT WHERE O.ORDERS = "+ cust_ID);
         ArrayList<String> temp2 = new ArrayList();
         while(res.next()) {
             temp2.add(Integer.toString(res.getInt(1)));
