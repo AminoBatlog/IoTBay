@@ -88,7 +88,7 @@ public class PaymentDao{
        }
     }
 
-    public ArrayList<String> getPayments(Integer cust_ID) throws SQLException {
+    public ArrayList<String> getPayments(String Cust_Email) throws SQLException {
         ResultSet res = stmt.executeQuery("SELECT * FROM PAYMENT P JOIN ORDERS O on O.ORDERS = P.PAYMENT WHERE O.ORDERS = ");
         ArrayList<String> temp2 = new ArrayList();
         while(res.next()) {
