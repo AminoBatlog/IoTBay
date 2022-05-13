@@ -72,11 +72,11 @@
         
         <div class="body-text"> 
             <h3><label for name="paymentMethod">Payment Method</label></h3>
-                <input type="text" id="coloumn-left" name="paymentMethod" placeholder="Payment Method" required/>
+                <input type="text" id="coloumn-left" name="Payment_method" placeholder="Payment Method" required/>
       
  
             <b><label for name="datePaid">Date</label></b>
-                <input type="date" id="coloumn-left" name="datePaid" placeholder="Date Paid" required/> 
+                <input type="date" id="coloumn-left" name="Payment_date" placeholder="Date Paid" required/> 
           
                 <div class="personal-information">
                 <h1>Payment Information</h1></div> 
