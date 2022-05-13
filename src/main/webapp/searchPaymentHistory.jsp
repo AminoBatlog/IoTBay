@@ -72,7 +72,7 @@
        
         <form action="SearchPaymentHistoryServlet" method="post">
             
-        <p>#${paymentID} </p>
+        <p>#${payment_ID} </p>
         <table>
             <tr> 
                 <td><label for name="searchPaymentID" class="subtitle">Payment ID </label></td>
@@ -107,10 +107,10 @@
         </thead>
         <tbody> 
                 <tr>
-                    <td><p>${paymentID}</p></td>
-                    <td><p>${orderID}</p></td>
-                    <td><%= searchPayment.getPaymentMethod() %></td>
-                    <td><%= searchPayment.getCardNumber() %></td>
+                    <td><p>${payment_ID}</p></td>
+                    <td><p>${payment_ID}</p></td>
+                    <td><%= searchPayment.getPayment_method() %></td>
+                    <td><%= searchPayment.getCard_number() %></td>
                     <td><%= searchPayment.getExpiryDate() %></td>
                     <td><%= searchPayment.getSecurityCode() %></td>
                     <td><%= searchPayment.getNameOnCard() %></td>
@@ -124,3 +124,4 @@
             
     </body>
 </html>
+
