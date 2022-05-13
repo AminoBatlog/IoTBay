@@ -70,7 +70,7 @@
                 
         <form action = "updatePaymentServlet" method="post">
         
-        <h1> Order #${orderID} </h1>
+        <h1> Order #${order_ID} </h1>
         <h2> Total Amount $${order.getAmount()} </h2>
         
         <div class="body-text"> 
@@ -78,8 +78,8 @@
                 <div class="form-container">
                 <div class="personal-information">
                 <h1>Payment Information</h1></div> 
-                    <input type="text" id="input-field" name="paymentMethod" placeholder="Payment Method"  value="${payment.getPaymentMethod()}" required>
-                    <input type="tex" id="input-field" name="cardNumber" placeholder="Card Number" value="${payment.getCardNumber()}" required/> 
+                    <input type="text" id="input-field" name="paymentMethod" placeholder="Payment Method"  value="${payment.getPayment_method()}" required>
+                    <input type="text" id="input-field" name="cardNumber" placeholder="Card Number" value="${payment.getCard_number()}" required/> 
                     <input type="text" id="input-field" name="expiryDate" placeholder="MM/YY" value="${payment.getExpiryDate()}" required/> 
                     <input type="text" id="input-field" name="securityCode" placeholder="Security Code" value="${payment.getSecurityCode()}" required/> 
                     <input type="text" id="input-field" name="nameOnCard" placeholder="Name on Card" value="${payment.getNameOnCard()}" required/> 
@@ -91,3 +91,4 @@
             
     </body>
 </html>
+
