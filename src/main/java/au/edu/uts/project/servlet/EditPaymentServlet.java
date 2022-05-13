@@ -21,12 +21,12 @@ public class EditPaymentServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession(true);
-        Integer paymentID = Integer.parseInt(request.getParameter("paymentID"));
+        Integer payment_ID = Integer.parseInt(request.getParameter("payment_ID"));
         PaymentDao paymentdao = (PaymentDao) session.getAttribute("paymentdao");
         Payment payment = null;
         try{
-            payment = paymentdao.findByID(paymentID);
-            System.out.println(paymentID);
+            payment = paymentdao.findByID(payment_ID);
+            System.out.println(payment_ID);
             if(payment != null){
                 session.setAttribute("payment", payment);
                 request.getRequestDispatcher("confirm.jsp").include(request, response);
