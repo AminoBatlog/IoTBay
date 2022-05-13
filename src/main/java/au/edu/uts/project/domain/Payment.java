@@ -21,25 +21,26 @@ import lombok.NoArgsConstructor;
 
 public class Payment implements Serializable {
 
-    private String payment_method;
-    private String cardNumber;
-    private String expiryDate;
-    private String securityCode;
-    private String nameOnCard;
-    private String payment_date;  
+    private String Payment_method;
+    private String Card_number;
+    private String ExpiryDate;
+    private String SecurityCode;
+    private String NameOnCard;
+    private String Payment_date;  
     
     
     @Override
     public String toString() {
         return "Payment{" +
-                "payment_Method='" + payment_method + '\'' +
-                ", cardNumber='" + cardNumber + '\'' +
-                ", expiryDate='" + expiryDate + '\'' +
-                ", securityCode='" + securityCode + '\'' +
-                ", nameOnCard='" + nameOnCard + '\'' +
-                ", payment_date='" + payment_date + '\'' +
+                "Payment_method='" + Payment_method + '\'' +
+                ", Card_number='" + Card_number + '\'' +
+                ", ExpiryDate='" + ExpiryDate + '\'' +
+                ", SecurityCode='" + SecurityCode + '\'' +
+                ", NameOnCard='" + NameOnCard + '\'' +
+                ", Payment_date='" + Payment_date + '\'' +
                 '}';
     }
 
    
 }
+
