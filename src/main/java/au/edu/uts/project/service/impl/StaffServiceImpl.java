@@ -5,12 +5,13 @@ import au.edu.uts.project.dao.daoImpl.StaffDaoImpl;
 import au.edu.uts.project.domain.Staff;
 import au.edu.uts.project.service.StaffService;
 import au.edu.uts.project.utils.DatabaseConnection;
-import au.edu.uts.project.utils.StaffDaoSingleton;
 
 import java.sql.SQLException;
 import java.util.List;
 
 public class StaffServiceImpl implements StaffService {
+
+    StaffDao dao = new StaffDaoImpl(new DatabaseConnection().getConnection());
 
     /**
      * get staff list
@@ -18,7 +19,6 @@ public class StaffServiceImpl implements StaffService {
      */
     @Override
     public List<Staff> getList() {
-        StaffDao dao = StaffDaoSingleton.getInstance();
         List<Staff> list = null;
         try {
             list = dao.getList();
@@ -35,7 +35,6 @@ public class StaffServiceImpl implements StaffService {
      */
     @Override
     public int addStaff(Staff staff) {
-        StaffDao dao = StaffDaoSingleton.getInstance();
         int result = 0;
         try {
             result = dao.addStaff(staff);
@@ -52,7 +51,6 @@ public class StaffServiceImpl implements StaffService {
      */
     @Override
     public int updateStaff(Staff staff) {
-        StaffDao dao = StaffDaoSingleton.getInstance();
         int result = 0;
         try {
             result = dao.updateStaff(staff);
@@ -64,7 +62,6 @@ public class StaffServiceImpl implements StaffService {
 
     @Override
     public int modifyStaff(Staff staff) throws SQLException {
-        StaffDao dao = StaffDaoSingleton.getInstance();
         boolean isExist = dao.isExistStaff(staff.getEmail());
         int result = 0;
         if(isExist){
@@ -82,7 +79,6 @@ public class StaffServiceImpl implements StaffService {
      */
     @Override
     public int removeStaff(String email) {
-        StaffDao dao = StaffDaoSingleton.getInstance();
         int result = 0;
         try {
             result = dao.removeStaff(email);
@@ -94,7 +90,6 @@ public class StaffServiceImpl implements StaffService {
 
     @Override
     public Staff getStaff(String email) {
-        StaffDao dao = StaffDaoSingleton.getInstance();
         Staff staff = null;
         try {
             staff = dao.selectStaffByEmail(email);
@@ -106,7 +101,6 @@ public class StaffServiceImpl implements StaffService {
 
     @Override
     public List<Staff> filterList(String name, String email) {
-        StaffDao dao = StaffDaoSingleton.getInstance();
         List<Staff> list = null;
         try {
             list = dao.filterList(name, email);

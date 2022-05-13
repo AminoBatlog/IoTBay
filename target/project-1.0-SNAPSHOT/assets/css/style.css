@@ -68,3 +68,7 @@ login form css style
     overflow: hidden;
     color: white;
 }
+
+.message {
+    font-size: small;
+}
