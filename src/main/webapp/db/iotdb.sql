@@ -48,20 +48,6 @@ CREATE TABLE Category (
   CONSTRAINT Cat_PK PRIMARY KEY (Cat_ID),
   CONSTRAINT Cat_FK FOREIGN KEY (Sub_Cat) REFERENCES Category(Cat_ID)
 );
-CREATE TABLE Customer_Management (
-  Cust_Email varchar(320) NOT NULL,
-  Staff_Email varchar(320) NOT NULL,
-  CONSTRAINT CustMan_PK PRIMARY KEY (Cust_Email, Staff_Email),
-  CONSTRAINT CustMan_FK1 FOREIGN KEY (Cust_Email) REFERENCES Customer(Email),
-  CONSTRAINT CustMan_FK2 FOREIGN KEY (Staff_Email) REFERENCES Staff(Email)
-);
-CREATE TABLE Device_Management (
-  Staff_Email varchar(320) NOT NULL,
-  Dev_ID int NOT NULL,
-  CONSTRAINT DevMan_PK PRIMARY KEY (Staff_Email, Dev_ID),
-  CONSTRAINT DevMan_FK1 FOREIGN KEY (Staff_Email) REFERENCES Staff(Email),
-  CONSTRAINT DevMan_FK2 FOREIGN KEY (Dev_ID) REFERENCES IOT_Dev(Dev_ID)
-);
 CREATE TABLE Payment (
   Payment_ID int NOT NULL GENERATED ALWAYS AS IDENTITY,
   Cust_Email varchar(320) NOT NULL,
