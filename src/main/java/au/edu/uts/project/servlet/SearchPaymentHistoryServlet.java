@@ -22,8 +22,8 @@ public class SearchPaymentHistoryServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
-        Integer payment_ID = Integer.parseInt(request.getParameter("payment_ID"));
-        String payment_date = request.getParameter("payment_date");
+        Integer payment_ID = Integer.parseInt(request.getParameter("Payment_ID"));
+        String payment_date = request.getParameter("Payment_date");
         PaymentDao paymentdao = (PaymentDao) session.getAttribute("paymentdao");
         
         Payment payment = null;
