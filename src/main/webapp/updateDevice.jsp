@@ -32,45 +32,10 @@
 
                             <div class="form-row">
                             <div class="form-group">
-                                <label for="devID">Device ID</label>
+                                <label for="devID" >Device ID</label>
                                 <input type="text" name="devID" id="devID">
                             </div>
                         </div>
-
-
-<!--                            <form action="${pageContext.request.contextPath}/IotDevServlet" method="get">
-    <div class="form-row">
-        <div class="form-group">
-            <label for="devID">Device ID</label>
-            <input name="devID" type="text" id="devID" value="">
-        </div>
-    </div>
-
-
-    <div class="row justify-content-center">
-        <div class="col-10 devices-list">
-            <div class="container">
-                <div class="row devices-list-element-title">
-                    <div class="col-sm-3">
-                        <span class="devices-list-element-cell">Devices ID</span>
-                    </div>
-                    <div class="col-sm-3">
-                        <span class="devices-list-element-cell">Devices Name</span>
-                    </div>
-                    <div class="col-sm-3">
-                        <span class="devices-list-element-cell">Devices Price</span>
-                    </div>
-                    <div class="col-sm-3">
-                        <span class="devices-list-element-cell">Quantity</span>
-                    </div>
-                </div>
-
-
-
-                <div class="row justify-content-center" style="margin-top:40px; margin-bottom: 40px;">
-                    <div class="col-sm-6 text-center">
-                        <button id="check" class="function-button">Check Devices</button>
-                    </div>-->
 
                             <form action="${pageContext.request.contextPath}/IotDevServlet" method="post">
                                 <div class="form-row">
@@ -108,7 +73,7 @@
                 $('#Update').click(function () {
                     var devID = $('#devID').attr('value');
                     // window.location.href = '${pageContext.request.contextPath}/IotDevServlet?devID=' + devID;
-                    request.setAttribute("devID=") + devID;
+                    response.sendRedirect("/IotDevServlet?devID=") + devID;
                 });
         </script>                      
 

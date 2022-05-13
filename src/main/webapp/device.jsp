@@ -17,7 +17,7 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>test Page</title>
+    <title>Devices List Page</title>
     <link rel="stylesheet" href="./dist/bootstrap-5.1.3-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="./assets/css/select.css">
     <link rel="stylesheet" href="./assets/css/style.css">
@@ -91,8 +91,11 @@
                         <div class="col-sm-6 text-center">
                             <button id="add" class="function-button">Add Devices</button>
                             <button id="update" class="function-button">Update Devices</button>
-                            <button id="delete" class="function-button">Delete Devices</button>
+                            <!--<button id="delete" class="function-button">Delete Devices</button>-->
                         </div>
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <div>In order to delete simply click on the devices ID and click confirm, you will then be shown the updated database</div>
                     </div>
 
                 </div>

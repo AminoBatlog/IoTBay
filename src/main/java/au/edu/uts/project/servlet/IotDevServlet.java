@@ -106,7 +106,7 @@ public class IotDevServlet extends HttpServlet {
             // if staff.getEmail != null
             int devID = Integer.parseInt(request.getParameter("delete"));
             iotService.deleteDevices(devID);
-            response.sendRedirect(request.getContextPath() + "/device.jsp");
+            response.sendRedirect(request.getContextPath() + "/IotDevServlet?list=1");
             // IotDevService.deleteDevices(devID);
         } 
         
