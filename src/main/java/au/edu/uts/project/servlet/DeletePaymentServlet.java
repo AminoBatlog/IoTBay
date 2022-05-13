@@ -20,15 +20,15 @@ public class DeletePaymentServlet extends HttpServlet {
 @Override
 protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession(true);
-        Integer paymentId = Integer.parseInt(request.getParameter("paymentID")); 
+        Integer payment_ID = Integer.parseInt(request.getParameter("payment_ID")); 
         PaymentDao paymentdao = (PaymentDao)session.getAttribute("paymentdao");
         
         Payment payment = null;
         try{
             
-            payment = paymentdao.findByID(paymentId);
+            payment = paymentdao.findByID(payment_ID);
             if(payment != null){
-                paymentdao.deletePayment(paymentId);
+                paymentdao.deletePayment(payment_ID);
                 System.out.println("Payment deleted.");
             } else {
                 System.out.println("Error.");
