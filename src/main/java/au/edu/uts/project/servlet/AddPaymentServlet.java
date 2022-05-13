@@ -23,24 +23,24 @@ public class AddPaymentServlet extends HttpServlet{
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
-        String paymentMethod = request.getParameter("paymentMethod");
+        String payment_method = request.getParameter("payment_method");
         String cardNumber = request.getParameter("cardNumber");
         String expiryDate = request.getParameter("expiryDate");
         String securityCode = request.getParameter("securityCode");
         String nameOnCard = request.getParameter("nameOnCard");
-        String datePaid = request.getParameter("datePaid");     
+        String payment_date = request.getParameter("payment_date");     
          
-        Payment payment = new Payment( paymentMethod, cardNumber, expiryDate, securityCode, nameOnCard, datePaid);
+        Payment payment = new Payment( payment_method, cardNumber, expiryDate, securityCode, nameOnCard, payment_date);
         PaymentDao paymentdao = (PaymentDao) session.getAttribute("paymentdao"); 
 
         try {
             if(payment != null){
                 session.setAttribute("payment", payment);
-                Integer orderID = paymentdao.getOrderID();
-                session.setAttribute("orderID", orderID);
-                paymentdao.addPayment(orderID, paymentMethod, cardNumber, expiryDate, securityCode, nameOnCard, datePaid);
-                Integer paymentID = paymentdao.getLastPaymentID();
-                session.setAttribute("paymentID", paymentID);
+                Integer order_ID = paymentdao.getOrderID();
+                session.setAttribute("order_ID", order_ID);
+                paymentdao.addPayment(order_ID, payment_method, cardNumber, expiryDate, securityCode, nameOnCard, payment_date);
+                Integer payment_ID = paymentdao.getLastPaymentID();
+                session.setAttribute("payment_ID", payment_ID);
                 request.getRequestDispatcher("addPayment.jsp").include(request, response);
                 response.sendRedirect("confirmPayment.jsp");
             } else {
