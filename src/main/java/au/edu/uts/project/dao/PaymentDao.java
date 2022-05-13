@@ -93,7 +93,7 @@ public class PaymentDao{
         ArrayList<String> temp2 = new ArrayList();
         while(res.next()) {
             temp2.add(Integer.toString(res.getInt(1)));
-            temp2.add(Integer.toString(res.getInt(2)));
+            temp2.add(res.getString(2));
             temp2.add(res.getString(3));
             temp2.add(res.getString(4));
             temp2.add(res.getString(5));
