@@ -24,18 +24,15 @@ public class PaymentHistoryServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         
        HttpSession session = request.getSession();
-       Integer customerID = Integer.parseInt(request.getParameter("cust_ID")); 
+       String cust_Email = request.getParameter("Cust_Email"); 
        PaymentDao paymentdao = (PaymentDao)session.getAttribute("paymentdao");
-       String username = (String) session.getAttribute("username");
+       String email = (String)session.getAttribute("Cust_Email");
            
-       if(username != null){
+       if(email != null){
            ArrayList<String> tempList = new ArrayList();
-           try {
-               System.out.println(cust_ID);
-               tempList = paymentdao.getPayments(cust_ID);
-           } catch (SQLException e) {
-               Logger.getLogger(PaymentHistoryServlet.class.getName()).log(Level.SEVERE, null, e);
-           }
+      
+               System.out.println(cust_Email);
+               tempList = paymentdao.getPayments(cust_Email);
                 if(tempList != null){
                     session.setAttribute("paymentsList", tempList);
                 }  else {
