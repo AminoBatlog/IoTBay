@@ -153,30 +153,66 @@
         <url-pattern>/StaffServlet</url-pattern>
     </servlet-mapping>
          
+    <servlet>
+        <servlet-name>AddPaymentServlet</servlet-name>
+        <servlet-class>au.edu.uts.project.servlet.AddPaymentServlet</servlet-class>
+        <load-on-startup>0</load-on-startup>
+    </servlet>
+    
     <servlet-mapping>
         <servlet-name>AddPaymentServlet</servlet-name>
         <url-pattern>/AddPaymentServlet</url-pattern>
     </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>DeletePaymentServlet</servlet-name>
+        <servlet-class>au.edu.uts.project.servlet.DeletePaymentServlet</servlet-class>
+        <load-on-startup>0</load-on-startup>
+    </servlet>
     
     <servlet-mapping>
         <servlet-name>DeletePaymentServlet</servlet-name>
         <url-pattern>/DeletePaymentServlet</url-pattern>
     </servlet-mapping>
     
+    <servlet>
+        <servlet-name>EditPaymentServlet</servlet-name>
+        <servlet-class>au.edu.uts.project.servlet.EditPaymentServlet</servlet-class>
+        <load-on-startup>0</load-on-startup>
+    </servlet>
+    
     <servlet-mapping>
         <servlet-name>EditPaymentServlet</servlet-name>
         <url-pattern>/EditPaymentServlet</url-pattern>
     </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>PaymentHistoryServlet</servlet-name>
+        <servlet-class>au.edu.uts.project.servlet.PaymentHistoryServlet</servlet-class>
+        <load-on-startup>0</load-on-startup>
+    </servlet>
     
     <servlet-mapping>
         <servlet-name>PaymentHistoryServlet</servlet-name>
         <url-pattern>/PaymentHistoryServlet</url-pattern>
     </servlet-mapping>
     
+    <servlet>
+        <servlet-name>SearchPaymentHistoryServlet</servlet-name>
+        <servlet-class>au.edu.uts.project.servlet.SearchPaymentHistoryServlet</servlet-class>
+        <load-on-startup>0</load-on-startup>
+    </servlet>
+    
     <servlet-mapping>
         <servlet-name>SearchPaymentHistoryServlet</servlet-name>
         <url-pattern>/SearchPaymentHistoryServlet</url-pattern>
     </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>UpdatePaymentServlet</servlet-name>
+        <servlet-class>au.edu.uts.project.servlet.UpdatePaymentServlet</servlet-class>
+        <load-on-startup>0</load-on-startup>
+    </servlet>
     
     <servlet-mapping>
         <servlet-name>UpdatePaymentServlet</servlet-name>
