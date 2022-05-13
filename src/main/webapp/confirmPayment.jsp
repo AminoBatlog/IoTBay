@@ -41,12 +41,12 @@
             <div>
                 <table style="text-align: center">
            
-                <p>Payment Method  = ${payment.getPaymentMethod()} </p>
-                <p>Card Number     = ${payment.getCardNumber()} </p>
+                <p>Payment Method  = ${payment.getPayment_method()} </p>
+                <p>Card Number     = ${payment.getCard_number()} </p>
                 <p>Expiry Date     = ${payment.getExpiryDate()} </p>
                 <p>Security Code   = ${payment.getSecurityCode()} </p>
                 <p>Name On Card    = ${payment.getNameOnCard()} </p>
-                <p>Date Paid       = ${payment.getDatePaid()}</p>
+                <p>Date Paid       = ${payment.getPayment_date()}</p>
     
             <input class= button type="submit" value="Confirm" >
              
