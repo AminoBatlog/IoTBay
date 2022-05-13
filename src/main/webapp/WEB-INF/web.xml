@@ -152,6 +152,36 @@
         <servlet-name>StaffServlet</servlet-name>
         <url-pattern>/StaffServlet</url-pattern>
     </servlet-mapping>
+         
+    <servlet-mapping>
+        <servlet-name>AddPaymentServlet</servlet-name>
+        <url-pattern>/AddPaymentServlet</url-pattern>
+    </servlet-mapping>
+    
+    <servlet-mapping>
+        <servlet-name>DeletePaymentServlet</servlet-name>
+        <url-pattern>/DeletePaymentServlet</url-pattern>
+    </servlet-mapping>
+    
+    <servlet-mapping>
+        <servlet-name>EditPaymentServlet</servlet-name>
+        <url-pattern>/EditPaymentServlet</url-pattern>
+    </servlet-mapping>
+    
+    <servlet-mapping>
+        <servlet-name>PaymentHistoryServlet</servlet-name>
+        <url-pattern>/PaymentHistoryServlet</url-pattern>
+    </servlet-mapping>
+    
+    <servlet-mapping>
+        <servlet-name>SearchPaymentHistoryServlet</servlet-name>
+        <url-pattern>/SearchPaymentHistoryServlet</url-pattern>
+    </servlet-mapping>
+    
+    <servlet-mapping>
+        <servlet-name>UpdatePaymentServlet</servlet-name>
+        <url-pattern>/UpdatePaymentServlet</url-pattern>
+    </servlet-mapping> 
     
     <session-config>
         <session-timeout>
