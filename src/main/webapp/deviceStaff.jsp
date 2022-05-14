@@ -43,7 +43,7 @@
                 <form action="${pageContext.request.contextPath}/IotDevServlet">
                     <label for="search-id">Search ID</label>
                     <input type="text" id="search-id" name="idfind">
-                    <button type="submit" class="function-button" id="filter">Search</button>
+                    <button type="submit" class="btn btn-success btn-sm" id="filter">Search</button>
                 </form>
             </div>
         </div>
@@ -92,8 +92,8 @@
 
                     <div class="row justify-content-center" style="margin-top:20px; margin-bottom: 20px;">
                         <div class="col-sm-6 text-center">
-                            <button id="add" class="function-button">Add Devices</button>
-                            <button id="update" class="function-button">Update Devices</button>
+                            <button id="add" class="btn btn-primary">Add Devices</button>
+                            <button id="update" class="btn btn-secondary">Update Devices</button>
                             <!--<button id="delete" class="function-button">Delete Devices</button>-->
                         </div>
                     </div>
@@ -125,7 +125,6 @@
     </script>             
 
 </body>
-
 
 
 
