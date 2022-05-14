@@ -96,7 +96,7 @@
             window.location.href = '${pageContext.request.contextPath}/OrderLineServlet?display=' + id
         })
         $('#add').click(function () {
-            window.location.href = '${pageContext.request.contextPath}/OrderServlet' + '?create=<% out.print(request.getAttribute("order_active_email")); %>'
+            window.location.href = '${pageContext.request.contextPath}/OrderServlet?create=true'
         })
     </script>
 </body>
