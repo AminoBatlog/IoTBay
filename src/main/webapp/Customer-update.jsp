@@ -123,7 +123,7 @@
                   <div class="row">
                     <div class="col-lg-4">
                       <div class="form-group focused">
-                        <label class="form-control-label" for="address_streetNo">Street No.</label>
+                        <label class="form-control-label" for="cust_streetno">Street No.</label>
                         <input type="number" name="cust_streetno" id="cust_streetno" class="form-control form-control-alternative" value="${customer.addressStreetNo}">
                       </div>
                     </div>
