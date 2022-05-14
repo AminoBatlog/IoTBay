@@ -20,3 +20,6 @@ the main page
   additional functionalities depending on your account type.
 
 8. If you click the logout in the mainpage, the session will be destroyed and you will be redirect back to the Index page
+  
+9. To Login, click the "Login" button on the Index page and it will redirect to the login form. Fill the form accordingly, then click submit
+  and it will redirect to the welcome page
