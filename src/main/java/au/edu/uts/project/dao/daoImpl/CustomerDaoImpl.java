@@ -146,7 +146,7 @@ public class CustomerDaoImpl implements CustomerDao {
 //
     @Override
     public List<Account> filterList(String name, String email) throws SQLException {
-        String sql = "SELECT * FROM Customer WHERE email LIKE ? AND (Customer_fname LIKE ? OR Customer_lname LIKE ?)";
+        String sql = "SELECT * FROM Customer WHERE email LIKE ? AND (CUST_FNAME LIKE ? OR CUST_LNAME LIKE ?)";
         this.pst = this.connection.prepareStatement(sql);
         this.pst.setString(1, "%" + email + "%");
         this.pst.setString(2, "%" + name + "%");
