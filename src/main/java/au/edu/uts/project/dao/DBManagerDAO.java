@@ -55,7 +55,7 @@ public class DBManagerDAO {
 
  
     public Account findUser(String email, String pass) throws SQLException {
-        String sql = "SELECT * FROM USERTEST.CUSTOMER WHERE EMAIL = ? AND PASSWORD = ?";
+        String sql = "SELECT * FROM CUSTOMER WHERE EMAIL = ? AND PASSWORD = ?";
 
         // get the result after execute the query
         st = conn.prepareStatement(sql);
@@ -108,7 +108,7 @@ public class DBManagerDAO {
     }
 
     public void updateUser(String fName, String lName, String email, String pass, String gender, int addressStreetNo, String addressStreetName, String addressCity, int addressZipcode, String addressCountry, String dob) throws SQLException {
-       String sql = "UPDATE USERTEST.CUSTOMER SET CUST_FNAME = ?, CUST_LNAME = ?, PASSWORD = ?, DOB = ?, "
+       String sql = "UPDATE CUSTOMER SET CUST_FNAME = ?, CUST_LNAME = ?, PASSWORD = ?, DOB = ?, "
        + "GENDER = ?, CUST_STREETNO = ?, CUST_STREETNAME = ?, CUST_CITY = ?, CUST_ZIPCODE = ?, CUST_COUNTRY = ? "
        + "WHERE EMAIL = ?";
         st = conn.prepareStatement(sql);
@@ -129,7 +129,7 @@ public class DBManagerDAO {
     } 
     
     public void cancelUser(String email) throws SQLException {
-       String sql = "UPDATE USERTEST.CUSTOMER SET STATUS = ? WHERE EMAIL = ?";
+       String sql = "UPDATE CUSTOMER SET STATUS = ? WHERE EMAIL = ?";
        st = conn.prepareStatement(sql);
        st.setBoolean(1, false);
        st.setString(2, email);
@@ -138,7 +138,7 @@ public class DBManagerDAO {
     }
 
     public void addAccess(String email, String inDate, String inTime) throws SQLException {
-       String sql = "INSERT INTO USERTEST.ACCESS (EMAIL, INDATE, INTIME) VALUES (?, ?, ?)";
+       String sql = "INSERT INTO ACCESS (EMAIL, INDATE, INTIME) VALUES (?, ?, ?)";
        st = conn.prepareStatement(sql);
        st.setString(1, email);
        st.setString(2, inDate);
@@ -150,7 +150,7 @@ public class DBManagerDAO {
 
 
     public void updateLogout(String email, String outDate, String outTime) throws SQLException {
-         String sql = "UPDATE USERTEST.ACCESS SET OUTDATE = ?, OUTTIME = ? WHERE EMAIL = ? AND OUTDATE IS NULL";
+         String sql = "UPDATE ACCESS SET OUTDATE = ?, OUTTIME = ? WHERE EMAIL = ? AND OUTDATE IS NULL";
          
          st = conn.prepareStatement(sql);
          st.setString(1, outDate);
@@ -163,7 +163,7 @@ public class DBManagerDAO {
     public ArrayList<AccountAccess> listAccess(String email) throws SQLException {
       
       ArrayList<AccountAccess> list = new ArrayList<>();
-      String sql = "SELECT * FROM USERTEST.ACCESS WHERE EMAIL = ?";
+      String sql = "SELECT * FROM ACCESS WHERE EMAIL = ?";
       st = conn.prepareStatement(sql);
       st.setString(1, email);
       ResultSet result = this.st.executeQuery();
@@ -183,7 +183,7 @@ public class DBManagerDAO {
     public ArrayList<AccountAccess> listByDate(String email, String loginDate) throws SQLException {
       
       ArrayList<AccountAccess> list = new ArrayList<>();
-      String sql = "SELECT * FROM USERTEST.ACCESS WHERE EMAIL = ? AND INDATE = ?";
+      String sql = "SELECT * FROM ACCESS WHERE EMAIL = ? AND INDATE = ?";
       st = conn.prepareStatement(sql);
       st.setString(1, email);
       st.setString(2, loginDate);
@@ -202,7 +202,7 @@ public class DBManagerDAO {
     }
 
     public boolean checkAccess(String email, String loginDate) throws SQLException {
-        String sql = "SELECT * FROM USERTEST.ACCESS WHERE EMAIL = ? AND INDATE = ?";
+        String sql = "SELECT * FROM ACCESS WHERE EMAIL = ? AND INDATE = ?";
         st = conn.prepareStatement(sql);
         st.setString(1, email);
         st.setString(2, loginDate);
@@ -220,7 +220,7 @@ public class DBManagerDAO {
     }
 
     public Staff checkStaffEmail(String email) throws SQLException {
-        String sql = "SELECT * FROM USERTEST.STAFF WHERE EMAIL = ?";
+        String sql = "SELECT * FROM STAFF WHERE EMAIL = ?";
         st = conn.prepareStatement(sql);
         st.setString(1, email);
 
@@ -251,7 +251,7 @@ public class DBManagerDAO {
     }
    
     public Staff findStaff(String email, String pass) throws SQLException {
-        String sql = "SELECT * FROM USERTEST.STAFF WHERE EMAIL = ? AND PASSWORD = ?";
+        String sql = "SELECT * FROM STAFF WHERE EMAIL = ? AND PASSWORD = ?";
 
         // get the result after execute the query
         st = conn.prepareStatement(sql);
@@ -285,7 +285,7 @@ public class DBManagerDAO {
     }
 
     public void addStaff(String fName, String lName, String email, String pass, String gender, int addressStreetNo, String addressStreetName, String addressCity, int addressZipcode, String addressCountry, String dob, String roles) throws SQLException, ParseException {
-        String sql = "INSERT INTO USERTEST.STAFF (STAFF_FNAME, STAFF_LNAME, EMAIL, PASSWORD, DOB, GENDER, STAFF_STREETNO,"
+        String sql = "INSERT INTO STAFF (STAFF_FNAME, STAFF_LNAME, EMAIL, PASSWORD, DOB, GENDER, STAFF_STREETNO,"
         + "STAFF_STREETNAME, STAFF_CITY, STAFF_ZIPCODE, STAFF_COUNTRY, ROLES) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         st = conn.prepareStatement(sql);
         st.setString(1, fName);
@@ -306,7 +306,7 @@ public class DBManagerDAO {
     }
 
     public void updateStaff(String fName, String lName, String email, String pass, String gender, int addressStreetNo, String addressStreetName, String addressCity, int addressZipcode, String addressCountry, String dob, String roles) throws SQLException {
-       String sql = "UPDATE USERTEST.STAFF SET STAFF_FNAME = ?, STAFF_LNAME = ?, PASSWORD = ?, DOB = ?, "
+       String sql = "UPDATE STAFF SET STAFF_FNAME = ?, STAFF_LNAME = ?, PASSWORD = ?, DOB = ?, "
        + "GENDER = ?, STAFF_STREETNO = ?, STAFF_STREETNAME = ?, STAFF_CITY = ?, STAFF_ZIPCODE = ?, STAFF_COUNTRY = ?, "
        + "ROLES = ? WHERE EMAIL = ?";
         st = conn.prepareStatement(sql);
@@ -328,7 +328,7 @@ public class DBManagerDAO {
     }
 
     public void cancelStaff(String email) throws SQLException {
-       String sql = "UPDATE USERTEST.STAFF SET STATUS = ? WHERE EMAIL = ?";
+       String sql = "UPDATE STAFF SET STATUS = ? WHERE EMAIL = ?";
        st = conn.prepareStatement(sql);
        st.setBoolean(1, false);
        st.setString(2, email);
