@@ -10,7 +10,7 @@ CREATE TABLE Customer (
   Cust_city varchar(100),
   Cust_zipcode numeric(10),
   Cust_country varchar(30),
-  Status boolean,
+  Status boolean NOT NULL DEFAULT TRUE,
   CONSTRAINT Cust_PK PRIMARY KEY (Email)
 );
 CREATE TABLE Staff (
@@ -26,7 +26,7 @@ CREATE TABLE Staff (
   Staff_zipcode numeric(10),
   Staff_country varchar(30),
   Roles varchar(50),
-  Status boolean,
+  Status boolean NOT NULL DEFAULT TRUE,
   CONSTRAINT Staff_PK PRIMARY KEY (Email)
 );
 CREATE TABLE IOT_Dev (
