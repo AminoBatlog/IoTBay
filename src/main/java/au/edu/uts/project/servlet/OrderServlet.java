@@ -48,8 +48,15 @@ public class OrderServlet extends HttpServlet {
             int result = service.removeOrder(Integer.parseInt(request.getParameter("delete")));
             request.getRequestDispatcher("/OrderServlet?display=" + request.getSession().getAttribute("email"));
         } else if(request.getParameter("fid") != null || request.getParameter("fdate") != null){
-            String email = request.getParameter("email");
-            int id = Integer.parseInt(request.getParameter("fid"));
+            String email = (String) request.getSession().getAttribute("email");
+            int id = 0;
+            if(!"".equals(request.getParameter("fid"))){
+                id = Integer.parseInt(request.getParameter("fid"));
+            }
+            String date = request.getParameter("fdate");
+            List<Order> list = service.filterList(email, id, date);
+            request.setAttribute("order_list", list);
+            request.getRequestDispatcher("/order_list.jsp").forward(request, response);
         } else if(request.getParameter("create") != null) {
             request.getRequestDispatcher("/order_add.jsp").forward(request, response);
         } else if(request.getParameter("status") != null && request.getParameter("orderId") != null) {

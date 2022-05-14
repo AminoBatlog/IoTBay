@@ -101,11 +101,18 @@ public class OrderDaoImpl implements OrderDao {
 
     @Override
     public List<Order> filterList(String email, int id, String date) throws SQLException {
-        String sql = "SELECT * FROM Orders WHERE order_id=? AND delivey_date LIKE ? AND cust_email=?";
-        this.pst = this.connection.prepareStatement(sql);
-        this.pst.setInt(1, id);
-        this.pst.setString(2, "%" + date + "%");
-        this.pst.setString(3, email);
+        String sql;
+        if(id == 0){
+            sql = "SELECT * FROM Orders WHERE CAST(delivery_date AS VARCHAR(100)) LIKE ? AND cust_email=?";
+            this.pst = this.connection.prepareStatement(sql);
+            this.pst.setString(1, "%" + date + "%");
+            this.pst.setString(2, email);
+        } else {
+            sql = "SELECT * FROM Orders WHERE order_id=? AND cust_email=?";
+            this.pst = this.connection.prepareStatement(sql);
+            this.pst.setInt(1, id);
+            this.pst.setString(2, email);
+        }
         ResultSet result = this.pst.executeQuery();
         List<Order> list = new ArrayList<>();
         while(result.next()){
