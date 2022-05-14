@@ -28,7 +28,7 @@
                 <div class="row justify-content-center">
                     <div class="col-6">
                         <div class="form" class="text-center login-register-main">
-                            <button type="button" name="back" onclick="history.back()">back</button>
+                            <button type="button" class="btn btn-primary" name="back" onclick="history.back()">Back</button>
                             <form action="${pageContext.request.contextPath}/IotDevServlet" method="post">
                                 <div class="form-row">
                                     <div class="form-group">
