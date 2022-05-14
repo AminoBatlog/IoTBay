@@ -27,7 +27,7 @@
 <body>
     <div class="container">
         <div class="col-6">
-            <a href="mainStaff.jsp">
+            <a href="main.jsp">
                 <button type="button" class="btn btn-primary">Return</button>
             </a>
         </div>
@@ -43,7 +43,7 @@
                 <form action="${pageContext.request.contextPath}/IotDevServlet">
                     <label for="search-id">Search ID</label>
                     <input type="text" id="search-id" name="idfind">
-                    <button type="submit" class="function-button" id="filter">Search</button>
+                    <button type="submit" class="btn btn-success btn-sm" id="filter">Search</button>
                 </form>
             </div>
         </div>
@@ -100,7 +100,6 @@
     </script>
 
 </body>
-
 
 
 
