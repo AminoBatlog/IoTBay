@@ -27,6 +27,11 @@
                 <h1>Staff list:</h1>
             </div>
         </div>
+        <div class="col-6">
+            <a href="mainStaff.jsp">
+                <button type="button" class="btn btn-primary">Return</button>
+            </a>
+        </div>
         <div class="row justify-content-center" style="margin-bottom: 20px;">
             <div class="col-10 text-center">
                 <form action="${pageContext.request.contextPath}/StaffServlet">
