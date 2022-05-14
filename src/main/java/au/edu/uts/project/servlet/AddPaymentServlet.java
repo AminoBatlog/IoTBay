@@ -44,7 +44,7 @@ public class AddPaymentServlet extends HttpServlet{
                 request.getRequestDispatcher("addPayment.jsp").include(request, response);
                 response.sendRedirect("confirmPayment.jsp");
             } else {
-                request.getRequestDispatcher("order.jsp").include(request, response);
+                request.getRequestDispatcher("order_list.jsp").include(request, response);
             }
         } catch ( SQLException e){
             Logger.getLogger(EditPaymentServlet.class.getName()).log(Level.SEVERE, null, e);
