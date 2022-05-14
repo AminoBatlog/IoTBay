@@ -119,6 +119,7 @@ public class CustomerDaoImpl implements CustomerDao {
 //delete a user from the database   
 //public void deleteUser(String email) throws SQLException{       
 //code for delete-operation  
+    @Override
     public Account selectCustomerByEmail(String email) throws SQLException {
         String sql = "SELECT * FROM Customer WHERE email=?";
         this.pst = this.connection.prepareStatement(sql);
@@ -143,6 +144,7 @@ public class CustomerDaoImpl implements CustomerDao {
         return customer;
     }
 //
+    @Override
     public List<Account> filterList(String name, String email) throws SQLException {
         String sql = "SELECT * FROM Customer WHERE email LIKE ? AND (Customer_fname LIKE ? OR Customer_lname LIKE ?)";
         this.pst = this.connection.prepareStatement(sql);
