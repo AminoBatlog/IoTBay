@@ -80,7 +80,7 @@ public class PaymentDao{
     }
 
     public int getOrderID() throws SQLException {
-       ResultSet res = stmt.executeQuery("SELECT ORDER_ID FROM ORDERS");
+       ResultSet res = stmt.executeQuery("SELECT ORDER_ID FROM ORDERS WHERE cust_email='{customer-email}'");
        if (res.next()) {
             return res.getInt(1);
        } else {
