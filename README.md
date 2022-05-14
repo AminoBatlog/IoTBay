@@ -7,17 +7,16 @@ entire structure of project should be displayed on the left, under the project t
 3. Right click the project and click run, after Glassfish launched, it will automatically open 
 the browser, then it should be redirect to <localIPorDomainName>:<port>/06-31
 
-4. In the index page, there is two buttons, register and login, click register to go to the register
-page (note: if click login and try to login with a not registered account, it will redirect to the 
-register page)
+4. In the index page, there are two buttons, Register and Login. Click Register and a page will show the option to 
+  register either as "Customer" or "Staff". Pick either one of the option and it will redirect to the destinated Register 
+  page for that account type
 
 5. Fill in all the blank in the register form, then click submit to finish the resgitration process
 
-6. After the registration, you will automatically login and go to the welcome page, then click go to
+6. After the registration, you will automatically transfer to the welcome page, then click go to
 the main page
+  
+7. In the Main page, you have a navigation bar to check & edit your registered information, view access log, check the list of IoT Devices and
+  additional functionalities depending on your account type.
 
-7. In the mainpage, the navigator, u can click index to go back to the index page and try login session
-after enter the username and password(case sensitive), it will also direct to the welcome page
-
-8. If you click the logout in the mainpage, the session will be destroyed, then you need to register 
-again for a new account
+8. If you click the logout in the mainpage, the session will be destroyed and you will be redirect back to the Index page
