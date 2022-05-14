@@ -23,6 +23,11 @@
                 <h1>ORDER</h1>
             </div>
         </div>
+        <div class="col-6">
+            <a href="main.jsp">
+                <button type="button" class="btn btn-primary">Return</button>
+            </a>
+        </div>
         <div class="row justify-content-center" style="margin-bottom: 20px;">
             <div class="col-10 text-center">
                 <form action="${pageContext.request.contextPath}/OrderServlet">
