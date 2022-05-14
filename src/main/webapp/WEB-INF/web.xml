@@ -218,6 +218,28 @@
         <servlet-name>UpdatePaymentServlet</servlet-name>
         <url-pattern>/UpdatePaymentServlet</url-pattern>
     </servlet-mapping> 
+         
+    <servlet>
+        <servlet-name>OrderLineServlet</servlet-name>
+        <servlet-class>au.edu.uts.project.servlet.OrderLineServlet</servlet-class>
+        <load-on-startup>0</load-on-startup>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>OrderLineServlet</servlet-name>
+        <url-pattern>/OrderLineServlet</url-pattern>
+    </servlet-mapping> 
+    
+    <servlet>
+        <servlet-name>OrderServlet</servlet-name>
+        <servlet-class>au.edu.uts.project.servlet.OrderServlet</servlet-class>
+        <load-on-startup>0</load-on-startup>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>OrderServlet</servlet-name>
+        <url-pattern>/OrderServlet</url-pattern>
+    </servlet-mapping> 
     
     <session-config>
         <session-timeout>
