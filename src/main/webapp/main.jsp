@@ -44,7 +44,7 @@
                         <a class="nav-link" href="AccessServlet?email='<%= account.getEmail()%>'&password='<%=account.getPassword()%>'">Access Log</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="OrderServlet?display=true">Order</a>
+                        <a class="nav-link" href="OrderServlet?display=<% out.print(account.getEmail()); %>">Order</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
