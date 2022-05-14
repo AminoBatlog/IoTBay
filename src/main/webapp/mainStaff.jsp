@@ -43,6 +43,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="AccessServlet?email='<%= staff.getEmail()%>'&password='<%=staff.getPassword()%>'">Access Log</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="IotDevServlet?list=true">Device List</a>
+                    </li>
                     <% 
                        if (staff.getRoles().equals("Admin")) {
                     %>
