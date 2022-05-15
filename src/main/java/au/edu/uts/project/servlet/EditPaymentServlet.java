@@ -19,7 +19,7 @@ import java.sql.SQLException;
  */
 public class EditPaymentServlet extends HttpServlet {
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession(true);
         Integer payment_ID = Integer.parseInt(request.getParameter("Payment_ID"));
         PaymentDao paymentdao = (PaymentDao) session.getAttribute("paymentdao");
