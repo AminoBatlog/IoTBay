@@ -50,7 +50,8 @@
             <input class= button type="submit" value="Confirm" >
              
         </form>
-            <p> <a class ="buttonpaycon" id="column-left" href="DeletePaymentServlet?payment_ID=<%=payment_ID%>">Cancel</a></p>           
+            <p> <a class ="buttonpaycon" id="column-left" href="DeletePaymentServlet?payment_ID=<%=payment_ID%>">Cancel</a></p> 
+            <p> <a class ="buttonpaycon2" id="column-left" href="UpdatePaymentServlet?payment_ID=<%=payment_ID%>">Update Details</a></p>  
         </div>        
     </body>
 </html>
