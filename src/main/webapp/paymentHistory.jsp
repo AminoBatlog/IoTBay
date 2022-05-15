@@ -69,7 +69,7 @@
             </div>
         </nav>
         <h3>Your Payment History</h3>
-            <table>
+            <table class="table table-bordered">
                 <tr>
                     <th scope="col">Payment ID    </th>
                     <th scope="col">Order ID    </th>
