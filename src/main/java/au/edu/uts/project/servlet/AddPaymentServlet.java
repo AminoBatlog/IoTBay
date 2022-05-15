@@ -5,6 +5,7 @@
 package au.edu.uts.project.servlet;
 
 import au.edu.uts.project.domain.Payment;
+import au.edu.uts.project.domain.Account;
 import au.edu.uts.project.dao.PaymentDao;
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -21,7 +22,7 @@ import java.util.logging.Logger;
 
 public class AddPaymentServlet extends HttpServlet{
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
         HttpSession session = request.getSession();
         String payment_method = request.getParameter("Payment_method");
         String cardNumber = request.getParameter("Card_number");
@@ -33,10 +34,11 @@ public class AddPaymentServlet extends HttpServlet{
         Payment payment = new Payment( payment_method, cardNumber, expiryDate, securityCode, nameOnCard, payment_date);
         PaymentDao paymentdao = (PaymentDao) session.getAttribute("paymentdao"); 
 
-        try {
+        //try {
             if(payment != null){
                 session.setAttribute("payment", payment);
-                Integer order_ID = paymentdao.getOrderID();
+                Account account = (Account) session.getAttribute("account");
+                Integer order_ID = paymentdao.getOrderID(account.getEmail());
                 session.setAttribute("Order_ID", order_ID);
                 paymentdao.addPayment(order_ID, payment_method, cardNumber, expiryDate, securityCode, nameOnCard, payment_date);
                 Integer payment_ID = paymentdao.getLastPaymentID();
@@ -46,8 +48,8 @@ public class AddPaymentServlet extends HttpServlet{
             } else {
                 request.getRequestDispatcher("order_list.jsp").include(request, response);
             }
-        } catch ( SQLException e){
-            Logger.getLogger(EditPaymentServlet.class.getName()).log(Level.SEVERE, null, e);
-        }
+        //} catch ( SQLException e){
+           // Logger.getLogger(EditPaymentServlet.class.getName()).log(Level.SEVERE, null, e);
+        //}
     }
 }
