@@ -35,7 +35,7 @@
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav">
                     <li class="nav-item active">
-                        <a class="nav-link" href="MainServlet?email='<%= account.getEmail()%>'">Home</a>
+                        <a class="nav-link" href="main.jsp">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="accountInfo.jsp">My Account</a>
@@ -75,7 +75,7 @@
                     <h4>You are logged in as ${account.fname} ${account.lname}(${account.email})</h4>
                 </div>
             </div>
-        </div>       
+        </div>
     </div>
     <script type="text/javascript" src="./dist/jquery-3.6.0-dist/jquery-3.6.0.min.js"></script>
     <script type="text/javascript" src="./dist/bootstrap-5.1.3-dist/js/bootstrap.min.js"></script>
