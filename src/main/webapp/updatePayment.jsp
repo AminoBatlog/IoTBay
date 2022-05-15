@@ -72,14 +72,14 @@
         </nav>
         <form action = "${pageContext.request.contextPath}/UpdatePaymentServlet" method="post">
         
-            <h1> Order #<%=orderid%> </h1>
-            <h2> Total Amount $<%=price%> </h2>
+            <p><h3> Order #<%=orderid%> </h3>
+            <h3> Total Amount $<%=price%> </h3>
 
             <div class="body-text">
       
 <%--                <div class="form-container">--%>
 <%--                <div class="personal-information">--%>
-                <h1>Payment Information</h1></div>
+                <h3>Payment Information</h3></div>
                 <input type="text" name="paymentid" value="<%=payment.getPaymentId()%>" style="display: none">
                 <input type="text" name="email" value="<%=payment.getEmail()%>" style="display: none">
                 <input type="text" name="paymentMethod" placeholder="Payment Method"  value="<%=payment.getPaymentMethod()%>" required>
@@ -92,7 +92,7 @@
                 <input type="submit" value="Update">
             </form>
                     
-            <p><a class= "button"  href="OrderLineServlet?display=<%=orderid%>">Cancel</a></p>
+            <p><a class= "btn btn-outline-primary" href="OrderLineServlet?display=<%=orderid%>">Cancel</a></p>
     <script type="text/javascript" src="./dist/jquery-3.6.0-dist/jquery-3.6.0.min.js"></script>
     <script type="text/javascript" src="./dist/bootstrap-5.1.3-dist/js/bootstrap.min.js"></script>
     </body>
