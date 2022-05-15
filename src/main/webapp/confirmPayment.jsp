@@ -37,11 +37,11 @@
         <%
             if(payment != null){
         %>
-            <h2>Would you like to confirm your purchase?</h2>
+            <h3>Would you like to confirm your purchase?</h3>
 
 
-                <h3> Order #<%=order_id%> </h3>
-                <h4>Total Amount $<%=price%> </h4>
+                <p><h3> Order #<%=order_id%> </h3>
+                <h3>Total Amount $<%=price%> </h3>
                 <div>
                     <table style="text-align: center">
 
@@ -52,11 +52,11 @@
 
 
             <a href="${pageContext.request.contextPath}/ConfirmedPaymentServlet?order_id=<%=order_id%>">Confirm</a>
-            <p> <a class ="buttonpaycon2"  href="UpdatePaymentServlet?payment_id=<%=order_id%>">Update Details</a></p>
-            <p> <a class ="buttonpaycon2"  href="DeletePaymentServlet?payment_id=<%=order_id%>">Remove Payment</a></p>
-            <p> <a class ="buttonpaycon"  href="OrderLineServlet?display=<%=order_id%>">Cancel</a></p>
+            <p> <a class="btn btn-outline-primary"  href="UpdatePaymentServlet?payment_id=<%=order_id%>">Update Details</a></p>
+            <p> <a class="btn btn-outline-primary"  href="DeletePaymentServlet?payment_id=<%=order_id%>">Remove Payment</a></p>
+            <p> <a class="btn btn-outline-primary"  href="OrderLineServlet?display=<%=order_id%>">Cancel</a></p>
         <% } else {%>
-            <h2>You don't have any payment related to this order, <a href="${pageContext.request.contextPath}/addPayment.jsp" style="color: yellow;">click me to add one?</a></h2>
+            <h3>You don't have any payment related to this order, <a href="${pageContext.request.contextPath}/addPayment.jsp" style="color: blue;">click me to add one?</a></h3>
         <% }%>
         </div>
             <script type="text/javascript" src="./dist/jquery-3.6.0-dist/jquery-3.6.0.min.js"></script>
