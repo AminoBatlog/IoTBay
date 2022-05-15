@@ -23,6 +23,9 @@
                 <img src="./assets/pictures/uts.png" alt="Here is a logo" style="height: 40px">
             </div>
         </div>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="#">IoTBay</a>
+        </nav>
     
         <%
             int order_id = (Integer) session.getAttribute("current_order_id");
@@ -31,19 +34,19 @@
         %>
         <form action="${pageContext.request.contextPath}/AddPaymentServlet" method="post">
        
-            <h1> Order #<%=order_id%> </h1>
-            <h2> Total Amount $<%=price%> </h2>
+            <p><h3> Order #<%=order_id%> </h3>
+            <h3> Total Amount $<%=price%> </h3>
 
             <div class="body-text">
-                <h3><label for name="paymentMethod">Payment Method</label></h3>
+                <b><label for name="paymentMethod">Payment Method</label></b>
                     <input type="text"  name="Payment_method" placeholder="Payment Method" required/>
 
 
-                <b><label for name="datePaid">Date</label></b>
+                <p><b><label for name="datePaid">Date</label></b>
                     <input type="date" name="Payment_date" placeholder="Date Paid" required/>
 
-                    <div class="personal-information">
-                    <h1>Payment Information</h1></div>
+                    <div class="row d-flex justify-content-center pd-120">
+                    <h3>Payment Information</h3></div>
                 <input type="text" name="paymentid" value="<%=order_id%>" style="display: none">
                 <input type="text" name="email" value="<%=email%>" style="display: none">
                 <input type="text"  name="cardNumber" placeholder="Card Number" required/>
@@ -51,9 +54,9 @@
                 <input type="password" name="securityCode" placeholder="securityCode" required/>
                 <input type="text"  name="nameOnCard" placeholder="Name on Card" required/>
 
-                <button type="submit">Confirmed Add</button>
+                <button type="submit" class="btn btn-outline-primary">Confirmed Add</button>
             </div>
         </form>
-        <p><a class= "button" style="" href="main.jsp">Cancel</a></p>
+        <p><a class="btn btn-outline-primary" style="" href="main.jsp">Cancel</a></p>
     </body>
 </html>
