@@ -3,8 +3,9 @@
     Created on : 09/05/2022, 11:42:26 AM
     Author     : Christie
 --%>
+<%@page import="au.edu.uts.project.domain.Account"%>
 <%@page import="java.util.ArrayList"%>
-<%@ page import="au.edu.uts.project.domain.Payment" %>
+<%@page import="au.edu.uts.project.domain.Payment" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -19,6 +20,7 @@
     <%
         ArrayList<Payment> list = (ArrayList<Payment>) request.getAttribute("paymentsList");
         String getMessage = (String) request.getAttribute("msg");
+        Account account = (Account)session.getAttribute("account");
      %>
         
     <div class="container">
@@ -38,20 +40,28 @@
                         <a class="nav-link" href="main.jsp">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="index.jsp">Index</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Devices
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <a class="dropdown-item" href="#">Something else here</a>
-                        </div>
+                        <a class="nav-link" href="accountInfo.jsp">My Account</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="logout.jsp">
+                        <a class="nav-link" href="AccessServlet?email='<%= account.getEmail()%>'&password='<%=account.getPassword()%>'">Access Log</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="OrderServlet?display=<% out.print(account.getEmail()); %>">Order</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="IotDevServlet?list=true">Device List</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenu2" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Payment
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdownMenu2">
+                            <li><a class="dropdown-item" href="PaymentHistoryServlet">View Payment History</a></li>
+                            <li><a class="dropdown-item" href="SearchPaymentHistoryServlet">Search Payment</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="UpdateLogoutServlet?email='<%= account.getEmail()%>'&password='<%=account.getPassword()%>'">
                             <button type="button" class="btn btn-primary">Logout</button>
                         </a>
                     </li>
@@ -90,4 +100,3 @@
                 <% } %>
     </body>
 </html>
-
