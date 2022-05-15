@@ -49,17 +49,17 @@
                     <li class="nav-item">
                         <a class="nav-link" href="IotDevServlet?list=true">Device List</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenu2" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Profile
                         </a>
-                        <div class="dropdown-menu2" aria-labelledby="navbarDropdownMenu2">
-                            <a class="dropdown-item" href="AddPaymentServlet">Create Payment Details</a>
-                            <a class="dropdown-item" href="paymentDetails.jsp">View Payment Details</a>
-                            <a class="dropdown-item" href="UpdatePaymentServlet">Update Payment Details</a>
-                            <a class="dropdown-item" href="paymentHistory.jsp">View Payment History</a>
-                            <a class="dropdown-item" href="SearchPaymentHistoryServlet">Search For Payment</a>
-                        </div>
+                        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdownMenu2">
+                            <li><a class="dropdown-item" href="AddPaymentServlet">Create Payment Details</a></li>
+                            <li><a class="dropdown-item" href="paymentDetails.jsp">View Payment Details</a></li>
+                            <li><a class="dropdown-item" href="UpdatePaymentServlet">Update Payment Details</a></li>
+                            <li><a class="dropdown-item" href="paymentHistory.jsp">View Payment History</a></li>
+                            <li><a class="dropdown-item" href="SearchPaymentHistoryServlet">Search For Payment</a></li>
+                        </ul>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="UpdateLogoutServlet?email='<%= account.getEmail()%>'&password='<%=account.getPassword()%>'">

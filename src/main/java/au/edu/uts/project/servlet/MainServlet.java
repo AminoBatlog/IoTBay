@@ -48,15 +48,18 @@ public class MainServlet extends HttpServlet {
          manager.addAccess(email, inDate, inTime); // Add the Login Date and Time associated with the session's email
          if (acct != null) { // If Customer account then set session to that account and redirect to Customer Page
            session.setAttribute("account", acct);
-           request.getRequestDispatcher("main.jsp").include(request, response);
+//           request.getRequestDispatcher("main.jsp").include(request, response);
+             response.sendRedirect(request.getContextPath() + "/main.jsp");
          } 
          else if (staff != null){ // If Staff account then set session to that account and redirect to Staff Page
            session.setAttribute("staff", staff);
-           request.getRequestDispatcher("mainStaff.jsp").include(request, response);
+//           request.getRequestDispatcher("mainStaff.jsp").include(request, response);
+             response.sendRedirect("/mainStaff.jsp");
+
          }
          else {
            session.setAttribute("existErr", "Account does not exist in the database.");
-           request.getRequestDispatcher("main.jsp").include(request, response);
+           request.getRequestDispatcher(request.getContextPath() + "main.jsp").include(request, response);
          }
          
        } catch (SQLException ex) {
