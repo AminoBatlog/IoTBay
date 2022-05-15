@@ -79,13 +79,13 @@ public class PaymentDao{
         stmt.executeUpdate("UPDATE PAYMENT SET Payment_method='" + Payment_method + "', Card_number=" + Card_number + ", ExpiryDate =" + ExpiryDate + ",  SecurityCode='" + SecurityCode + "', NameOnCard='" + NameOnCard + "',  Payment_date='" + Payment_date + "' WHERE Payment_ID = " + Order_ID +" ");
     }
 
-    public int getOrderID() throws SQLException {
-       ResultSet res = stmt.executeQuery("SELECT ORDER_ID FROM ORDERS WHERE cust_email='{customer-email}'");
-       if (res.next()) {
-            return res.getInt(1);
-       } else {
-           return 0;
-       }
+    public int getOrderID(String Cust_email) throws SQLException {
+       ResultSet res = stmt.executeQuery("SELECT ORDER_ID FROM ORDERS WHERE Cust_email=" + Cust_email);
+            if (res.next()) {
+                return res.getInt(1);
+            } else {
+                return 0;
+        }
     }
 
     public ArrayList<String> getPayments(String Cust_Email) throws SQLException {
