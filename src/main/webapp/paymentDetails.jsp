@@ -4,6 +4,7 @@
     Author     : Christie
 --%>
 
+<%@page import="au.edu.uts.project.domain.Account"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%@page import="au.edu.uts.project.domain.Payment"%>
@@ -16,14 +17,19 @@
     <link rel="stylesheet" href="./assets/css/style.css">
 </head>
 <body>
-        <h1>Your</h1>
-        <h4>You are logged in as ${payment.fname} ${account.lname}(${account.email})</h4>
+        <%
+            
+        Payment payment = (Payment)session.getAttribute("payment");
+        Account account = (Account)session.getAttribute("account");
+        
+        %>
+        <h1>Your Payment Detail</h1>
             <div class="container">
         <div class="row justify-content-center text-center">
             <div class="col-5">
                 <img src="./assets/pictures/uts.png" alt="Here is a logo" style="height: 40px">
             </div>
-        </div>
+        </div>        
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <a class="navbar-brand" href="#">IoTBay</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -35,32 +41,28 @@
                         <a class="nav-link" href="main.jsp">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="index.jsp">Index</a>
+                        <a class="nav-link" href="accountInfo.jsp">My Account</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="AccessServlet?email='<%= account.getEmail()%>'&password='<%=account.getPassword()%>'">Access Log</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="OrderServlet?display=<% out.print(account.getEmail()); %>">Order</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="IotDevServlet?list=true">Device List</a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Devices
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenu2" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Payment
                         </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <a class="dropdown-item" href="#">Something else here</a>
-                        </div>
+                        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdownMenu2">
+                            <li><a class="dropdown-item" href="PaymentHistoryServlet">View Payment History</a></li>
+                            <li><a class="dropdown-item" href="SearchPaymentHistoryServlet">Search Payment</a></li>
+                        </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Profile
-                        </a>
-                        <div class="dropdown-menu2" aria-labelledby="navbarDropdownMenu2">
-                            <a class="dropdown-item" href="addPayment.jsp">Create Payment Details</a>
-                            <a class="dropdown-item" href="paymentDetails.jsp">View Payment Details</a>
-                            <a class="dropdown-item" href="updatePayment.jsp">Update Payment Details</a>
-                            <a class="dropdown-item" href="paymentHistory.jsp">View Payment History</a>
-                            <a class="dropdown-item" href="searchPaymentHistory">Search For Payment</a>
-                        </div>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="logout.jsp">
+                        <a class="nav-link" href="UpdateLogoutServlet?email='<%= account.getEmail()%>'&password='<%=account.getPassword()%>'">
                             <button type="button" class="btn btn-primary">Logout</button>
                         </a>
                     </li>
@@ -68,10 +70,6 @@
             </div>
         </nav>
         <h1>Your Payment Details</h1>
-            <%
-        Payment payment = (Payment)session.getAttribute("payment");
-        
-        %>
             <table>
                 <tr>
                     <th scope="col">Payment Method</th>
@@ -80,8 +78,8 @@
                     <th scope="col">Security Code</th>
                     <th scope="col">Name On Card</th>
                 </tr>
-                <td><%= payment.getPayment_method() %></td>
-                <td><%= payment.getCard_number() %></td>
+                <td><%= payment.getPaymentMethod() %></td>
+                <td><%= payment.getCardNumber() %></td>
                 <td><%= payment.getExpiryDate() %></td>
                 <td><%= payment.getSecurityCode() %></td>
                 <td><%= payment.getNameOnCard() %></td>
