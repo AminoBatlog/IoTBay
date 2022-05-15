@@ -7,6 +7,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%@page import="au.edu.uts.project.domain.Payment"%>
+<%@page import="au.edu.uts.project.domain.Order"%>
 <html>
 <head>
     <title>IoTBay</title>
@@ -28,16 +29,20 @@
         <%
             Integer payment_ID = (Integer) session.getAttribute("payment_ID");
         %>
+        <%
+            Integer order_ID = (Integer) session.getAttribute("order_id");
+            Integer price = (Integer) session.getAttribute("price");
+        %>
         
-        <p> Customer ID #${cust_ID}</p>
+  
         <div class='center'>
     
         <h2>Would you like to confirm your purchase?</h2>
         
         <form action = "main.jsp" method="post">  
             
-
-            <h3>Total Amount A$${order.getAmount()} </h3>
+            <h3> Order #<%=order_ID%> </h1>
+            <h4>Total Amount $<%=price%> </h3>
             <div>
                 <table style="text-align: center">
            
@@ -47,11 +52,11 @@
                 <p>Name On Card    = ${payment.getNameOnCard()} </p>
                 <p>Date Paid       = ${payment.getPayment_date()}</p>
     
-            <input class= button type="submit" value="Confirm" >
+            <input class= button type="submit" value="Confirm" href="CheckPaymentServlet?payment_ID?order_id=<%=payment_ID%><%=order_ID%>">
              
         </form>
             <p> <a class ="buttonpaycon" id="column-left" href="DeletePaymentServlet?payment_ID=<%=payment_ID%>">Cancel</a></p> 
-            <p> <a class ="buttonpaycon2" id="column-left" href="UpdatePaymentServlet?payment_ID=<%=payment_ID%>">Update Details</a></p>  
+            <p> <a class ="buttonpaycon2" id="column-left" href="UpdatePaymentServlet?payment_ID=<%=payment_ID%>">Update Details</a></p>   
         </div>        
     </body>
 </html>
