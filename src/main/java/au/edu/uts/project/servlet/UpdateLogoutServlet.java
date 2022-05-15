@@ -37,7 +37,7 @@ public class UpdateLogoutServlet extends HttpServlet {
 
         try {
          manager.updateLogout(email.replace("'", ""), outDate, outTime); // Add the Logout Date and Time associated with the given email
-         request.getRequestDispatcher("logout.jsp").include(request, response); // redirect to the logout page
+           response.sendRedirect(request.getContextPath() + "/logout.jsp"); // redirect to the logout page
         } catch (SQLException ex) {
             Logger.getLogger(UpdateLogoutServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
