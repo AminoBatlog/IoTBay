@@ -22,7 +22,7 @@ import java.util.logging.Logger;
 
 public class AddPaymentServlet extends HttpServlet{
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         HttpSession session = request.getSession();
         String payment_method = request.getParameter("Payment_method");
         String cardNumber = request.getParameter("Card_number");
