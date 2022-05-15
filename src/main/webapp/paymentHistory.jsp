@@ -68,7 +68,7 @@
                 </ul>
             </div>
         </nav>
-        <h1>Your Payment History</h1>
+        <h3>Your Payment History</h3>
             <table>
                 <tr>
                     <th scope="col">Payment ID    </th>
