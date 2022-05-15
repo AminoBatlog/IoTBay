@@ -65,9 +65,12 @@
                 </ul>
             </div>
         </nav>
+        <%
+            Integer order_ID = (Integer) session.getAttribute("order_id");
+        %>
         <form action="addPaymentServlet" method="post">
        
-        <h1> Order #${order_ID} </h1>
+        <h1> Order #<%=order_ID%> </h1>
         <h2> Total Amount $${order.getAmount()} </h2>
         
         <div class="body-text"> 
