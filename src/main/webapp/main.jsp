@@ -55,7 +55,7 @@
                         </a>
                         <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdownMenu2">
                             <li><a class="dropdown-item" href="paymentHistory.jsp">View Payment History</a></li>
-                            <li><a class="dropdown-item" href="SearchPaymentHistoryServlet">Search For Payment</a></li>
+                            <li><a class="dropdown-item" href="SearchPaymentHistoryServlet">Search Payment</a></li>
                         </ul>
                     </li>
                     <li class="nav-item">
