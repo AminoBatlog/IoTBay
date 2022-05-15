@@ -67,7 +67,7 @@ public class OrderServlet extends HttpServlet {
             } else {
                 request.setAttribute("order_id", request.getParameter("orderId"));
                 request.setAttribute("price", request.getParameter("total"));
-                request.getRequestDispatcher("/ChekPaymentServlet").forward(request, response);
+                request.getRequestDispatcher("/CheckPaymentServlet").forward(request, response);
             }
         }
     }
