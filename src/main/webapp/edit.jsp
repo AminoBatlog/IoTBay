@@ -52,14 +52,11 @@
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenu2" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Profile
+                            Payment
                         </a>
                         <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdownMenu2">
-                            <li><a class="dropdown-item" href="AddPaymentServlet">Create Payment Details</a></li>
-                            <li><a class="dropdown-item" href="paymentDetails.jsp">View Payment Details</a></li>
-                            <li><a class="dropdown-item" href="UpdatePaymentServlet">Update Payment Details</a></li>
                             <li><a class="dropdown-item" href="paymentHistory.jsp">View Payment History</a></li>
-                            <li><a class="dropdown-item" href="SearchPaymentHistoryServlet">Search For Payment</a></li>
+                            <li><a class="dropdown-item" href="SearchPaymentHistoryServlet">Search Payment</a></li>
                         </ul>
                     </li>
                     <li class="nav-item">
