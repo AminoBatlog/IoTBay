@@ -7,6 +7,7 @@ package au.edu.uts.project.servlet;
 import au.edu.uts.project.dao.DBManagerDAO;
 import au.edu.uts.project.domain.Account;
 import au.edu.uts.project.domain.Staff;
+import au.edu.uts.project.domain.Validator;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -40,24 +41,38 @@ public class UpdateServlet extends HttpServlet {
         Account acct = null;
         Staff staff = null;
         DBManagerDAO manager = (DBManagerDAO) session.getAttribute("manager"); // Create a DB manager
+        Validator valid = new Validator(); // Create a validator to check the email and password
         session.setAttribute("updated", ""); // Reset update message
+        valid.clear(session); // Reset error message
 
         try {
-            acct = manager.findUser(email, pass); // Check to see if the email and password is in Customer DB
-            staff = manager.findStaff(email, pass); // Check to see if the email and password is in Staff DB
+            acct = manager.checkUserEmail(email); // Check to see if the email and password is in Customer DB
+            staff = manager.checkStaffEmail(email); // Check to see if the email and password is in Staff DB
             if (acct != null) { // If user is a Customer then it will create a new Customer with the given information and set the account to this session
-               acct = new Account(fname, lname, email, pass, gender, addressStreetNo, addressStreetName, addressCountry, addressZipcode, addressCity, dob, true);
-               session.setAttribute("account", acct);
-               manager.updateUser(fname, lname, email, pass, gender, addressStreetNo, addressStreetName, addressCity, addressZipcode, addressCountry, dob);
-               session.setAttribute("updated", "Update was successful"); // Display a message that the update was successful
-               request.getRequestDispatcher("edit.jsp").include(request, response);
+               if (!valid.validatePassword(pass)) {
+                 session.setAttribute("passErr", "Error: Password format is incorrect");
+                 request.getRequestDispatcher("edit.jsp").include(request, response);
+               }
+               else {
+                 acct = new Account(fname, lname, email, pass, gender, addressStreetNo, addressStreetName, addressCountry, addressZipcode, addressCity, dob, true);
+                 session.setAttribute("account", acct);
+                 manager.updateUser(fname, lname, email, pass, gender, addressStreetNo, addressStreetName, addressCity, addressZipcode, addressCountry, dob);
+                 session.setAttribute("updated", "Update was successful"); // Display a message that the update was successful
+                 request.getRequestDispatcher("edit.jsp").include(request, response);
+               }
             }
             else if (staff != null) { // If user is a Customer then it will create a new Staff with the given information and set the account to this session
-                staff = new Staff(fname, lname, email, pass, dob, gender, addressStreetNo, addressStreetName, addressCity, addressZipcode, addressCountry, roles, true);
-                session.setAttribute("staff", staff);
-                manager.updateStaff(fname, lname, email, pass, gender, addressStreetNo, addressStreetName, addressCity, addressZipcode, addressCountry, dob, roles);
-                session.setAttribute("updated", "Update was successful"); // Display a message that the update was successful
-                request.getRequestDispatcher("editStaff.jsp").include(request, response);
+               if (!valid.validatePassword(pass)) {
+                 session.setAttribute("passErr", "Error: Password format is incorrect");
+                 request.getRequestDispatcher("editStaff.jsp").include(request, response);
+               }
+               else {
+                 staff = new Staff(fname, lname, email, pass, dob, gender, addressStreetNo, addressStreetName, addressCity, addressZipcode, addressCountry, roles, true);
+                 session.setAttribute("staff", staff);
+                 manager.updateStaff(fname, lname, email, pass, gender, addressStreetNo, addressStreetName, addressCity, addressZipcode, addressCountry, dob, roles);
+                 session.setAttribute("updated", "Update was successful"); // Display a message that the update was successful
+                 request.getRequestDispatcher("editStaff.jsp").include(request, response);
+               }
             }
             // Display a message that the update was not successful
             else if (acct == null) { 
