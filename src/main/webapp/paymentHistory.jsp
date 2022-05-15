@@ -4,6 +4,7 @@
     Author     : Christie
 --%>
 <%@page import="java.util.ArrayList"%>
+<%@ page import="au.edu.uts.project.domain.Payment" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -16,8 +17,8 @@
     </head>
     <body>                
     <%
-        ArrayList<String> list = (ArrayList<String>) session.getAttribute("paymentsList");
-        String getMessage = (String) session.getAttribute("getMessage");
+        ArrayList<Payment> list = (ArrayList<Payment>) request.getAttribute("paymentsList");
+        String getMessage = (String) request.getAttribute("msg");
      %>
         
     <div class="container">
@@ -50,18 +51,6 @@
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Profile
-                        </a>
-                        <div class="dropdown-menu2" aria-labelledby="navbarDropdownMenu2">
-                            <a class="dropdown-item" href="addPayment.jsp">Create Payment Details</a>
-                            <a class="dropdown-item" href="paymentDetails.jsp">View Payment Details</a>
-                            <a class="dropdown-item" href="updatePayment.jsp">Update Payment Details</a>
-                            <a class="dropdown-item" href="paymentHistory.jsp">View Payment History</a>
-                            <a class="dropdown-item" href="searchPaymentHistory">Search For Payment</a>
-                        </div>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link" href="logout.jsp">
                             <button type="button" class="btn btn-primary">Logout</button>
                         </a>
@@ -82,20 +71,23 @@
                     <th scope="col">Date Paid</th>
                 </tr>
                 <%  if(list != null){
-                    for(int i = 0; i < list.size(); i=i+8){
+                        for(Payment payment : list){
                 %>
-                    <td><p> <%=list.get(0+i)%> </p></td>
-                    <td><p> <%=list.get(1+i)%> </p></td>
-                    <td><p> <%=list.get(2+i)%> </p></td>
-                    <td><p> <%=list.get(3+i)%> </p></td>
-                    <td><p> <%=list.get(4+i)%>  </p></td>
-                    <td><p> <%=list.get(5+i)%>  </p></td>
-                    <td><p> <%=list.get(6+i)%>  </p></td>
-                    <td><p> <%=list.get(7+i)%> </p></td>
-                </tr><% } } else { %> 
+                    <td><p> <%=payment.getPaymentId()%> </p></td>
+                    <td><p> <%=payment.getPaymentId()%> </p></td>
+                    <td><p> <%=payment.getPaymentMethod()%> </p></td>
+                    <td><p> <%=payment.getCardNumber()%> </p></td>
+                    <td><p> <%=payment.getExpiryDate()%>  </p></td>
+                    <td><p> <%=payment.getSecurityCode()%>  </p></td>
+                    <td><p> <%=payment.getNameOnCard()%>  </p></td>
+                    <td><p> <%=payment.getPaymentDate()%> </p></td>
+                </tr>
+                <%      }
+                    } else {
+                %>
             </table>
             <span class="error"><%=getMessage != null ? getMessage : ""%></span>
-            <% } %>
+                <% } %>
     </body>
 </html>
 

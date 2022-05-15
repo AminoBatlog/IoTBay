@@ -14,10 +14,12 @@ import java.util.List;
 
 public class PaymentDao{
 
+    private Connection connection;
     private Statement stmt;
 
     public PaymentDao(Connection conn) throws SQLException {       
-       stmt = conn.createStatement();   
+       stmt = conn.createStatement();
+       this.connection = conn;
     }
 
     public int getLastPaymentID() throws SQLException {
@@ -30,40 +32,50 @@ public class PaymentDao{
        }
     }
 
-    public Payment findByIDandDATE(Integer Payment_ID, String Payment_date) throws SQLException {
-        String temp = "SELECT * FROM PAYMENT WHERE PAYMENT_ID= " + Payment_ID + " AND PAYMENT_DATE= " + Payment_date;
-        ResultSet res = stmt.executeQuery(temp);
-
-        while(res.next()) {
-            Payment_ID = res.getInt(1);
-            Payment_date = res.getString(8);
-            if (Payment_ID.equals(Payment_ID) && Payment_date.equals(Payment_date)) {
-                String Payment_method = res.getString(3);
-                String Card_number = res.getString(4);
-                String ExpiryDate = res.getString(6);
-                String SecurityCode = res.getString(5);
-                String NameOnCard = res.getString(7);
-                return new Payment(Payment_method, Card_number, ExpiryDate, SecurityCode, NameOnCard, Payment_date);
-
-            }
+    public List<Payment> findByIDandDATE(Integer id, String date, String email) throws SQLException {
+        String sql = "";
+        PreparedStatement pst;
+        if(id == 0){
+            sql = "SELECT * FROM Payment WHERE CAST(payment_date AS VARCHAR(100)) LIKE ? AND cust_email=?";
+            pst = this.connection.prepareStatement(sql);
+            pst.setString(1, "%" + date + "%");
+            pst.setString(2, email);
+        } else {
+            sql = "SELECT * FROM Payment WHERE payment_id=? AND cust_email=?";
+            pst = this.connection.prepareStatement(sql);
+            pst.setInt(1, id);
+            pst.setString(2, email);
         }
-        return null;
+        ResultSet res = pst.executeQuery();
+        List<Payment> list = new ArrayList<>();
+        if(res.next()) {
+            Payment payment = new Payment();
+            payment.setPaymentId(res.getInt("payment_id"));
+            payment.setEmail(res.getString("cust_email"));
+            payment.setPaymentMethod(res.getString("payment_method"));
+            payment.setPaymentDate(res.getString("payment_date"));
+            payment.setCardNumber(Long.parseLong(res.getString("card_number")));
+            payment.setSecurityCode(res.getString("securitycode"));
+            payment.setExpiryDate(res.getString("expirydate"));
+            payment.setNameOnCard(res.getString("nameoncard"));
+            list.add(payment);
+        }
+        return list;
     }
 
     public Payment findByID(Integer Payment_ID) throws SQLException {       
         ResultSet res = stmt.executeQuery("SELECT * FROM PAYMENT WHERE PAYMENT_ID = "+ Payment_ID);
-       
-        while(res.next()){
-            Payment_ID = res.getInt(1);
-            if(Payment_ID.equals(Payment_ID)){
-                String Payment_method = res.getString(3);
-                String Card_number = res.getString(4);
-                String ExpiryDate = res.getString(6);
-                String SecurityCode = res.getString(5);
-                String NameOnCard = res.getString(7);
-                String Payment_date = res.getString(8);
-                return new Payment(Payment_method, Card_number, ExpiryDate, SecurityCode, NameOnCard, Payment_date);
-            }
+        if(res.next()){
+            Payment payment = new Payment();
+            payment.setPaymentId(res.getInt("payment_id"));
+            payment.setEmail(res.getString("cust_email"));
+            payment.setPaymentMethod(res.getString("payment_method"));
+            payment.setPaymentDate(res.getString("payment_date"));
+            payment.setCardNumber(Long.parseLong(res.getString("card_number")));
+            payment.setSecurityCode(res.getString("securitycode"));
+            payment.setExpiryDate(res.getString("expirydate"));
+            payment.setNameOnCard(res.getString("nameoncard"));
+            return payment;
         }
         return null;   
     }
@@ -72,12 +84,32 @@ public class PaymentDao{
         stmt.executeUpdate("DELETE FROM PAYMENT WHERE PAYMENT_ID = " + Payment_ID);
     }
 
-    public void addPayment(Integer Order_ID, String Payment_method, String Card_number, String ExpiryDate, String SecurityCode, String NameOnCard, String Payment_date) throws SQLException {
-        stmt.executeUpdate("INSERT INTO PAYMENT VALUES (DEFAULT , '" + Order_ID + "', '" + Payment_method + "', '" + Card_number + "', '" + ExpiryDate + "', '" + SecurityCode + "', '" + NameOnCard + "', '" + Payment_date + "') ");
+    public void addPayment(Payment payment) throws SQLException {
+        String sql="INSERT INTO payment (payment_id, cust_email, payment_method, payment_date, card_number, securitycode, expirydate, nameoncard) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        PreparedStatement pst = this.connection.prepareStatement(sql);
+        pst.setInt(1, payment.getPaymentId());
+        pst.setString(2, payment.getEmail());
+        pst.setString(3, payment.getPaymentMethod());
+        pst.setString(4, payment.getPaymentDate());
+        pst.setLong(5, payment.getCardNumber());
+        pst.setString(6, payment.getSecurityCode());
+        pst.setString(7, payment.getExpiryDate());
+        pst.setString(8, payment.getNameOnCard());
+        pst.executeUpdate();
     }
 
-    public void updatePayment(Integer Order_ID, String Payment_method, String Card_number, String ExpiryDate, String SecurityCode, String NameOnCard, String Payment_date) throws SQLException {
-        stmt.executeUpdate("UPDATE PAYMENT SET Payment_method='" + Payment_method + "', Card_number=" + Card_number + ", ExpiryDate =" + ExpiryDate + ",  SecurityCode='" + SecurityCode + "', NameOnCard='" + NameOnCard + "',  Payment_date='" + Payment_date + "' WHERE Payment_ID = " + Order_ID +" ");
+    public void updatePayment(Payment payment) throws SQLException {
+        String sql="UPDATE payment SET cust_email=?, payment_method=?, payment_date=?, card_number=?, securitycode=?, expirydate=?, nameoncard=? WHERE payment_id=?";
+        PreparedStatement pst = this.connection.prepareStatement(sql);
+        pst.setString(1, payment.getEmail());
+        pst.setString(2, payment.getPaymentMethod());
+        pst.setString(3, payment.getPaymentDate());
+        pst.setLong(4, payment.getCardNumber());
+        pst.setString(5, payment.getSecurityCode());
+        pst.setString(6, payment.getExpiryDate());
+        pst.setString(7, payment.getNameOnCard());
+        pst.setInt(8, payment.getPaymentId());
+        pst.executeUpdate();
     }
 
     public int getOrderID(String email) throws SQLException {
@@ -89,20 +121,41 @@ public class PaymentDao{
         }
     }
 
-    public ArrayList<String> getPayments(String Cust_Email) throws SQLException {
-        ResultSet res = stmt.executeQuery("SELECT * FROM PAYMENT P JOIN ORDERS O on O.ORDERS = P.PAYMENT WHERE O.ORDERS = ");
-        ArrayList<String> temp2 = new ArrayList();
+    public ArrayList<Payment> getPayments(String email) throws SQLException {
+        String sql = "SELECT * FROM Payment WHERE cust_email=?";
+        PreparedStatement pst = this.connection.prepareStatement(sql);
+        pst.setString(1, email);
+        ResultSet res = pst.executeQuery();
+        ArrayList<Payment> temp2 = new ArrayList();
         while(res.next()) {
-            temp2.add(Integer.toString(res.getInt(1)));
-            temp2.add(res.getString(2));
-            temp2.add(res.getString(3));
-            temp2.add(res.getString(4));
-            temp2.add(res.getString(5));
-            temp2.add(res.getString(6));
-            temp2.add(res.getString(7));
-            temp2.add(res.getString(8));
+            Payment payment = new Payment();
+            payment.setPaymentId(res.getInt("payment_id"));
+            payment.setEmail(res.getString("cust_email"));
+            payment.setPaymentMethod(res.getString("payment_method"));
+            payment.setPaymentDate(res.getString("payment_date"));
+            payment.setCardNumber(Long.parseLong(res.getString("card_number")));
+            payment.setSecurityCode(res.getString("securitycode"));
+            payment.setExpiryDate(res.getString("expirydate"));
+            payment.setNameOnCard(res.getString("nameoncard"));
+            temp2.add(payment);
         }
         return temp2;
+    }
+    public Payment getPayment(int id) throws SQLException {
+        ResultSet res = stmt.executeQuery("SELECT * FROM Payment WHERE payment_id=" + String.valueOf(id));
+        if(res.next()) {
+            Payment payment = new Payment();
+            payment.setPaymentId(res.getInt("payment_id"));
+            payment.setEmail(res.getString("cust_email"));
+            payment.setPaymentMethod(res.getString("payment_method"));
+            payment.setPaymentDate(res.getString("payment_date"));
+            payment.setCardNumber(Long.parseLong(res.getString("card_number")));
+            payment.setSecurityCode(res.getString("securitycode"));
+            payment.setExpiryDate(res.getString("expirydate"));
+            payment.setNameOnCard(res.getString("nameoncard"));
+            return payment;
+        }
+        return null;
     }
 
 }

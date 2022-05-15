@@ -8,6 +8,7 @@ import au.edu.uts.project.domain.Payment;
 import au.edu.uts.project.domain.Account;
 import au.edu.uts.project.dao.PaymentDao;
 import javax.servlet.*;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -19,37 +20,49 @@ import java.util.logging.Logger;
  *
  * @author Christie
  */
-
+@WebServlet(name = "AddPaymentServlet", value = "/AddPaymentServlet")
 public class AddPaymentServlet extends HttpServlet{
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-        HttpSession session = request.getSession();
-        String payment_method = request.getParameter("Payment_method");
-        String cardNumber = request.getParameter("Card_number");
-        String expiryDate = request.getParameter("ExpiryDate");
-        String securityCode = request.getParameter("SecurityCode");
-        String nameOnCard = request.getParameter("NameOnCard");
-        String payment_date = request.getParameter("Payment_date");     
-         
-        Payment payment = new Payment( payment_method, cardNumber, expiryDate, securityCode, nameOnCard, payment_date);
-        PaymentDao paymentdao = (PaymentDao) session.getAttribute("paymentdao"); 
-
+//        HttpSession session = request.getSession();
+//        PaymentDao paymentdao = (PaymentDao) session.getAttribute("paymentdao");
+//        String payment_method = request.getParameter("Payment_method");
+//        String cardNumber = request.getParameter("Card_number");
+//        String expiryDate = request.getParameter("ExpiryDate");
+//        String securityCode = request.getParameter("SecurityCode");
+//        String nameOnCard = request.getParameter("NameOnCard");
+//        String payment_date = request.getParameter("Payment_date");
+//
+//
+//        try{
+//            Account account = (Account) session.getAttribute("account");
+//            Integer order_ID = paymentdao.getOrderID(account.getEmail());
+//            session.setAttribute("Order_ID", order_ID);
+//            paymentdao.addPayment(order_ID, payment_method, cardNumber, expiryDate, securityCode, nameOnCard, payment_date);
+//            Integer payment_ID = paymentdao.getLastPaymentID();
+//            session.setAttribute("payment_ID", payment_ID);
+//            request.getRequestDispatcher("addPayment.jsp").include(request, response);
+//            response.sendRedirect("confirmPayment.jsp");
+//        }catch (Exception e){
+//
+//        }
+        PaymentDao paymentdao = (PaymentDao) request.getSession().getAttribute("paymentdao");
+        Payment payment = new Payment();
+        payment.setPaymentId(Integer.parseInt(request.getParameter("paymentid")));
+        payment.setEmail(request.getParameter("email"));
+        payment.setPaymentMethod(request.getParameter("Payment_method"));
+        payment.setCardNumber(Long.parseLong(request.getParameter("cardNumber")));
+        payment.setExpiryDate(request.getParameter("expiryDate"));
+        payment.setSecurityCode(request.getParameter("securityCode"));
+        payment.setNameOnCard(request.getParameter("nameOnCard"));
+        payment.setPaymentDate(request.getParameter("Payment_date"));
+        System.out.println(payment);
         try {
-            if(payment != null){
-                session.setAttribute("payment", payment);
-                Account account = (Account) session.getAttribute("account");
-                Integer order_ID = paymentdao.getOrderID(account.getEmail());
-                session.setAttribute("Order_ID", order_ID);
-                paymentdao.addPayment(order_ID, payment_method, cardNumber, expiryDate, securityCode, nameOnCard, payment_date);
-                Integer payment_ID = paymentdao.getLastPaymentID();
-                session.setAttribute("payment_ID", payment_ID);
-                request.getRequestDispatcher("addPayment.jsp").include(request, response);
-                response.sendRedirect("confirmPayment.jsp");
-            } else {
-                request.getRequestDispatcher("order_list.jsp").include(request, response);
-            }
-        } catch ( SQLException e){
-            Logger.getLogger(EditPaymentServlet.class.getName()).log(Level.SEVERE, null, e);
+            paymentdao.addPayment(payment);
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
+        response.sendRedirect(request.getContextPath() + "/CheckPaymentServlet?order_id=" + payment.getPaymentId() + "&price=" + request.getSession().getAttribute("current_price"));
+
     }
 }

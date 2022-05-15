@@ -16,28 +16,21 @@ import java.sql.SQLException;
  *
  * @author Christie
  */
+@WebServlet(name = "DeletePaymentServlet", value = "/DeletePaymentServlet")
 public class DeletePaymentServlet extends HttpServlet {
 @Override
 protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession(true);
-        Integer payment_ID = Integer.parseInt(request.getParameter("Payment_ID")); 
+        Integer paymentid = Integer.parseInt(request.getParameter("payment_id"));
         PaymentDao paymentdao = (PaymentDao)session.getAttribute("paymentdao");
         
         Payment payment = null;
-        try{
-            
-            payment = paymentdao.findByID(payment_ID);
-            if(payment != null){
-                paymentdao.deletePayment(payment_ID);
-                System.out.println("Payment deleted.");
-            } else {
-                System.out.println("Error.");
-            }
-            response.sendRedirect("main.jsp");
+        try {
+            paymentdao.deletePayment(paymentid);
         } catch (SQLException e) {
-           System.out.println(e.getErrorCode());
+            e.printStackTrace();
         }
-       request.getRequestDispatcher("main.jsp").include(request, response);
-    }  
+        response.sendRedirect(request.getContextPath() + "/CheckPaymentServlet?order_id=" + paymentid + "&price=" + request.getSession().getAttribute("current_price"));
+    }
     
 }

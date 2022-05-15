@@ -4,6 +4,7 @@
  */
 package au.edu.uts.project.servlet;
 
+import au.edu.uts.project.domain.Account;
 import au.edu.uts.project.domain.Payment;
 import au.edu.uts.project.dao.PaymentDao;
 import javax.servlet.*;
@@ -24,29 +25,27 @@ public class PaymentHistoryServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         
        HttpSession session = request.getSession();
-       String cust_Email = request.getParameter("Cust_Email"); 
+       Account account = (Account) session.getAttribute("account");
+       String email = account.getEmail();
        PaymentDao paymentdao = (PaymentDao)session.getAttribute("paymentdao");
-       String email = (String)session.getAttribute("Cust_Email");
-      
+
+        if(email != null){
+            ArrayList<Payment> tempList = new ArrayList();
+            try {
+                tempList = paymentdao.getPayments(email);
+            } catch (SQLException ex) {
+                Logger.getLogger(PaymentHistoryServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            if(tempList.size() > 0){
+                request.setAttribute("paymentsList", tempList);
+            }  else {
+                request.setAttribute("msg", "There is no record of payments. Please add your Payment Details.");
+            }
+            request.getRequestDispatcher("/paymentHistory.jsp").forward(request, response);
            
-       if(email != null){
-           ArrayList<String> tempList = new ArrayList();
-                try {
-                    System.out.println(cust_Email);
-                    tempList = paymentdao.getPayments(cust_Email);
-                } catch (SQLException ex) {
-                    Logger.getLogger(PaymentHistoryServlet.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                if(tempList != null){
-                    session.setAttribute("paymentsList", tempList);
-                }  else {
-                    session.setAttribute("getMessage", "There is no record of payments. Please add your Payment Details.");
-                }
-                response.sendRedirect("paymentHistory.jsp");
-           
-       } else {
-            request.getRequestDispatcher("index.jsp").include(request, response);
-       }
+        } else {
+
+        }
     } 
 }
 

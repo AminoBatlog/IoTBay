@@ -21,26 +21,34 @@ import java.util.logging.Logger;
  *
  * @author Christie
  */
+@WebServlet(name = "CheckPaymentServlet", value = "/CheckPaymentServlet")
 public class CheckPaymentServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession(true);
-        Integer payment_ID = Integer.parseInt(request.getParameter("Payment_ID"));
-        Integer order_ID = Integer.parseInt((String) request.getAttribute("order_id"));
-        Double price = Double.parseDouble((String) request.getAttribute("price"));
-                
-  
+        Integer order_ID = Integer.parseInt(request.getParameter("order_id"));
+        Double price = Double.parseDouble(request.getParameter("price"));
+
+        PaymentDao paymentdao = (PaymentDao) session.getAttribute("paymentdao");
+
+
         //try{
             if(order_ID != null){
                 Account account = (Account) session.getAttribute("account");
-                request.setAttribute("Payment_ID", payment_ID);
-                request.setAttribute("order_id", order_ID);
-                request.setAttribute("price", price);
-                response.sendRedirect("successful.jsp");
-                 
+                Payment payment = null;
+                try {
+                    payment = paymentdao.getPayment(order_ID);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+                request.setAttribute("payment", payment);
+                request.getSession().setAttribute("current_order_id", order_ID);
+                request.getSession().setAttribute("current_price", price);
+
+                request.getRequestDispatcher("/confirmPayment.jsp").forward(request, response);
             } else {
-                request.getRequestDispatcher("paymentDetails.jsp").include(request, response);
+
             }
         //} catch (SQLException e){
             //Logger.getLogger(EditPaymentServlet.class.getName()).log(Level.SEVERE, null, e);

@@ -65,9 +65,7 @@ public class OrderServlet extends HttpServlet {
             if("false".equals(request.getParameter("total"))){
                 request.getRequestDispatcher("/OrderServlet?display=" + request.getSession().getAttribute("email")).forward(request, response);
             } else {
-                request.setAttribute("order_id", request.getParameter("orderId"));
-                request.setAttribute("price", request.getParameter("total"));
-                request.getRequestDispatcher("/CheckPaymentServlet").forward(request, response);
+                response.sendRedirect(request.getContextPath() + "/CheckPaymentServlet?order_id=" + request.getParameter("orderId") + "&price=" + request.getParameter("total"));
             }
         }
     }

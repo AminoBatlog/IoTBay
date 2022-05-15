@@ -6,6 +6,7 @@
 
 
 <%@page import="java.util.ArrayList"%>
+<%@ page import="au.edu.uts.project.domain.Payment" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -48,18 +49,6 @@
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Profile
-                        </a>
-                        <div class="dropdown-menu2" aria-labelledby="navbarDropdownMenu2">
-                            <a class="dropdown-item" href="addPayment.jsp">Create Payment Details</a>
-                            <a class="dropdown-item" href="paymentDetails.jsp">View Payment Details</a>
-                            <a class="dropdown-item" href="updatePayment.jsp">Update Payment Details</a>
-                            <a class="dropdown-item" href="paymentHistory.jsp">View Payment History</a>
-                            <a class="dropdown-item" href="searchPaymentHistory">Search For Payment</a>
-                        </div>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link" href="logout.jsp">
                             <button type="button" class="btn btn-primary">Logout</button>
                         </a>
@@ -67,27 +56,34 @@
                 </ul>
             </div>
         </nav>
-                
-        <form action = "updatePaymentServlet" method="post">
+        <%
+            int orderid = (Integer) session.getAttribute("current_order_id");
+            double price = (Double) session.getAttribute("current_price");
+            Payment payment = (Payment) request.getAttribute("exist");
+            %>
+        <form action = "${pageContext.request.contextPath}/UpdatePaymentServlet" method="post">
         
-        <h1> Order #${order_ID} </h1>
-        <h2> Total Amount $${order.getAmount()} </h2>
-        
-        <div class="body-text"> 
-      
-                <div class="form-container">
-                <div class="personal-information">
-                <h1>Payment Information</h1></div> 
-                    <input type="text" id="input-field" name="paymentMethod" placeholder="Payment Method"  value="${payment.getPayment_method()}" required>
-                    <input type="text" id="input-field" name="cardNumber" placeholder="Card Number" value="${payment.getCard_number()}" required/> 
-                    <input type="text" id="input-field" name="expiryDate" placeholder="MM/YY" value="${payment.getExpiryDate()}" required/> 
-                    <input type="password" id="input-field" name="securityCode" placeholder="Security Code" value="${payment.getSecurityCode()}" required/> 
-                    <input type="text" id="input-field" name="nameOnCard" placeholder="Name on Card" value="${payment.getNameOnCard()}" required/> 
+            <h1> Order #<%=orderid%> </h1>
+            <h2> Total Amount $<%=price%> </h2>
 
-                    <input type="submit" value="Update">
+            <div class="body-text">
+      
+<%--                <div class="form-container">--%>
+<%--                <div class="personal-information">--%>
+                <h1>Payment Information</h1></div>
+                <input type="text" name="paymentid" value="<%=payment.getPaymentId()%>" style="display: none">
+                <input type="text" name="email" value="<%=payment.getEmail()%>" style="display: none">
+                <input type="text" name="paymentMethod" placeholder="Payment Method"  value="<%=payment.getPaymentMethod()%>" required>
+                <input type="text" name="cardNumber" placeholder="Card Number" value="<%=payment.getCardNumber()%>" required/>
+                <input type="text" name="expiryDate" placeholder="MM/YY" value="<%=payment.getExpiryDate()%>" required/>
+                <input type="password" name="securityCode" placeholder="Security Code" value="<%=payment.getSecurityCode()%>" required/>
+                <input type="text" name="nameOnCard" placeholder="Name on Card" value="<%=payment.getNameOnCard()%>" required/>
+                <input type="text" name="paymentdate" value="<%=payment.getPaymentDate()%>" style="display: none">
+
+                <input type="submit" value="Update">
             </form>
                     
-            <p><a class= "button" style="center" href="main.jsp">Cancel</a></p>
+            <p><a class= "button"  href="OrderLineServlet?display=<%=orderid%>">Cancel</a></p>
             
     </body>
 </html>

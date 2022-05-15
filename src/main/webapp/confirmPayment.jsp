@@ -27,36 +27,41 @@
             <a class="navbar-brand" href="#">IoTBay</a>
         </nav>
         <%
-            Integer payment_ID = (Integer) session.getAttribute("payment_ID");
-        %>
-        <%
-            Integer order_ID = (Integer) session.getAttribute("order_id");
-            Integer price = (Integer) session.getAttribute("price");
+            Payment payment = (Payment) request.getAttribute("payment");
+            int order_id = (Integer) session.getAttribute("current_order_id");
+            double price = (Double) session.getAttribute("current_price");
         %>
         
   
         <div class='center'>
-    
-        <h2>Would you like to confirm your purchase?</h2>
-        
-        <form action = "main.jsp" method="post">  
-            
-            <h3> Order #<%=order_ID%> </h1>
-            <h4>Total Amount $<%=price%> </h3>
-            <div>
-                <table style="text-align: center">
-           
-                <p>Payment Method  = ${payment.getPayment_method()} </p>
-                <p>Card Number     = ${payment.getCard_number()} </p>
-                <p>Expiry Date     = ${payment.getExpiryDate()} </p>
-                <p>Name On Card    = ${payment.getNameOnCard()} </p>
-                <p>Date Paid       = ${payment.getPayment_date()}</p>
-    
-            <input class= button type="submit" value="Confirm" href="CheckPaymentServlet?payment_ID?order_id=<%=payment_ID%><%=order_ID%>">
-             
-        </form>
-            <p> <a class ="buttonpaycon" id="column-left" href="DeletePaymentServlet?payment_ID=<%=payment_ID%>">Cancel</a></p> 
-            <p> <a class ="buttonpaycon2" id="column-left" href="UpdatePaymentServlet?payment_ID=<%=payment_ID%>">Update Details</a></p>   
-        </div>        
+        <%
+            if(payment != null){
+        %>
+            <h2>Would you like to confirm your purchase?</h2>
+
+
+                <h3> Order #<%=order_id%> </h3>
+                <h4>Total Amount $<%=price%> </h4>
+                <div>
+                    <table style="text-align: center">
+
+                    <p>Payment Method  = <%=payment.getPaymentMethod()%> </p>
+                    <p>Card Number     = <%=payment.getCardNumber()%> </p>
+                    <p>Expiry Date     = <%=payment.getExpiryDate()%> </p>
+                    <p>Name On Card    = <%=payment.getNameOnCard()%> </p>
+
+
+            <a href="${pageContext.request.contextPath}/ConfirmedPaymentServlet?order_id=<%=order_id%>">Confirm</a>
+            <p> <a class ="buttonpaycon2"  href="UpdatePaymentServlet?payment_id=<%=order_id%>">Update Details</a></p>
+            <p> <a class ="buttonpaycon2"  href="DeletePaymentServlet?payment_id=<%=order_id%>">Remove Payment</a></p>
+            <p> <a class ="buttonpaycon"  href="OrderLineServlet?display=<%=order_id%>">Cancel</a></p>
+        <% } else {%>
+            <h2>You don't have any payment related to this order, <a href="${pageContext.request.contextPath}/addPayment.jsp" style="color: yellow;">click me to add one?</a></h2>
+        <% }%>
+        </div>
+            <script type="text/javascript" src="./dist/jquery-3.6.0-dist/jquery-3.6.0.min.js"></script>
+            <script type="text/javascript">
+
+            </script>
     </body>
 </html>

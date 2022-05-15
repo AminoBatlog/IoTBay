@@ -47,18 +47,6 @@
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Profile
-                        </a>
-                        <div class="dropdown-menu2" aria-labelledby="navbarDropdownMenu2">
-                            <a class="dropdown-item" href="addPayment.jsp">Create Payment Details</a>
-                            <a class="dropdown-item" href="paymentDetails.jsp">View Payment Details</a>
-                            <a class="dropdown-item" href="updatePayment.jsp">Update Payment Details</a>
-                            <a class="dropdown-item" href="paymentHistory.jsp">View Payment History</a>
-                            <a class="dropdown-item" href="searchPaymentHistory.jsp">Search For Payment</a>
-                        </div>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link" href="logout.jsp">
                             <button type="button" class="btn btn-primary">Logout</button>
                         </a>
@@ -68,36 +56,36 @@
         </nav>
     
         <%
-            Integer order_ID = (Integer) session.getAttribute("order_id");
-            Integer price = (Integer) session.getAttribute("price");
+            int order_id = (Integer) session.getAttribute("current_order_id");
+            double price = (Double) session.getAttribute("current_price");
+            String email = (String) session.getAttribute("email");
         %>
-        <form action="addPaymentServlet" method="post">
+        <form action="${pageContext.request.contextPath}/AddPaymentServlet" method="post">
        
-        <h1> Order #<%=order_ID%> </h1>
-        <h2> Total Amount $<%=price%> </h2>
-        
-        <div class="body-text"> 
-            <h3><label for name="paymentMethod">Payment Method</label></h3>
-                <input type="text" id="coloumn-left" name="Payment_method" placeholder="Payment Method" required/>
-      
- 
-            <b><label for name="datePaid">Date</label></b>
-                <input type="date" id="coloumn-left" name="Payment_date" placeholder="Date Paid" required/> 
-          
-                <div class="personal-information">
-                <h1>Payment Information</h1></div> 
-            
-            <input type="text" id="input-field" name="cardNumber" placeholder="Card Number" required/> 
-            <input type="text" id="input-field" name="expiryDate" placeholder="MM/YY" required/> 
-            <input type="password" id="input-field" name="securityCode" placeholder="securityCode" required/> 
-            <input type="text" id="input-field" name="nameOnCard" placeholder="Name on Card" required/> 
-             
-            <input type="submit" value="Pay">
+            <h1> Order #<%=order_id%> </h1>
+            <h2> Total Amount $<%=price%> </h2>
+
+            <div class="body-text">
+                <h3><label for name="paymentMethod">Payment Method</label></h3>
+                    <input type="text"  name="Payment_method" placeholder="Payment Method" required/>
+
+
+                <b><label for name="datePaid">Date</label></b>
+                    <input type="date" name="Payment_date" placeholder="Date Paid" required/>
+
+                    <div class="personal-information">
+                    <h1>Payment Information</h1></div>
+                <input type="text" name="paymentid" value="<%=order_id%>" style="display: none">
+                <input type="text" name="email" value="<%=email%>" style="display: none">
+                <input type="text"  name="cardNumber" placeholder="Card Number" required/>
+                <input type="text"  name="expiryDate" placeholder="MM/YY" required/>
+                <input type="password" name="securityCode" placeholder="securityCode" required/>
+                <input type="text"  name="nameOnCard" placeholder="Name on Card" required/>
+
+                <button type="submit">Confirmed Add</button>
+            </div>
         </form>
-       
-            <p><a class= "button" style="center" href="main.jsp">Cancel</a></p>
-                
-        </div>
+        <p><a class= "button" style="" href="main.jsp">Cancel</a></p>
     </body>
 </html>
 

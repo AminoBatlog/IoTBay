@@ -4,6 +4,7 @@
  */
 package au.edu.uts.project.servlet;
 
+import au.edu.uts.project.domain.Account;
 import au.edu.uts.project.domain.Payment;
 import au.edu.uts.project.dao.PaymentDao;
 import javax.servlet.*;
@@ -11,6 +12,7 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 
 
 /**
@@ -18,31 +20,40 @@ import java.sql.SQLException;
  * @author Christie
  */
 public class SearchPaymentHistoryServlet extends HttpServlet {
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        Account account = (Account) request.getSession().getAttribute("account");
+        String email = account.getEmail();
+        request.setAttribute("msg", "No result");
+        request.getRequestDispatcher("/searchPaymentHistory.jsp").forward(request, response);
+    }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
-        Integer payment_ID = Integer.parseInt(request.getParameter("Payment_ID"));
-        String payment_date = request.getParameter("Payment_date");
-        PaymentDao paymentdao = (PaymentDao) session.getAttribute("paymentdao");
-        
-        Payment payment = null;
-        session.setAttribute("searchPayment", null);
-        session.setAttribute("searchMessage", null);
-   
-        
-        try{
-            payment = paymentdao.findByIDandDATE(payment_ID, payment_date);
-      
-            if(payment != null){
-                session.setAttribute("searchPayment", payment ); 
-                request.getRequestDispatcher("searchPaymentHistory.jsp").include(request, response);
-            } else {
-                session.setAttribute("searchMessage", "No payments found");
-                request.getRequestDispatcher("searchPaymentHistory.jsp").include(request, response);
-            } 
-        } catch (SQLException e) {
-           System.out.println(e.getErrorCode());
+        Account account = (Account) session.getAttribute("account");
+        String email = account.getEmail();
+        int id = 0;
+        if(!"".equals(request.getParameter("id"))){
+            id = Integer.parseInt(request.getParameter("id"));
         }
+        String date = request.getParameter("date");
+        PaymentDao paymentdao = (PaymentDao) session.getAttribute("paymentdao");
+        System.out.println(id + date);
+        
+        List<Payment> list = null;
+        try {
+            list = paymentdao.findByIDandDATE(id, date, email);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        if(list != null && list.size() > 0){
+            request.setAttribute("list", list );
+            request.getRequestDispatcher("/searchPaymentHistory.jsp").include(request, response);
+        } else {
+            request.setAttribute("msg", "No payments found");
+            request.getRequestDispatcher("/searchPaymentHistory.jsp").include(request, response);
+        } 
     }  
 }

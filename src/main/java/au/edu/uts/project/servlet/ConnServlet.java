@@ -53,7 +53,7 @@ public class ConnServlet extends HttpServlet {
            //export the DB manager to the view-session (JSPs)
 
            session.setAttribute("manager", manager); // Add the manager to the session 
-           session.setAttribute("payment", pay); // Add the payment to the session       
+           session.setAttribute("paymentdao", pay); // Add the payment to the session
 
        }
     

@@ -6,6 +6,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%@page import="au.edu.uts.project.domain.Payment"%>
+<%@ page import="java.util.List" %>
 <html>
 <head>
     <title>IoTBay</title>
@@ -15,9 +16,9 @@
     <link rel="stylesheet" href="./assets/css/style.css">
 </head>
 <body
-    <%              
-        String searchMessage = (String) session.getAttribute("searchMessage");
-        Payment searchPayment = (Payment) session.getAttribute("searchPayment");           
+    <%
+        List<Payment> list = (List<Payment>) request.getAttribute("list");
+        String msg = (String) request.getAttribute("msg");
     %>
     <div class="container">
         <div class="row justify-content-center text-center">
@@ -49,18 +50,6 @@
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Profile
-                        </a>
-                        <div class="dropdown-menu2" aria-labelledby="navbarDropdownMenu2">
-                            <a class="dropdown-item" href="addPayment.jsp">Create Payment Details</a>
-                            <a class="dropdown-item" href="paymentDetails.jsp">View Payment Details</a>
-                            <a class="dropdown-item" href="updatePayment.jsp">Update Payment Details</a>
-                            <a class="dropdown-item" href="paymentHistory.jsp">View Payment History</a>
-                            <a class="dropdown-item" href="searchPaymentHistory">Search For Payment</a>
-                        </div>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link" href="logout.jsp">
                             <button type="button" class="btn btn-primary">Logout</button>
                         </a>
@@ -70,58 +59,63 @@
         </nav>
         <h2>Search Payment details by Payment ID and Date Paid</h2>
        
-        <form action="SearchPaymentHistoryServlet" method="post">
+        <form action="${pageContext.request.contextPath}/SearchPaymentHistoryServlet" method="post">
             
-        <p>#${payment_ID} </p>
         <table>
-            <tr> 
+            <tr>
                 <td><label for name="search_PaymentID" class="subtitle">Payment ID </label></td>
-                <td><input type ="text" id="searchPayment_ID" name="searchPayment_ID" placeholder= "Search by Payment ID" required ></td>
+                <td><input type ="text" id="searchPayment_ID" name="id" placeholder= "Search by Payment ID"></td>
             </tr>
                 
             <tr> 
                 <td><label for name="searchPayment_date" class="subtitle">Date Paid </label></td>
-                <td><input type ="date" id="searchPayment_date" name="searchPayment_date" placeholder= "Search by Date Paid" required ></td>
+                <td><input type ="date" id="searchPayment_date" name="date" placeholder= "Search by Date Paid"></td>
             </tr>
             <tr> 
                 <td><input id="search" class="button" type="submit" value="Search"></td>
             </tr>
         </table>
         </form>
-            <% if(searchPayment != null){ %>
+            <% if(list != null){
+                    for (Payment searchPayment : list){
+            %>
             <b><p>Payment Details</p></b>
        
         
         <table>
 	<thead>
                 <tr>
-                    	<th scope="col">Payment ID</th>
-                    	<th scope="col">Order ID</th>
-                    	<th scope="col">Payment Method</th>
-                    	<th scope="col">Card Number</th>
-                    	<th scope="col">Expiry Date</th>
-                    	<th scope="col">Security Code</th>
-                    	<th scope="col">Name On Card</th>
-                    	<th scope="col">Date Paid</th>
+                    <th scope="col">Payment ID</th>
+                    <th scope="col">Order ID</th>
+                    <th scope="col">Payment Method</th>
+                    <th scope="col">Card Number</th>
+                    <th scope="col">Expiry Date</th>
+                    <th scope="col">Security Code</th>
+                    <th scope="col">Name On Card</th>
+                    <th scope="col">Date Paid</th>
                 </tr>
         </thead>
         <tbody> 
                 <tr>
-                    	<td><p>${payment_ID}</p></td>
-                    	<td><p>${payment_ID}</p></td>
-                    	<td><%= searchPayment.getPayment_method() %></td>
-                    	<td><%= searchPayment.getCard_number() %></td>
-                    	<td><%= searchPayment.getExpiryDate() %></td>
-                    	<td><%= searchPayment.getSecurityCode() %></td>
-                    	<td><%= searchPayment.getNameOnCard() %></td>
-			<td><%= searchPayment.getPayment_date() %></td>
+                    <td><p><%= searchPayment.getPaymentId() %></p></td>
+                    <td><p><%= searchPayment.getPaymentId() %></p></td>
+                    <td><%= searchPayment.getPaymentMethod() %></td>
+                    <td><%= searchPayment.getCardNumber() %></td>
+                    <td><%= searchPayment.getExpiryDate() %></td>
+                    <td><%= searchPayment.getSecurityCode() %></td>
+                    <td><%= searchPayment.getNameOnCard() %></td>
+                    <td><%= searchPayment.getPaymentDate() %></td>
                 </tr> 
         </tbody>
         </table> 
         
-            <%  } else { %>
-            <span><%=(searchMessage != null ? searchMessage : "")%></span>
-            <% } %>
+            <%      }
+                } else {
+            %>
+            <span><%=(msg != null ? msg : "")%></span>
+            <%
+                }
+            %>
             
     </body>
 </html>
