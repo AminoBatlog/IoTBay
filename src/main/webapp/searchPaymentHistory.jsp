@@ -92,7 +92,7 @@
             <b><p>Payment Details</p></b>
        
         
-        <table>
+        <table class="table table-bordered">
 	<thead>
                 <tr>
                     <th scope="col">Payment ID</th>
