@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.sql.*;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.List;
 
 public class PaymentDao{
 
@@ -79,12 +80,12 @@ public class PaymentDao{
         stmt.executeUpdate("UPDATE PAYMENT SET Payment_method='" + Payment_method + "', Card_number=" + Card_number + ", ExpiryDate =" + ExpiryDate + ",  SecurityCode='" + SecurityCode + "', NameOnCard='" + NameOnCard + "',  Payment_date='" + Payment_date + "' WHERE Payment_ID = " + Order_ID +" ");
     }
 
-    public int getOrderID(String Cust_email) throws SQLException {
-       ResultSet res = stmt.executeQuery("SELECT ORDER_ID FROM ORDERS WHERE Cust_email=" + Cust_email);
-            if (res.next()) {
-                return res.getInt(1);
-            } else {
-                return 0;
+    public int getOrderID(String email) throws SQLException {
+       ResultSet res = stmt.executeQuery("SELECT ORDER_ID FROM ORDERS WHERE Cust_email=" + email);
+        if (res.next()) {
+            return res.getInt(1);
+        } else {
+            return 0;
         }
     }
 

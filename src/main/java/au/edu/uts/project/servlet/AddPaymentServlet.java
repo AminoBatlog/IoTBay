@@ -22,7 +22,7 @@ import java.util.logging.Logger;
 
 public class AddPaymentServlet extends HttpServlet{
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         HttpSession session = request.getSession();
         String payment_method = request.getParameter("Payment_method");
         String cardNumber = request.getParameter("Card_number");
@@ -34,7 +34,7 @@ public class AddPaymentServlet extends HttpServlet{
         Payment payment = new Payment( payment_method, cardNumber, expiryDate, securityCode, nameOnCard, payment_date);
         PaymentDao paymentdao = (PaymentDao) session.getAttribute("paymentdao"); 
 
-        //try {
+        try {
             if(payment != null){
                 session.setAttribute("payment", payment);
                 Account account = (Account) session.getAttribute("account");
@@ -48,8 +48,8 @@ public class AddPaymentServlet extends HttpServlet{
             } else {
                 request.getRequestDispatcher("order_list.jsp").include(request, response);
             }
-        //} catch ( SQLException e){
-           // Logger.getLogger(EditPaymentServlet.class.getName()).log(Level.SEVERE, null, e);
-        //}
+        } catch ( SQLException e){
+            Logger.getLogger(EditPaymentServlet.class.getName()).log(Level.SEVERE, null, e);
+        }
     }
 }
