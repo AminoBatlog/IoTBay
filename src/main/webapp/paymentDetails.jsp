@@ -34,7 +34,7 @@
             <a class="navbar-brand" href="#">IoTBay</a>
         </nav>
         <h3>Your Payment Details</h3>
-            <table>
+            <table class="table table-bordered">
                 <tr>
                     <th scope="col">Payment Method</th>
                     <th scope="col">Card Number</th>
