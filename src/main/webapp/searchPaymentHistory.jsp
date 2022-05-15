@@ -18,9 +18,12 @@
 </head>
 <body
     <%
+        Account account = (Account)session.getAttribute("account");
+        
+        %>
+    <%
         List<Payment> list = (List<Payment>) request.getAttribute("list");
         String msg = (String) request.getAttribute("msg");
-        Account account = (Account)session.getAttribute("account");
     %>
     <div class="container">
         <div class="row justify-content-center text-center">
