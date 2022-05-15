@@ -35,7 +35,7 @@
         </nav>
         <h3>Your Payment Details</h3>
             <table class="table table-bordered">
-                <tr>
+                <tr class="table-primary">
                     <th scope="col">Payment Method</th>
                     <th scope="col">Card Number</th>
                     <th scope="col">Expiry Date</th>
