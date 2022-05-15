@@ -2,6 +2,7 @@ package au.edu.uts.project.service.impl;
 
 import au.edu.uts.project.dao.OrderLineDao;
 import au.edu.uts.project.domain.OrderLine;
+import au.edu.uts.project.domain.OrderLineVO;
 import au.edu.uts.project.service.OrderLineService;
 import au.edu.uts.project.utils.OrderLineSingleton;
 
@@ -10,9 +11,9 @@ import java.util.List;
 
 public class OrderLineServiceImpl implements OrderLineService {
     @Override
-    public List<OrderLine> getOrderLineById(int id) {
+    public List<OrderLineVO> getOrderLineById(int id) {
         OrderLineDao dao = OrderLineSingleton.getInstance();
-        List<OrderLine> list = null;
+        List<OrderLineVO> list = null;
         try {
             list = dao.getOrderLineById(id);
         } catch (SQLException e) {

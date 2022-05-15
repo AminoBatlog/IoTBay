@@ -62,7 +62,13 @@ public class OrderServlet extends HttpServlet {
         } else if(request.getParameter("status") != null && request.getParameter("orderId") != null) {
             int result = service.updateStatusById(request.getParameter("status"), Integer.parseInt(request.getParameter("orderId")));
             request.setAttribute("msg", "status successfully changed to " + request.getParameter("status") + " for order: " + request.getParameter("orderId"));
-            request.getRequestDispatcher("/OrderServlet?display=" + request.getSession().getAttribute("email")).forward(request, response);
+            if("false".equals(request.getParameter("total"))){
+                request.getRequestDispatcher("/OrderServlet?display=" + request.getSession().getAttribute("email")).forward(request, response);
+            } else {
+                request.setAttribute("order_id", request.getParameter("orderId"));
+                request.setAttribute("price", request.getParameter("total"));
+                request.getRequestDispatcher("/ChekPaymentServlet").forward(request, response);
+            }
         }
     }
 

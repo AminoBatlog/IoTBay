@@ -2,6 +2,7 @@ package au.edu.uts.project.servlet;
 
 import au.edu.uts.project.domain.Order;
 import au.edu.uts.project.domain.OrderLine;
+import au.edu.uts.project.domain.OrderLineVO;
 import au.edu.uts.project.service.OrderLineService;
 import au.edu.uts.project.service.impl.OrderLineServiceImpl;
 
@@ -20,7 +21,7 @@ public class OrderLineServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         if(request.getParameter("display") != null) {
             request.getSession().removeAttribute("msg");
-            List<OrderLine> list = service.getOrderLineById(Integer.parseInt(request.getParameter("display")));
+            List<OrderLineVO> list = service.getOrderLineById(Integer.parseInt(request.getParameter("display")));
             request.setAttribute("orderLine_list", list);
             request.setAttribute("orderId", request.getParameter("display"));
             request.getRequestDispatcher("/orderLine_list.jsp").forward(request, response);

@@ -2,6 +2,7 @@ package au.edu.uts.project.dao.daoImpl;
 
 import au.edu.uts.project.dao.OrderLineDao;
 import au.edu.uts.project.domain.OrderLine;
+import au.edu.uts.project.domain.OrderLineVO;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -20,17 +21,19 @@ public class OrderLineDaoImpl implements OrderLineDao {
     }
 
     @Override
-    public List<OrderLine> getOrderLineById(int id) throws SQLException {
-        String sql = "SELECT * FROM orderline WHERE order_id=?";
+    public List<OrderLineVO> getOrderLineById(int id) throws SQLException {
+        String sql = "SELECT order_id, t1.dev_id, order_quantity, dev_name, (order_quantity * dev_price) AS total_price FROM orderline t1 INNER JOIN iot_dev t2 ON t1.dev_id = t2.dev_id WHERE order_id = ?";
         this.pst = this.connection.prepareStatement(sql);
         this.pst.setInt(1, id);
         ResultSet result = this.pst.executeQuery();
-        List<OrderLine> list = new ArrayList<>();
+        List<OrderLineVO> list = new ArrayList<>();
         while(result.next()) {
-            OrderLine orderLine = new OrderLine();
-            orderLine.setOrderId(Integer.parseInt(result.getString("order_id")));
-            orderLine.setDevId(Integer.parseInt(result.getString("dev_id")));
-            orderLine.setQuantity(Integer.parseInt(result.getString("order_quantity")));
+            OrderLineVO orderLine = new OrderLineVO();
+            orderLine.setOrderId(result.getInt(1));
+            orderLine.setDevId(result.getInt(2));
+            orderLine.setQuantity(result.getInt(3));
+            orderLine.setDevName(result.getString(4));
+            orderLine.setTotalPrice(result.getDouble(5));
             list.add(orderLine);
         }
         this.pst.close();
