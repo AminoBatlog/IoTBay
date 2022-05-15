@@ -33,7 +33,7 @@
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav">
                     <li class="nav-item active">
-                        <a class="nav-link" href="main.jsp">Home</a>
+                        <a class="nav-link" href="mainStaff.jsp">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="staffInfo.jsp">My Account</a>
@@ -41,11 +41,17 @@
                     <li class="nav-item">
                         <a class="nav-link" href="AccessServlet?email='<%= staff.getEmail()%>'&password='<%=staff.getPassword()%>'">Access Log</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="IotDevServlet?list=true">Device List</a>
+                    </li>
                     <% 
                        if (staff.getRoles().equals("Admin")) {
                     %>
                     <li class="nav-item">
                         <a class="nav-link" href="StaffServlet?list=true">Staff List</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="CustomerServlet?list=true">Customer List</a>
                     </li>
                     <% } 
                     %>
