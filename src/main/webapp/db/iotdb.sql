@@ -55,7 +55,7 @@ CREATE TABLE Payment (
   Payment_method varchar(10),
   Card_Number numeric(16),
   SecurityCode varchar(11),
-  ExpiryDate date,
+  ExpiryDate varchar(5),
   NameOnCard varchar(100),
   Payment_date date,
   CONSTRAINT Pay_PK PRIMARY KEY (Payment_ID),
