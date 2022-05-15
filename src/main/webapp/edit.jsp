@@ -45,6 +45,24 @@
                         <a class="nav-link" href="AccessServlet?email='<%= account.getEmail()%>'&password='<%=account.getPassword()%>'">Access Log</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="OrderServlet?display=<% out.print(account.getEmail()); %>">Order</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="IotDevServlet?list=true">Device List</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenu2" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Profile
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdownMenu2">
+                            <li><a class="dropdown-item" href="AddPaymentServlet">Create Payment Details</a></li>
+                            <li><a class="dropdown-item" href="paymentDetails.jsp">View Payment Details</a></li>
+                            <li><a class="dropdown-item" href="UpdatePaymentServlet">Update Payment Details</a></li>
+                            <li><a class="dropdown-item" href="paymentHistory.jsp">View Payment History</a></li>
+                            <li><a class="dropdown-item" href="SearchPaymentHistoryServlet">Search For Payment</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="UpdateLogoutServlet?email='<%= account.getEmail()%>'&password='<%=account.getPassword()%>'">
                             <button type="button" class="btn btn-primary">Logout</button>
                         </a>
@@ -152,5 +170,7 @@
           </div>
         </div>
        </div>
+        <script type="text/javascript" src="./dist/jquery-3.6.0-dist/jquery-3.6.0.min.js"></script>
+        <script type="text/javascript" src="./dist/bootstrap-5.1.3-dist/js/bootstrap.min.js"></script>
     </body>
 </html>
