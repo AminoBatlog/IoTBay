@@ -67,7 +67,7 @@
                 </ul>
             </div>
         </nav>
-        <h2>Search Payment details by Payment ID and Date Paid</h2>
+        <h3>Search Payment details by Payment ID and Date Paid</h3>
        
         <form action="${pageContext.request.contextPath}/SearchPaymentHistoryServlet" method="post">
             
