@@ -23,7 +23,7 @@
         Account account = (Account)session.getAttribute("account");
         
         %>
-        <h5>You are logged in as ${payment.fname} ${account.lname}(${account.email})</h5>
+        <h5>You are logged in as ${payment.fname} ${account.lname}(${account.email})</h5><p>
         <div class="container">
         <div class="row justify-content-center text-center">
             <div class="col-5">
@@ -33,7 +33,7 @@
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <a class="navbar-brand" href="#">IoTBay</a>
         </nav>
-        <h1>Your Payment Details</h1>
+        <h3>Your Payment Details</h3>
             <table>
                 <tr>
                     <th scope="col">Payment Method</th>
