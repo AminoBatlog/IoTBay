@@ -27,6 +27,7 @@ public class PaymentHistoryServlet extends HttpServlet {
        String cust_Email = request.getParameter("Cust_Email"); 
        PaymentDao paymentdao = (PaymentDao)session.getAttribute("paymentdao");
        String email = (String)session.getAttribute("Cust_Email");
+      
            
        if(email != null){
            ArrayList<String> tempList = new ArrayList();
@@ -39,7 +40,7 @@ public class PaymentHistoryServlet extends HttpServlet {
                 if(tempList != null){
                     session.setAttribute("paymentsList", tempList);
                 }  else {
-                    session.setAttribute("getMessage", "There is no record of payments");
+                    session.setAttribute("getMessage", "There is no record of payments. Please add your Payment Details.");
                 }
                 response.sendRedirect("paymentHistory.jsp");
            
@@ -48,3 +49,4 @@ public class PaymentHistoryServlet extends HttpServlet {
        }
     } 
 }
+
