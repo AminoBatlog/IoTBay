@@ -1,6 +1,7 @@
 package au.edu.uts.project.servlet;
 
 import au.edu.uts.project.domain.Staff;
+import au.edu.uts.project.domain.Validator;
 import au.edu.uts.project.service.StaffService;
 import au.edu.uts.project.service.impl.StaffServiceImpl;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -26,17 +27,11 @@ public class StaffServlet extends HttpServlet {
         if("true".equals(request.getParameter("list"))){
             // get staff list
             List<Staff> list = service.getList();
-//            HttpSession session = request.getSession();
-//            session.setAttribute("staff_list", list);
-//            response.sendRedirect(request.getContextPath() + "/staff_list.jsp");
             request.setAttribute("list", list);
             request.getRequestDispatcher("/staff_list.jsp").forward(request, response);
         } else if(request.getParameter("email") != null) {
             // get staff detail based on the email
             Staff staff = service.getStaff((String)request.getParameter("email"));
-//            HttpSession session = request.getSession();
-//            session.setAttribute("selected", staff);
-//            response.sendRedirect(request.getContextPath() + "/staff_detail.jsp");
             request.setAttribute("selected", staff);
             request.getRequestDispatcher("/staff_detail.jsp").forward(request, response);
         } else if("true".equals(request.getParameter("create"))){
@@ -67,6 +62,24 @@ public class StaffServlet extends HttpServlet {
         // setup the coding
         request.setCharacterEncoding("utf-8");
         response.setContentType("text/html;charset=UTF-8");
+
+        Validator validator = new Validator();
+        if(request.getAttribute("update") != null){
+            boolean valid = true;
+            if (!validator.validateEmail(request.getParameter("email"))){
+                request.setAttribute("emailErr", "The format of email is incorrect");
+                valid = false;
+            }
+            if (!validator.validatePassword(request.getParameter("password"))){
+                request.setAttribute("passErr", "Password should have at least 4 digits");
+                valid = false;
+            }
+            if(valid == false){
+                request.getRequestDispatcher("/staff_add.jsp").forward(request, response);
+            } else {
+                request.getRequestDispatcher("/StaffServlet?email=" + request.getAttribute("update")).forward(request, response);
+            }
+        }
 
         Staff staff = new Staff();
         staff.setStaffFname((String)request.getParameter("staff_fname"));

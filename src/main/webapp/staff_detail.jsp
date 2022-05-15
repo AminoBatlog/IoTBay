@@ -30,6 +30,7 @@
                     <div class="form" class="text-center login-register-main">
                         <span id="back-button"> &lsaquo;Back</span>
                         <form action="${pageContext.request.contextPath}/StaffServlet" method="post">
+                            <input type="text" name="update" value="true" style="display: none">
                             <div class="form-row">
                                 <div class="form-group">
                                     <label for="staff_fname">First Name</label>

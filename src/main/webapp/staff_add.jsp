@@ -42,13 +42,17 @@
                             <div class="form-row">
                                 <div class="form-group">
                                     <label for="email">Email Address</label>
-                                    <input name="email" type="text" id="email" value="">
+                                    <input name="email" type="text" id="email" value="" placeholder="<%
+                                        if(request.getAttribute("emailErr") != null) out.print(request.getAttribute("emailErr"));
+                                    %>">
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group">
                                     <label for="password">Password</label>
-                                    <input name="password" type="text" id="password" value="">
+                                    <input name="password" type="text" id="password" value="" placeholder="<%
+                                        if(request.getAttribute("emailErr") != null) out.print(request.getAttribute("emailErr"));
+                                    %>">
                                 </div>
                             </div>
                             <div class="form-row">
