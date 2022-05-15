@@ -24,6 +24,7 @@ public class ConnServlet extends HttpServlet {
    private DatabaseConnection db;
    private DBManagerDAO manager;
    private Connection conn;
+   private PaymentDao pay;
 
    //Create an instance of DatabaseConnection for the deployment session
    @Override
@@ -43,6 +44,7 @@ public class ConnServlet extends HttpServlet {
        conn = db.getConnection(); // Create a DB connection
        try {
          manager = new DBManagerDAO(conn); // Create a DB manager
+         pay = new PaymentDao(conn); // Create a Payment
        } 
        catch (SQLException ex) {
          Logger.getLogger(ConnServlet.class.getName()).log(Level.SEVERE, null, ex);
