@@ -51,7 +51,7 @@
                     <p>Name On Card    = <%=payment.getNameOnCard()%> </p>
 
 
-            <a href="${pageContext.request.contextPath}/ConfirmedPaymentServlet?order_id=<%=order_id%>">Confirm</a>
+            <p> <a href="${pageContext.request.contextPath}/ConfirmedPaymentServlet?order_id=<%=order_id%>">Confirm</a> </p>
             <p> <a class="btn btn-outline-primary"  href="UpdatePaymentServlet?payment_id=<%=order_id%>">Update Details</a></p>
             <p> <a class="btn btn-outline-primary"  href="DeletePaymentServlet?payment_id=<%=order_id%>">Remove Payment</a></p>
             <p> <a class="btn btn-outline-primary"  href="OrderLineServlet?display=<%=order_id%>">Cancel</a></p>
