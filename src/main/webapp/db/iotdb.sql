@@ -50,7 +50,7 @@ CREATE TABLE Product_Category (
 );
 
 CREATE TABLE Payment (
-  Payment_ID int NOT NULL GENERATED ALWAYS AS IDENTITY,
+  Payment_ID int NOT NULL,
   Cust_Email varchar(320) NOT NULL,
   Payment_method varchar(10),
   Card_Number numeric(16),
