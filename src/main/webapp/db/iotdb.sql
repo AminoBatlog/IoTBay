@@ -80,6 +80,15 @@ CREATE TABLE Orderline (
   CONSTRAINT Orderline_FK2 FOREIGN KEY (Dev_ID) REFERENCES IOT_Dev(Dev_ID)
 );
 
+CREATE TABLE Order_Pay (
+  Order_ID int NOT NULL,
+  Payment_ID int NOT NULL,
+  CONSTRAINT OrderPay_PK PRIMARY KEY (Order_ID, Payment_ID),
+  CONSTRAINT OrderPay_FK1 FOREIGN KEY (Order_ID) REFERENCES Orders(Order_ID),
+  CONSTRAINT OrderPay_FK2 FOREIGN KEY (Payment_ID) REFERENCES Payment(Payment_ID)
+);
+
+
 CREATE TABLE Access (
   Email varchar(320) NOT NULL,
   Indate varchar(320),
