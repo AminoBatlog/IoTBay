@@ -20,6 +20,7 @@
         <% 
            Staff staff = (Staff) session.getAttribute("staff");
            String updated = (String) session.getAttribute("updated");
+           String passErr = (String) session.getAttribute("passErr");
         %>
      <div class="container">
         <div class="row justify-content-center text-center">
@@ -81,7 +82,7 @@
                     </div>
                       <div class="col-lg-6">
                       <div class="form-group focused">
-                        <label class="form-control-label" for="password">Password</label>
+                        <label class="form-control-label" for="password">Password: (<span class="message"><%=(passErr != null ? passErr : "")%></span>)</label>
                         <input type="password" name="password" id="password" class="form-control form-control-alternative" value="${staff.password}">
                       </div>
                     </div>
