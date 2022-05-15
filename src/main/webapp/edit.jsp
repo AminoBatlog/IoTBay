@@ -20,6 +20,7 @@
         <% 
            Account account = (Account) session.getAttribute("account");
            String updated = (String) session.getAttribute("updated");
+           String passErr = (String) session.getAttribute("passErr");
         %>
      <div class="container">
         <div class="row justify-content-center text-center">
@@ -42,16 +43,6 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="AccessServlet?email='<%= account.getEmail()%>'&password='<%=account.getPassword()%>'">Access Log</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Devices
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <a class="dropdown-item" href="#">Something else here</a>
-                        </div>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="UpdateLogoutServlet?email='<%= account.getEmail()%>'&password='<%=account.getPassword()%>'">
@@ -83,7 +74,7 @@
                     </div>
                       <div class="col-lg-6">
                       <div class="form-group focused">
-                        <label class="form-control-label" for="password">Password</label>
+                          <label class="form-control-label" for="password">Password: (<span class="message"><%=(passErr != null ? passErr : "")%></span>)</label>
                         <input type="password" name="password" id="password" class="form-control form-control-alternative" value="${account.password}">
                       </div>
                     </div>
@@ -97,7 +88,7 @@
                     </div>
                     <div class="col-lg-6">
                       <div class="form-group focused">
-                        <label class="form-control-label" for="lname">Last name</label>
+                        <label class="form-control-label" for="lname">Last name:</label>
                         <input type="text" name="lname" id="lname" class="form-control form-control-alternative" value="${account.lname}">
                       </div>
                     </div>
