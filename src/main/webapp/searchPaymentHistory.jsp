@@ -94,7 +94,7 @@
         
         <table class="table table-bordered">
 	<thead>
-                <tr>
+                <tr class="table-primary">
                     <th scope="col">Payment ID</th>
                     <th scope="col">Order ID</th>
                     <th scope="col">Payment Method</th>
