@@ -7,6 +7,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%@page import="au.edu.uts.project.domain.Payment"%>
+<%@page import="au.edu.uts.project.domain.Order"%>
 <html>
 <head>
     <title>IoTBay</title>
@@ -65,6 +66,7 @@
                 </ul>
             </div>
         </nav>
+    
         <%
             Integer order_ID = (Integer) session.getAttribute("order_id");
             Integer price = (Integer) session.getAttribute("price");
@@ -98,3 +100,4 @@
         </div>
     </body>
 </html>
+
