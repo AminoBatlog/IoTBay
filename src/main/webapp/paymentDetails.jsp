@@ -50,5 +50,6 @@
                 </tr> 
 
             </table>
+    <p><a class="btn btn-outline-primary" href="main.jsp">Go Back To Main</a></p>
     </body>
 </html>
